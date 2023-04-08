@@ -13,6 +13,15 @@ public class Estudiante {
     private Stack<Subject> DoneSubjects;
     private Deque<Subject> remainingSubjects;
 
+
+    public void addSubjectToDoneSubjects(Subject subjectToAdd) {
+        DoneSubjects.push(subjectToAdd);
+    }
+
+    public void addSubjectToremainingSubjects(Subject subjectToAdd) {
+        remainingSubjects.add(subjectToAdd);
+    }
+    
     public void addSubjectToSchedule(Subject subjectToAdd) {
         Schedule.add(subjectToAdd);
     }

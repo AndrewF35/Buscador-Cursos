@@ -1,34 +1,57 @@
-
 package com.initial;
 
 import javax.swing.table.DefaultTableModel;
 import Data.BaseDatosCursos;
+import Data.DataGenerator;
+import Data.Estudiante;
+import Data.Major;
 import Data.Subject;
 
 public class initial extends javax.swing.JFrame {
-    
-    DefaultTableModel modelo =new DefaultTableModel();
-    
-    public void AñadirTabla(){ 
+
+    Estudiante estudiante = new Estudiante();
+    Major cienciasDeLaComputacion = new Major();
+    DefaultTableModel modelo = new DefaultTableModel();
+    Major subjects = new Major();
+    public void AñadirTabla() {
         modelo.addColumn("Asignatura");
         modelo.addColumn("Codigo");
         modelo.addColumn("Creditos");
-        refrescarTabla();                
+        modelo.addColumn("cupos");
+        refrescarTabla();
     }
-    
-    public void refrescarTabla(){
-        
-        while(modelo.getColumnCount()>0){
+
+    public void refrescarTabla() {
+        while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
+        for (Subject subject : cienciasDeLaComputacion.getSubjectsFromMajor()) {
+            Object a[] = new Object[1];
+            a[0] = subject.getNameSubject();
+            modelo.addRow(a);
+        }
+        for (Subject subject : subjects.getSubjectsFromMajor()) {
+            Object a[] = new Object[4];
+            a[0] = subject.getNameSubject();
+            a[1] = subject.getCodeSubject();
+            a[2] = subject.getCreditsSubject();
+            a[3] = subject.getQuotesSubject();       
+            modelo.addRow(a);
+        }
         TablaCursos.setModel(modelo);
-    } 
-    
-    
-    
+    }
+
     public initial() {
+
+        int numCoursesToGenerate = 1000000; // Cantidad de cursos a generar
+        DataGenerator.generateRandomCourses(subjects, numCoursesToGenerate);
+        System.out.println(subjects.readAllByName());
+        
+        cienciasDeLaComputacion.addSubjectToMajor(new Subject("Matemáticas"));
+        Subject curso = cienciasDeLaComputacion.getSubjectsFromMajorByIndex(0);
+        estudiante.addSubjectToSchedule(curso);
         initComponents();
-        AñadirTabla(); 
+        AñadirTabla();
     }
 
     @SuppressWarnings("unchecked")
@@ -153,19 +176,16 @@ public class initial extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_editButton1ActionPerformed
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+
+        estudiante.printSchedule();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void parameterBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_parameterBoxMouseClicked
-        
+
     }//GEN-LAST:event_parameterBoxMouseClicked
 
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -182,9 +202,7 @@ public class initial extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(initial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new initial().setVisible(true);
