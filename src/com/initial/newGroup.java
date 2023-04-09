@@ -1,6 +1,8 @@
 package com.initial;
 
 import Data.BaseDatosCursos;
+import Data.Major;
+import Data.Subject;
 import javax.swing.JOptionPane;
 
 /**
@@ -143,7 +145,8 @@ public class newGroup extends javax.swing.JFrame {
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         try{
-            dataBase1.create(nameField.getText(), Integer.parseInt(codeField.getText()), Integer.parseInt(creditField.getText()));
+            Major newSubject = initial.subjects; 
+            newSubject.addSubjectToMajor(nameField.getText(), Integer.parseInt(codeField.getText()), Integer.parseInt(creditField.getText()),4);
         }catch(Exception e){
             JOptionPane.showMessageDialog(this,"Error añadiendo informacion");
         }    

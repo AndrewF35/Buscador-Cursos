@@ -20,6 +20,15 @@ public class Major {
         return subjects.get(index);
     }
 
+    public Subject getSubjectsFromMajorByName(String nameSubject) {
+        for(Subject subject : subjects){
+            if(subject.getNameSubject().equals(nameSubject)){
+                return subject;
+            }
+        }
+        return null;
+    }
+
     public LinkedList<String> readAllByName() {
         LinkedList<String> subjectList = new LinkedList<>();
         for (Subject curso : subjects) {
@@ -28,7 +37,26 @@ public class Major {
 
         return subjectList;
     }
-
+    
+    public Subject readByCode(int code){
+        for (Subject subject: subjects) {
+            if (subject.getCodeSubject() == code)
+                return subject;
+        }
+        return null;
+    }
+    public String deleteByCode(int codeSubject){
+        String nameSubjectDeleted = readByCode(codeSubject).getNameSubject();
+        int index=0;
+        for (Subject subjectCode: subjects) {
+            if (subjectCode.getCodeSubject() == codeSubject){
+                subjects.remove(index);
+                return nameSubjectDeleted;
+            }
+            index++;
+        }
+        return null;
+    }
     public void addSubjectToMajor(String courseName, int courseCode, int creditSubject,int quotesSubject) {
         Subject subject = new Subject();
         subject.setNameSubject(courseName);

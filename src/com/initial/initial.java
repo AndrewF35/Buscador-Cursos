@@ -12,7 +12,8 @@ public class initial extends javax.swing.JFrame {
     Estudiante estudiante = new Estudiante();
     Major cienciasDeLaComputacion = new Major();
     DefaultTableModel modelo = new DefaultTableModel();
-    Major subjects = new Major();
+    public static Major subjects = new Major();
+    
     public void AñadirTabla() {
         modelo.addColumn("Asignatura");
         modelo.addColumn("Codigo");
@@ -43,9 +44,7 @@ public class initial extends javax.swing.JFrame {
 
     public initial() {
 
-        int numCoursesToGenerate = 1000000; // Cantidad de cursos a generar
-        DataGenerator.generateRandomCourses(subjects, numCoursesToGenerate);
-        System.out.println(subjects.readAllByName());
+
         
         cienciasDeLaComputacion.addSubjectToMajor(new Subject("Matemáticas"));
         Subject curso = cienciasDeLaComputacion.getSubjectsFromMajorByIndex(0);
@@ -185,7 +184,9 @@ public class initial extends javax.swing.JFrame {
     }//GEN-LAST:event_parameterBoxMouseClicked
 
     public static void main(String args[]) {
-
+        int numCoursesToGenerate = 10; // Cantidad de cursos a generar
+        DataGenerator.generateRandomCourses(subjects, numCoursesToGenerate);
+        System.out.println(subjects.readAllByName());
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
