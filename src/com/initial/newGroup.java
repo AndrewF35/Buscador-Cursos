@@ -47,17 +47,29 @@ public class newGroup extends javax.swing.JFrame {
         codeLabel.setText("Código");
 
         codeField.setForeground(new java.awt.Color(204, 204, 204));
-        codeField.setText("Escriba el codigo del grupo");
+        codeField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                codeFieldActionPerformed(evt);
+            }
+        });
 
         creditLabel.setText("Creditos");
 
         creditField.setForeground(new java.awt.Color(204, 204, 204));
-        creditField.setText("Escriba los creditos del grupo");
+        creditField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                creditFieldActionPerformed(evt);
+            }
+        });
 
         nameLabel.setText("Nombre");
 
         nameField.setForeground(new java.awt.Color(204, 204, 204));
-        nameField.setText("Escriba el nombre del grupo");
+        nameField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameFieldActionPerformed(evt);
+            }
+        });
 
         saveButton.setText("Guardar");
         saveButton.addActionListener(new java.awt.event.ActionListener() {
@@ -157,6 +169,18 @@ public class newGroup extends javax.swing.JFrame {
         v1.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_RegresarActionPerformed
+
+    private void codeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_codeFieldActionPerformed
+
+    private void creditFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creditFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_creditFieldActionPerformed
+
+    private void nameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameFieldActionPerformed
 
     /**
      * @param args the command line arguments

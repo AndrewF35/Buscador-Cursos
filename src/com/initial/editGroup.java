@@ -52,17 +52,21 @@ public class editGroup extends javax.swing.JFrame {
         codeLabel.setText("Código");
 
         codeField.setForeground(new java.awt.Color(204, 204, 204));
-        codeField.setText("Escriba el codigo del grupo");
+        codeField.setToolTipText("");
+        codeField.setActionCommand("<Not Set>");
 
         creditLabel.setText("Creditos");
 
         creditField.setForeground(new java.awt.Color(204, 204, 204));
-        creditField.setText("Escriba los creditos del grupo");
+        creditField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                creditFieldActionPerformed(evt);
+            }
+        });
 
         nameLabel.setText("Nombre");
 
         nameField.setForeground(new java.awt.Color(204, 204, 204));
-        nameField.setText("Escriba el nombre del grupo");
 
         saveButton.setText("Guardar");
         saveButton.addActionListener(new java.awt.event.ActionListener() {
@@ -180,6 +184,10 @@ public class editGroup extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error añadiendo informacion");
          }     }//GEN-LAST:event_EliminarActionPerformed
+
+    private void creditFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creditFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_creditFieldActionPerformed
 
     /**
      * @param args the command line arguments
