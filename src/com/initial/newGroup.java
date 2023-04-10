@@ -1,6 +1,5 @@
 package com.initial;
 
-import Data.BaseDatosCursos;
 import Data.Major;
 import Data.Subject;
 import javax.swing.JOptionPane;
@@ -11,8 +10,6 @@ import javax.swing.JOptionPane;
  */
 public class newGroup extends javax.swing.JFrame {
     
-    BaseDatosCursos dataBase1 = new BaseDatosCursos();
-
     public newGroup() {
         initComponents();
     }

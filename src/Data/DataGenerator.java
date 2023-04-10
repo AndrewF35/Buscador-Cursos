@@ -110,7 +110,7 @@ public class DataGenerator {
         Random random = new Random();
         for (int i = 0; i < numCourses; i++) {
             String courseName = COURSE_NAMES.get(random.nextInt(COURSE_NAMES.size())) + i;
-            int courseCode = random.nextInt(100000) + 100000 * i;
+            int courseCode = i+1000;
             int credits = random.nextInt(5) + 1;
             int quotes = random.nextInt(50) + 1;
             major.addSubjectToMajor(courseName, courseCode, credits, quotes);

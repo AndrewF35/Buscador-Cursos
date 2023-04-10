@@ -1,16 +1,14 @@
 package com.initial;
 
 import javax.swing.table.DefaultTableModel;
-import Data.BaseDatosCursos;
 import Data.DataGenerator;
 import Data.Estudiante;
 import Data.Major;
 import Data.Subject;
+import javax.swing.JOptionPane;
 
 public class initial extends javax.swing.JFrame {
 
-    Estudiante estudiante = new Estudiante();
-    Major cienciasDeLaComputacion = new Major();
     DefaultTableModel modelo = new DefaultTableModel();
     public static Major subjects = new Major();
     
@@ -26,11 +24,6 @@ public class initial extends javax.swing.JFrame {
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
-        for (Subject subject : cienciasDeLaComputacion.getSubjectsFromMajor()) {
-            Object a[] = new Object[1];
-            a[0] = subject.getNameSubject();
-            modelo.addRow(a);
-        }
         for (Subject subject : subjects.getSubjectsFromMajor()) {
             Object a[] = new Object[4];
             a[0] = subject.getNameSubject();
@@ -43,12 +36,6 @@ public class initial extends javax.swing.JFrame {
     }
 
     public initial() {
-
-
-        
-        cienciasDeLaComputacion.addSubjectToMajor(new Subject("Matemáticas"));
-        Subject curso = cienciasDeLaComputacion.getSubjectsFromMajorByIndex(0);
-        estudiante.addSubjectToSchedule(curso);
         initComponents();
         AñadirTabla();
     }
@@ -175,8 +162,7 @@ public class initial extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_editButton1ActionPerformed
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        estudiante.printSchedule();
+            JOptionPane.showMessageDialog(this, "Aun no implementamos esta funcionalidad :D");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void parameterBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_parameterBoxMouseClicked
