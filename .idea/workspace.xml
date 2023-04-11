@@ -1,13 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf31275-0cd8-4163-a817-d39d6b563620" name="Changes" comment="" />
+    <list default="true" id="bdf31275-0cd8-4163-a817-d39d6b563620" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/AbsoluteLayout-RELEASE170.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/Data/DataGenerator.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/Data/Estudiante.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/Data/Major.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/Data/Subject.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/editGroup$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/editGroup$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/editGroup$3.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/editGroup$4.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/editGroup$5.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/editGroup$6.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/editGroup$7.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/editGroup.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/initial$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/initial$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/initial$3.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/initial$4.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/initial$5.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/initial.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/newGroup$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/newGroup$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/newGroup$3.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/newGroup$4.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/newGroup$5.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/newGroup$6.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/newGroup$7.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/newGroup.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sampleSwing1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/sampleSwing1.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Data/Major.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/Major.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Data/Subject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/Subject.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="2O4QILcqlQi0oXnNq1iFafd1Qrr" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="flattenPackages" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -17,9 +64,32 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/Usuario/Buscador-Cursos"
+    "last_opened_file_path": "/home/andres/Documents/Uni/2023-1/Buscador-Cursos/lib/AbsoluteLayout-RELEASE170.jar",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="Buscador-Cursos" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="Buscador-Cursos" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

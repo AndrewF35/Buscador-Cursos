@@ -44,31 +44,19 @@ public class Major {
         }
         return null;
     }
-    public Subject readByCode(int code){
-        for (Subject subject: subjects) {
-            if (subject.getCodeSubject() == code)
-                return subject;
-        }
-        return null;
+    public Subject readByCode(int codeSubject) {
+        return subjects.get(codeSubject-1000);
     }
     public String deleteByCode(int codeSubject){
         String nameSubjectDeleted = readByCode(codeSubject).getNameSubject();
-        int index=0;
-        for (Subject subjectCode: subjects) {
-            if (subjectCode.getCodeSubject() == codeSubject){
-                subjects.remove(index);
-                return nameSubjectDeleted;
-            }
-            index++;
+        if (nameSubjectDeleted != null) {
+            subjects.remove(codeSubject-1000);
+            return nameSubjectDeleted;
         }
         return null;
     }
     public void addSubjectToMajor(String courseName, int courseCode, int creditSubject,int quotesSubject) {
-        Subject subject = new Subject();
-        subject.setNameSubject(courseName);
-        subject.setCodeSubject(courseCode);
-        subject.setCreditsSubject(creditSubject);
-        subject.setQuotesSubject(quotesSubject);
+        Subject subject = new Subject(courseName, courseCode, creditSubject, quotesSubject);
         subjects.add(subject);
     }
 

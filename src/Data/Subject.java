@@ -14,8 +14,11 @@ public class Subject {
     public Subject() {
     }
 
-    public Subject(String nameSubject) {
+    public Subject(String nameSubject, int codeSubject, int creditsSubject, int quotesSubject) {
         this.nameSubject = nameSubject;
+        this.codeSubject = codeSubject;
+        this.creditsSubject = creditsSubject;
+        this.quotesSubject = quotesSubject;
     }
 
 //    private int cupoDisponible;
