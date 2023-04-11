@@ -1,33 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdf31275-0cd8-4163-a817-d39d6b563620" name="Changes" comment="" />
+    <list default="true" id="820a704e-1a40-49f3-9139-7cc2c6ff946f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/AbsoluteLayout-RELEASE170.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Buscador-Cursos.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Buscador-Cursos.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Buscador-Cursos/Buscador-Cursos.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Buscador-Cursos/Buscador-Cursos.iml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ProjectId" id="2O4QILcqlQi0oXnNq1iFafd1Qrr" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2OF445QjvxqpoevSwJFTJyGfqc7" />
   <component name="ProjectViewState">
-    <option name="flattenPackages" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
-    <option name="sortByType" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/Usuario/Buscador-Cursos"
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "jdk.selected.JAVA_MODULE": "openjdk-20",
+    "last_opened_file_path": "/home/andres/Documents/Uni/2023-1/Buscador-Cursos/lib/AbsoluteLayout-RELEASE170.jar",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="bdf31275-0cd8-4163-a817-d39d6b563620" name="Changes" comment="" />
-      <created>1680817299720</created>
+      <changelist id="820a704e-1a40-49f3-9139-7cc2c6ff946f" name="Changes" comment="" />
+      <created>1681100419157</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1680817299720</updated>
+      <updated>1681100419157</updated>
     </task>
     <servers />
   </component>
