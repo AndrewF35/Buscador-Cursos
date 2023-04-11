@@ -2,6 +2,7 @@ package com.initial;
 
 import Data.Major;
 import Data.Subject;
+import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
 
 public class editGroup extends javax.swing.JFrame {
@@ -25,6 +26,7 @@ public class editGroup extends javax.swing.JFrame {
         saveButton = new javax.swing.JButton();
         Regresar = new javax.swing.JButton();
         Eliminar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -35,13 +37,21 @@ public class editGroup extends javax.swing.JFrame {
 
         codeLabel.setText("Código");
 
-        codeField.setForeground(new java.awt.Color(204, 204, 204));
         codeField.setToolTipText("");
         codeField.setActionCommand("<Not Set>");
+        codeField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                codeFieldActionPerformed(evt);
+            }
+        });
+        codeField.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                codeFieldPropertyChange(evt);
+            }
+        });
 
         creditLabel.setText("Creditos");
 
-        creditField.setForeground(new java.awt.Color(204, 204, 204));
         creditField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 creditFieldActionPerformed(evt);
@@ -49,8 +59,6 @@ public class editGroup extends javax.swing.JFrame {
         });
 
         nameLabel.setText("Nombre");
-
-        nameField.setForeground(new java.awt.Color(204, 204, 204));
 
         saveButton.setText("Guardar");
         saveButton.addActionListener(new java.awt.event.ActionListener() {
@@ -73,15 +81,14 @@ public class editGroup extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("El curso a editar se filtra por nombre :D");
+
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
         background.setLayout(backgroundLayout);
         backgroundLayout.setHorizontalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backgroundLayout.createSequentialGroup()
                 .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(backgroundLayout.createSequentialGroup()
-                        .addGap(181, 181, 181)
-                        .addComponent(codeLabel))
                     .addGroup(backgroundLayout.createSequentialGroup()
                         .addGap(112, 112, 112)
                         .addComponent(title))
@@ -99,18 +106,24 @@ public class editGroup extends javax.swing.JFrame {
                             .addGroup(backgroundLayout.createSequentialGroup()
                                 .addComponent(saveButton)
                                 .addGap(39, 39, 39)
-                                .addComponent(Regresar))))
+                                .addComponent(Regresar))
+                            .addComponent(jLabel1)))
                     .addGroup(backgroundLayout.createSequentialGroup()
                         .addGap(139, 139, 139)
-                        .addComponent(Eliminar)))
-                .addContainerGap(102, Short.MAX_VALUE))
+                        .addComponent(Eliminar))
+                    .addGroup(backgroundLayout.createSequentialGroup()
+                        .addGap(181, 181, 181)
+                        .addComponent(codeLabel)))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
         backgroundLayout.setVerticalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backgroundLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(title)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addGap(4, 4, 4)
                 .addComponent(codeLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(codeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -128,7 +141,7 @@ public class editGroup extends javax.swing.JFrame {
                     .addComponent(Regresar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Eliminar)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -148,11 +161,11 @@ public class editGroup extends javax.swing.JFrame {
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         try {
             Major major = initial.subjects;
-            Subject subjectToModify = major.getSubjectsFromMajorByName(nameField.getText());
+            Subject subjectToModify = major.getSubjectsFromMajorByName(nameField.getText()); 
             subjectToModify.modifySubect(subjectToModify, nameField.getText(), Integer.parseInt(codeField.getText()), Integer.parseInt(creditField.getText()), 8);
             JOptionPane.showMessageDialog(this, "Se edito exitosamente el Grupo");
 
-        } catch (Exception e) {
+        } catch (HeadlessException | NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Error editando informacion, curso no encontrado");
         }
      }//GEN-LAST:event_saveButtonActionPerformed
@@ -169,8 +182,10 @@ public class editGroup extends javax.swing.JFrame {
             if (major.getSubjectsFromMajor().contains(subjectToModify)) {
                 major.getSubjectsFromMajor().remove(subjectToModify);
                 JOptionPane.showMessageDialog(this, "Se elimino exitosamente el Grupo");
-            }throw new Exception();
-            
+            } else {
+                throw new Exception();
+            }
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error Eliminando informacion, curso no encontrado");
          }     }//GEN-LAST:event_EliminarActionPerformed
@@ -178,6 +193,14 @@ public class editGroup extends javax.swing.JFrame {
     private void creditFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creditFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_creditFieldActionPerformed
+
+    private void codeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_codeFieldActionPerformed
+
+    private void codeFieldPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_codeFieldPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_codeFieldPropertyChange
 
     /**
      * @param args the command line arguments
@@ -222,6 +245,7 @@ public class editGroup extends javax.swing.JFrame {
     private javax.swing.JLabel codeLabel;
     private javax.swing.JTextField creditField;
     private javax.swing.JLabel creditLabel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField nameField;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JButton saveButton;

@@ -43,7 +43,6 @@ public class newGroup extends javax.swing.JFrame {
 
         codeLabel.setText("Código");
 
-        codeField.setForeground(new java.awt.Color(204, 204, 204));
         codeField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 codeFieldActionPerformed(evt);
@@ -52,7 +51,6 @@ public class newGroup extends javax.swing.JFrame {
 
         creditLabel.setText("Creditos");
 
-        creditField.setForeground(new java.awt.Color(204, 204, 204));
         creditField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 creditFieldActionPerformed(evt);
@@ -61,7 +59,11 @@ public class newGroup extends javax.swing.JFrame {
 
         nameLabel.setText("Nombre");
 
-        nameField.setForeground(new java.awt.Color(204, 204, 204));
+        nameField.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                nameFieldComponentAdded(evt);
+            }
+        });
         nameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nameFieldActionPerformed(evt);
@@ -168,16 +170,17 @@ public class newGroup extends javax.swing.JFrame {
     }//GEN-LAST:event_RegresarActionPerformed
 
     private void codeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_codeFieldActionPerformed
+        System.out.println("Esto hace esto");    }//GEN-LAST:event_codeFieldActionPerformed
 
     private void creditFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creditFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_creditFieldActionPerformed
+        System.out.println("Esto hace esto");    }//GEN-LAST:event_creditFieldActionPerformed
 
     private void nameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nameFieldActionPerformed
+        System.out.println("Esto hace esto");    }//GEN-LAST:event_nameFieldActionPerformed
+
+    private void nameFieldComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_nameFieldComponentAdded
+        System.out.println("Esto hace esto");
+    }//GEN-LAST:event_nameFieldComponentAdded
 
     /**
      * @param args the command line arguments

@@ -11,7 +11,7 @@ public class initial extends javax.swing.JFrame {
 
     DefaultTableModel modelo = new DefaultTableModel();
     public static Major subjects = new Major();
-    
+
     public void AñadirTabla() {
         modelo.addColumn("Asignatura");
         modelo.addColumn("Codigo");
@@ -29,7 +29,7 @@ public class initial extends javax.swing.JFrame {
             a[0] = subject.getNameSubject();
             a[1] = subject.getCodeSubject();
             a[2] = subject.getCreditsSubject();
-            a[3] = subject.getQuotesSubject();       
+            a[3] = subject.getQuotesSubject();
             modelo.addRow(a);
         }
         TablaCursos.setModel(modelo);
@@ -162,7 +162,7 @@ public class initial extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_editButton1ActionPerformed
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-            JOptionPane.showMessageDialog(this, "Aun no implementamos esta funcionalidad :D");
+        JOptionPane.showMessageDialog(this, "Aun no implementamos esta funcionalidad :D");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void parameterBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_parameterBoxMouseClicked

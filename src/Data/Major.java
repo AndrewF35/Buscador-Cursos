@@ -15,6 +15,14 @@ public class Major {
     public ArrayList<Subject> getSubjectsFromMajor() {
         return subjects;
     }
+    public LinkedList<String> readAllByName() {
+        LinkedList<String> subjectList = new LinkedList<>();
+        for (Subject curso : subjects) {
+            subjectList.add(curso.getNameSubject());
+        }
+
+        return subjectList;
+    }
 
     public Subject getSubjectsFromMajorByIndex(int index) {
         return subjects.get(index);
@@ -28,16 +36,14 @@ public class Major {
         }
         return null;
     }
-
-    public LinkedList<String> readAllByName() {
-        LinkedList<String> subjectList = new LinkedList<>();
-        for (Subject curso : subjects) {
-            subjectList.add(curso.getNameSubject());
+    public Subject getSubjectsFromMajorByCredits(int credits) {
+        for(Subject subject : subjects){
+            if(subject.getCreditsSubject()==(credits)){
+                return subject;
+            }
         }
-
-        return subjectList;
+        return null;
     }
-    
     public Subject readByCode(int code){
         for (Subject subject: subjects) {
             if (subject.getCodeSubject() == code)
