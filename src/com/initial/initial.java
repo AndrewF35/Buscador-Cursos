@@ -171,7 +171,9 @@ public class initial extends javax.swing.JFrame {
 
     public static void main(String args[]) {
         int numCoursesToGenerate = 10; // Cantidad de cursos a generar
-        DataGenerator.generateRandomCourses(subjects, numCoursesToGenerate);
+        for (int i = 0; i < numCoursesToGenerate; i++) {
+            subjects.addSubjectToMajor(DataGenerator.generateRandomCourses(i));
+        }
         System.out.println(subjects.readAllByName());
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

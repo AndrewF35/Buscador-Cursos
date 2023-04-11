@@ -5,40 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bdf31275-0cd8-4163-a817-d39d6b563620" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/AbsoluteLayout-RELEASE170.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/Data/DataGenerator.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/Data/Estudiante.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/Data/Major.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/Data/Subject.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/editGroup$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/editGroup$2.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/editGroup$3.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/editGroup$4.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/editGroup$5.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/editGroup$6.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/editGroup$7.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/editGroup.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/initial$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/initial$2.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/initial$3.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/initial$4.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/initial$5.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/initial.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/newGroup$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/newGroup$2.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/newGroup$3.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/newGroup$4.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/newGroup$5.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/newGroup$6.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/newGroup$7.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/newGroup.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sampleSwing1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/sampleSwing1.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Data/Major.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/Major.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Data/Subject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/Subject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Data/DataGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/DataGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/initial/initial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/initial/initial.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,6 +42,9 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/lib" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.initial" />
     </key>
   </component>
   <component name="RunManager">
