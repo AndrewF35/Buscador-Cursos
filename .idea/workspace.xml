@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="bdf31275-0cd8-4163-a817-d39d6b563620" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Data/DataGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/DataGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/initial/initial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/initial/initial.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +31,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/home/andres/Documents/Uni/2023-1/Buscador-Cursos/lib/AbsoluteLayout-RELEASE170.jar",
+    "last_opened_file_path": "/home/andres/Documents/Uni/2023-1/Buscador-Cursos",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0"
