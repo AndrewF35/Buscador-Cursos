@@ -2,25 +2,53 @@ package com.initial;
 
 import javax.swing.table.DefaultTableModel;
 import Data.DataGenerator;
-import Data.Estudiante;
+import Data.Student;
 import Data.Major;
 import Data.Subject;
 import javax.swing.JOptionPane;
 
-public class initial extends javax.swing.JFrame {
+public class initial<T> extends javax.swing.JFrame {
 
     DefaultTableModel modelo = new DefaultTableModel();
     public static Major subjects = new Major();
 
-    public void AñadirTabla() {
+    private void AñadirTabla(Major subjects) {
+        //añade columnas de la tabla
         modelo.addColumn("Asignatura");
         modelo.addColumn("Codigo");
         modelo.addColumn("Creditos");
         modelo.addColumn("cupos");
-        refrescarTabla();
+        //actualiza la infromacion de la tabla
+        refrescarTabla(subjects);
     }
 
-    public void refrescarTabla() {
+    private void refrescarTabla(Major subjects,T parameter,int filterby) {
+        
+        while (modelo.getRowCount() > 0) {
+            modelo.removeRow(0);
+        }
+        Major filtered=subjects;
+        if (1==filterby){
+            filtered = subjects.filterByCode(subjects,(Integer)parameter);
+        }
+        else if (2==filterby){
+            filtered = subjects.filterByCredits(subjects,(Integer)parameter);
+        }
+        else if (3==filterby){
+            filtered = subjects.filterByName(subjects,(String)parameter);
+        }
+        for (Subject subject : filtered.getSubjectsFromMajor()) {
+            Object a[] = new Object[4];
+            a[0] = subject.getNameSubject();
+            a[1] = subject.getCodeSubject();
+            a[2] = subject.getCreditsSubject();
+            a[3] = subject.getQuotesSubject();
+            modelo.addRow(a);
+        }
+        TablaCursos.setModel(modelo);
+    }
+    private void refrescarTabla(Major subjects) {
+        
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
@@ -37,7 +65,7 @@ public class initial extends javax.swing.JFrame {
 
     public initial() {
         initComponents();
-        AñadirTabla();
+        AñadirTabla(subjects);
     }
 
     @SuppressWarnings("unchecked")
@@ -88,11 +116,26 @@ public class initial extends javax.swing.JFrame {
                 parameterBoxMouseClicked(evt);
             }
         });
+        parameterBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                parameterBoxActionPerformed(evt);
+            }
+        });
         background.add(parameterBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, -1, -1));
 
         parameterField.setForeground(new java.awt.Color(204, 204, 204));
         parameterField.setText("Ingrese el parametro a buscar");
         parameterField.setToolTipText("");
+        parameterField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                parameterFieldMouseClicked(evt);
+            }
+        });
+        parameterField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                parameterFieldActionPerformed(evt);
+            }
+        });
         background.add(parameterField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 270, 30));
 
         newButton.setText("Nuevo curso");
@@ -162,17 +205,41 @@ public class initial extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_editButton1ActionPerformed
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JOptionPane.showMessageDialog(this, "Aun no implementamos esta funcionalidad :D");
+        //con este boton filtramos los cursos por atributo
+        
+        //falta añadir excepcion cuando no se haya ingresado un parametro
+        if(parameterField.getText().equals("Ingrese el parametro a buscar")){
+            JOptionPane.showMessageDialog(this, "Ingrese un parametro");
+        }else if("Codigo".equals(parameterBox.getSelectedItem())){
+            refrescarTabla(subjects,(T) parameterField.getText(),1);
+        }else if("Creditos".equals(parameterBox.getSelectedItem())){
+            refrescarTabla(subjects,(T) parameterField.getText(),2);
+        }else if("Nombre".equals(parameterBox.getSelectedItem())){
+            refrescarTabla(subjects,(T) parameterField.getText(),3);
+        }else if("".equals(parameterBox.getSelectedItem())){
+            refrescarTabla(subjects);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void parameterBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_parameterBoxMouseClicked
-
     }//GEN-LAST:event_parameterBoxMouseClicked
+
+    private void parameterBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_parameterBoxActionPerformed
+    }//GEN-LAST:event_parameterBoxActionPerformed
+
+    private void parameterFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_parameterFieldActionPerformed
+    }//GEN-LAST:event_parameterFieldActionPerformed
+
+    private void parameterFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_parameterFieldMouseClicked
+        parameterField.setText("");
+    }//GEN-LAST:event_parameterFieldMouseClicked
 
     public static void main(String args[]) {
         int numCoursesToGenerate = 10; // Cantidad de cursos a generar
         DataGenerator.generateRandomCourses(subjects, numCoursesToGenerate);
         System.out.println(subjects.readAllByName());
+        System.out.println(subjects.getSubjectsFromMajor().size());
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.Stack;
 
-public class Estudiante {
+public class Student {
 
     private String nombre;
     private int edad;
@@ -37,10 +37,10 @@ public class Estudiante {
         Schedule.remove(subjectToDelete);
     }
 
-    public Estudiante() {
+    public Student() {
     }
 
-    public Estudiante(String nombre, int edad, Major majorCurrent, ArrayList<Subject> Schedules, Stack<Subject> DoneSubjects, Deque<Subject> remainingSubjects) {
+    public Student(String nombre, int edad, Major majorCurrent, ArrayList<Subject> Schedules, Stack<Subject> DoneSubjects, Deque<Subject> remainingSubjects) {
         this.nombre = nombre;
         this.edad = edad;
         this.majorCurrent = majorCurrent;
