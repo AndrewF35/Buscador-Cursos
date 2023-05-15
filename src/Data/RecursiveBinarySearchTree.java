@@ -168,6 +168,20 @@ public class RecursiveBinarySearchTree<T extends Comparable<T>>{
         System.out.print(root.getKey() + " ");
         this.inOrder(root.getRight());
     }
+    
+    public ArrayList<T> inOrderList() {
+        return this.inOrderList(root);
+    }
+    
+    private ArrayList<T> inOrderList(TreeNode<T> root) {
+        ArrayList<T> listaInOrder = new ArrayList<>();
+        if(root == null) return listaInOrder;
+        this.inOrderList(root.getLeft());
+        listaInOrder.add(root.getKey());
+        this.inOrderList(root.getRight());
+        return listaInOrder;
+
+    }
 
     private void preOrder(TreeNode<T> root) {
         if(root == null) return;

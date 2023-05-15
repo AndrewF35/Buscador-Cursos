@@ -22,16 +22,19 @@ public class initial extends javax.swing.JFrame {
         refrescarTabla(subjects);
     }
 
-    private void refrescarTabla(Major subjects, String parameter,int filterby) {
-        
+    private void refrescarTabla(Major subjects, String parameter, int filterby) {
+
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
-        Major filtered=subjects;
+        Major filtered = subjects;
         switch (filterby) {
-            case 1 -> filtered = subjects.filterByCode(subjects,Integer.parseInt(parameter));
-            case 2 -> filtered = subjects.filterByCredits(subjects,Integer.parseInt(parameter));
-            case 3 -> filtered = subjects.filterByName(subjects,(String)parameter);
+            case 1 ->
+                filtered = subjects.filterByCode(subjects, Integer.parseInt(parameter));
+            case 2 ->
+                filtered = subjects.filterByCredits(subjects, Integer.parseInt(parameter));
+            case 3 ->
+                filtered = subjects.filterByName(subjects, (String) parameter);
             default -> {
             }
         }
@@ -45,8 +48,9 @@ public class initial extends javax.swing.JFrame {
         }
         TablaCursos.setModel(modelo);
     }
+
     private void refrescarTabla(Major subjects) {
-        
+
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
@@ -204,18 +208,20 @@ public class initial extends javax.swing.JFrame {
     }//GEN-LAST:event_editButton1ActionPerformed
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //con este boton filtramos los cursos por atributo
-        
-        //falta añadir excepcion cuando no se haya ingresado un parametro
-        if(parameterField.getText().equals("Ingrese el parametro a buscar")){
+        try {
+            if ("Codigo".equals(parameterBox.getSelectedItem())) {
+                refrescarTabla(subjects, parameterField.getText(), 1);
+            }
+            if ("Creditos".equals(parameterBox.getSelectedItem())) {
+                refrescarTabla(subjects, parameterField.getText(), 2);
+            }
+            if ("Nombre".equals(parameterBox.getSelectedItem())) {
+                refrescarTabla(subjects, parameterField.getText(), 3);
+            }
+        } catch (java.lang.NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Ingrese un parametro");
-        }if("Codigo".equals(parameterBox.getSelectedItem())){
-            refrescarTabla(subjects,parameterField.getText(),1);
-        }if("Creditos".equals(parameterBox.getSelectedItem())){
-            refrescarTabla(subjects,parameterField.getText(),2);
-        }if("Nombre".equals(parameterBox.getSelectedItem())){
-            refrescarTabla(subjects,parameterField.getText(),3);
-        }else if("".equals(parameterBox.getSelectedItem())){
             refrescarTabla(subjects);
+
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

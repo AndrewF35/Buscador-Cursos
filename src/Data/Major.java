@@ -78,8 +78,8 @@ public class Major {
         return null;
     }
     
-    public RecursiveBinarySearchTree getStudentsFromMajor() {
-        return Students;
+    public ArrayList<String> getStudentsFromMajor(String nameOfStudent) {
+        return Students.inOrderList();
     }
 
     public void AddStudentsToMajor(RecursiveBinarySearchTree Students,Student studentToAdd) {
