@@ -4,14 +4,15 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.Stack;
 
-public class Student {
+public class Student{
 
-    private String nombre;
-    private int edad;
+    private String name;
+    private int age;
     private Major majorCurrent;
     private ArrayList<Subject> Schedule = new ArrayList<>();
     private Stack<Subject> DoneSubjects;
     private Deque<Subject> remainingSubjects;
+    
 
 
     public void addSubjectToDoneSubjects(Subject subjectToAdd) {
@@ -41,8 +42,8 @@ public class Student {
     }
 
     public Student(String nombre, int edad, Major majorCurrent, ArrayList<Subject> Schedules, Stack<Subject> DoneSubjects, Deque<Subject> remainingSubjects) {
-        this.nombre = nombre;
-        this.edad = edad;
+        this.name = nombre;
+        this.age = edad;
         this.majorCurrent = majorCurrent;
         this.Schedule = Schedules;
         this.DoneSubjects = DoneSubjects;
@@ -51,23 +52,23 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Estudiante{" + "nombre=" + nombre + ", edad=" + edad + ", majorCurrent=" + majorCurrent + ", Schedules=" + Schedule + ", DoneSubjects=" + DoneSubjects + ", remainingSubjects=" + remainingSubjects + '}';
+        return "Estudiante{" + "nombre=" + name + ", edad=" + age + ", majorCurrent=" + majorCurrent + ", Schedules=" + Schedule + ", DoneSubjects=" + DoneSubjects + ", remainingSubjects=" + remainingSubjects + '}';
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getEdad() {
-        return edad;
+    public int getAge() {
+        return age;
     }
 
-    public void setEdad(int edad) {
-        this.edad = edad;
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public Major getMajorCurrent() {

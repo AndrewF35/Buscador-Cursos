@@ -233,7 +233,7 @@ public class initial extends javax.swing.JFrame {
     }//GEN-LAST:event_parameterFieldMouseClicked
 
     public static void main(String args[]) {
-        int numCoursesToGenerate = 10; // Cantidad de cursos a generar
+        int numCoursesToGenerate = 100000; // Cantidad de cursos a generar
         for (int i = 0; i < numCoursesToGenerate; i++) {
             subjects.addSubjectToMajor(DataGenerator.generateRandomCourses(i));
         }
