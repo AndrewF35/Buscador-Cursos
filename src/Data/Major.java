@@ -8,6 +8,36 @@ public class Major {
     private String nameMajor;//ciencias de la computacion
     private ArrayList<Subject> subjects = new ArrayList<>();//introduccion, mates,poo
 
+    
+    //Metodos para filtrar 
+    public Major filterByCode(Major subjects,int code){
+        Major majorFiltered =new Major();
+        for (int i=0;i<subjects.getSubjectsFromMajor().size();i++) {
+            if (subjects.getSubjectsFromMajor().get(i).getCodeSubject()==code) {
+                majorFiltered.subjects.add((subjects.getSubjectsFromMajor().get(i)));
+            }
+        }    
+        return majorFiltered; 
+    }
+    public Major filterByName(Major subjects,String name){
+        Major majorFiltered =new Major();
+        for (int i=0;i<subjects.getSubjectsFromMajor().size();i++) {
+            if (subjects.getSubjectsFromMajor().get(i).getNameSubject().contains(name)) {
+                majorFiltered.subjects.add((subjects.getSubjectsFromMajor().get(i)));
+            }
+        }    
+        return majorFiltered; 
+    }
+    public Major filterByCredits(Major subjects,int credits){
+        Major majorFiltered =new Major();
+        for (int i=0;i<subjects.getSubjectsFromMajor().size();i++) {
+            if (subjects.getSubjectsFromMajor().get(i).getCreditsSubject()==credits) {
+                majorFiltered.subjects.add((subjects.getSubjectsFromMajor().get(i)));
+            }
+        }    
+        return majorFiltered; 
+    }
+
     public void addSubjectToMajor(Subject subject) {
         subjects.add(subject);
     }

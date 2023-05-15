@@ -7,7 +7,7 @@ import Data.Major;
 import Data.Subject;
 import javax.swing.JOptionPane;
 
-public class initial<T> extends javax.swing.JFrame {
+public class initial extends javax.swing.JFrame {
 
     DefaultTableModel modelo = new DefaultTableModel();
     public static Major subjects = new Major();
@@ -22,20 +22,18 @@ public class initial<T> extends javax.swing.JFrame {
         refrescarTabla(subjects);
     }
 
-    private void refrescarTabla(Major subjects,T parameter,int filterby) {
+    private void refrescarTabla(Major subjects, String parameter,int filterby) {
         
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
         Major filtered=subjects;
-        if (1==filterby){
-            filtered = subjects.filterByCode(subjects,(Integer)parameter);
-        }
-        else if (2==filterby){
-            filtered = subjects.filterByCredits(subjects,(Integer)parameter);
-        }
-        else if (3==filterby){
-            filtered = subjects.filterByName(subjects,(String)parameter);
+        switch (filterby) {
+            case 1 -> filtered = subjects.filterByCode(subjects,Integer.parseInt(parameter));
+            case 2 -> filtered = subjects.filterByCredits(subjects,Integer.parseInt(parameter));
+            case 3 -> filtered = subjects.filterByName(subjects,(String)parameter);
+            default -> {
+            }
         }
         for (Subject subject : filtered.getSubjectsFromMajor()) {
             Object a[] = new Object[4];
@@ -210,12 +208,12 @@ public class initial<T> extends javax.swing.JFrame {
         //falta añadir excepcion cuando no se haya ingresado un parametro
         if(parameterField.getText().equals("Ingrese el parametro a buscar")){
             JOptionPane.showMessageDialog(this, "Ingrese un parametro");
-        }else if("Codigo".equals(parameterBox.getSelectedItem())){
-            refrescarTabla(subjects,(T) parameterField.getText(),1);
-        }else if("Creditos".equals(parameterBox.getSelectedItem())){
-            refrescarTabla(subjects,(T) parameterField.getText(),2);
-        }else if("Nombre".equals(parameterBox.getSelectedItem())){
-            refrescarTabla(subjects,(T) parameterField.getText(),3);
+        }if("Codigo".equals(parameterBox.getSelectedItem())){
+            refrescarTabla(subjects,parameterField.getText(),1);
+        }if("Creditos".equals(parameterBox.getSelectedItem())){
+            refrescarTabla(subjects,parameterField.getText(),2);
+        }if("Nombre".equals(parameterBox.getSelectedItem())){
+            refrescarTabla(subjects,parameterField.getText(),3);
         }else if("".equals(parameterBox.getSelectedItem())){
             refrescarTabla(subjects);
         }
