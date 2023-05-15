@@ -236,7 +236,9 @@ public class initial<T> extends javax.swing.JFrame {
 
     public static void main(String args[]) {
         int numCoursesToGenerate = 10; // Cantidad de cursos a generar
-        DataGenerator.generateRandomCourses(subjects, numCoursesToGenerate);
+        for (int i = 0; i < numCoursesToGenerate; i++) {
+            subjects.addSubjectToMajor(DataGenerator.generateRandomCourses(i));
+        }
         System.out.println(subjects.readAllByName());
         System.out.println(subjects.getSubjectsFromMajor().size());
 

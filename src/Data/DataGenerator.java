@@ -5,6 +5,16 @@ import java.util.Random;
 
 
 public class DataGenerator {
+    public static Subject generateRandomCourses(int index) {
+        Random random = new Random();
+        String courseName = COURSE_NAMES.get(random.nextInt(COURSE_NAMES.size())) + index;
+        int courseCode = index + 1000;
+        int credits = random.nextInt(5) + 1;
+        int quotes = random.nextInt(50) + 1;
+
+        return new Subject(courseName, courseCode, credits, quotes);
+    }
+
     private static final List<String> COURSE_NAMES = List.of(
             "Álgebra Lineal",
             "Anatomía Humana",
@@ -105,15 +115,4 @@ public class DataGenerator {
             "Energías Renovables",
             "Epistemología",
             "Estudios de Género");
-
-    public static void generateRandomCourses(Major major, int numCourses) {
-        Random random = new Random();
-        for (int i = 0; i < numCourses; i++) {
-            String courseName = COURSE_NAMES.get(random.nextInt(COURSE_NAMES.size())) + i;
-            int courseCode = i+1000;
-            int credits = random.nextInt(5) + 1;
-            int quotes = random.nextInt(50) + 1;
-            major.addSubjectToMajor(courseName, courseCode, credits, quotes);
-        }
-    }
 }
