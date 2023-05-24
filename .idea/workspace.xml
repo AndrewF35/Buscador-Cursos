@@ -6,6 +6,32 @@
   <component name="ChangeListManager">
     <list default="true" id="bdf31275-0cd8-4163-a817-d39d6b563620" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sampleSwing1/Data/DataGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sampleSwing1/Data/DataGenerator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sampleSwing1/Data/Major.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sampleSwing1/Data/Major.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sampleSwing1/Data/Subject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sampleSwing1/Data/Subject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/editGroup$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/editGroup$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/editGroup$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/editGroup$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/editGroup$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/editGroup$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/editGroup$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/editGroup$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/editGroup$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/editGroup$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/editGroup$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/editGroup$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/editGroup$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/editGroup$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/editGroup.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/editGroup.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/initial$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/initial$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/initial$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/initial$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/initial$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/initial$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/initial$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/initial$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/initial$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/initial$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/initial.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/initial.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/newGroup$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/newGroup$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/newGroup$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/newGroup$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/newGroup$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/newGroup$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/newGroup$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/newGroup$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/newGroup$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/newGroup$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/newGroup$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/newGroup$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/newGroup$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/newGroup$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/newGroup.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/sampleSwing1/com/initial/newGroup.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sampleSwing1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/sampleSwing1.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,11 +56,18 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/home/andres/Documents/Uni/2023-1/Buscador-Cursos",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/jvill/Desktop/Proyects/Java/EstructuraDatos/Project_CourseSearch/Back/Buscador-Cursos",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -45,21 +78,6 @@
       <recent name="com.initial" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="Buscador-Cursos" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="Buscador-Cursos" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -68,7 +86,11 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1680817299720</updated>
+      <workItem from="1684966792236" duration="1972000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>
