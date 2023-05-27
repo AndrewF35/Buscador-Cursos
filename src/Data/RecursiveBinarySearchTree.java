@@ -23,6 +23,15 @@ public class RecursiveBinarySearchTree<T extends Comparable<T>>{
     public boolean search(T data) {
         return this.search(this.root, data) != null;
     }
+   
+    public T searchElement(T element) {
+        T e = search(this.root, element);
+        if (e != null) {
+            return e;
+        }
+        return null;
+    }
+    
 
     public void insert(T data) {
        this.root = this.insert(this.root, data);
@@ -68,6 +77,22 @@ public class RecursiveBinarySearchTree<T extends Comparable<T>>{
         List<T> values = new ArrayList<>();
         this.inOrder(root, values);
         this.buildTree(values);
+    }
+    
+    public TreeNode<T> getNode(T key) {
+        return getNode(root, key);
+    }
+    
+    // Recursive function to find a node with the given key in the AVL tree
+    private TreeNode<T> getNode(TreeNode<T> node, T key) {
+        if (node == null || node.getKey() == key) {
+            return node;
+        }
+        if (key.compareTo(node.getKey()) < 0) {
+            return getNode(node.getLeft(), key);
+        } else {
+            return getNode(node.getRight(), key);
+        }
     }
 
     private void buildTree(List<T> values) {

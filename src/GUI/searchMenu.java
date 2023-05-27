@@ -8,7 +8,7 @@ import Data.DataGenerator;
 import Data.Student;
 import Data.Major;
 import Data.Subject;
-import static com.initial.main.subjects;
+import static com.initial.main.subjectsInUniversity;
 
 
 public class searchMenu extends javax.swing.JFrame {
@@ -67,7 +67,7 @@ public class searchMenu extends javax.swing.JFrame {
     }
     public searchMenu() {
         initComponents();
-        AñadirTabla(subjects);
+        AñadirTabla(subjectsInUniversity);
         this.setLocationRelativeTo(null);
     }
 
@@ -290,17 +290,17 @@ public class searchMenu extends javax.swing.JFrame {
         //con este boton filtramos los cursos por atributo
         try {
             if ("Codigo".equals(parameterBox.getSelectedItem())) {
-                refrescarTabla(subjects, parameterField.getText(), 1);
+                refrescarTabla(subjectsInUniversity, parameterField.getText(), 1);
             }
             if ("Creditos".equals(parameterBox.getSelectedItem())) {
-                refrescarTabla(subjects, parameterField.getText(), 2);
+                refrescarTabla(subjectsInUniversity, parameterField.getText(), 2);
             }
             if ("Nombre".equals(parameterBox.getSelectedItem())) {
-                refrescarTabla(subjects, parameterField.getText(), 3);
+                refrescarTabla(subjectsInUniversity, parameterField.getText(), 3);
             }
         } catch (java.lang.NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Ingrese un parametro");
-            refrescarTabla(subjects);
+            refrescarTabla(subjectsInUniversity);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

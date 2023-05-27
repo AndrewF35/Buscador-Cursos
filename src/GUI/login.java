@@ -1,9 +1,11 @@
-
 package GUI;
 
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
+import Data.Student;
+import Data.Major;
+import com.initial.main;
 public class login extends javax.swing.JFrame {
 
     /**
@@ -21,7 +23,6 @@ public class login extends javax.swing.JFrame {
         background = new javax.swing.JPanel();
         title = new javax.swing.JLabel();
         userLabel = new javax.swing.JLabel();
-        userField = new javax.swing.JTextField();
         passwordLabel = new javax.swing.JLabel();
         passwordField = new javax.swing.JPasswordField();
         logo = new javax.swing.JLabel();
@@ -29,9 +30,11 @@ public class login extends javax.swing.JFrame {
         loginText = new javax.swing.JLabel();
         registerButton = new javax.swing.JPanel();
         registerText = new javax.swing.JLabel();
+        userLabel1 = new javax.swing.JLabel();
+        ocupationField = new javax.swing.JComboBox<>();
+        userField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(350, 450));
         setResizable(false);
 
         background.setBackground(new java.awt.Color(255, 255, 255));
@@ -45,26 +48,21 @@ public class login extends javax.swing.JFrame {
 
         userLabel.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
         userLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        userLabel.setText("USUARIO");
-        background.add(userLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 68, 344, -1));
-
-        userField.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        userField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        userField.setPreferredSize(new java.awt.Dimension(200, 25));
-        background.add(userField, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 89, -1, -1));
+        userLabel.setText("Tipo de Usuario");
+        background.add(userLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 130, 30));
 
         passwordLabel.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
         passwordLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         passwordLabel.setText("CONTRASEÑA");
-        background.add(passwordLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 344, -1));
+        background.add(passwordLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 100, 20));
 
         passwordField.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         passwordField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         passwordField.setPreferredSize(new java.awt.Dimension(200, 25));
-        background.add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 141, -1, -1));
+        background.add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, -1, -1));
 
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/escudo.png"))); // NOI18N
-        background.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, -1, -1));
+        background.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, -1, -1));
 
         loginButton.setBackground(new java.awt.Color(255, 255, 255));
         loginButton.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -92,17 +90,14 @@ public class login extends javax.swing.JFrame {
         loginButton.setLayout(loginButtonLayout);
         loginButtonLayout.setHorizontalGroup(
             loginButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginButtonLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(loginText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(loginText, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
         );
         loginButtonLayout.setVerticalGroup(
             loginButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(loginText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(loginText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
         );
 
-        background.add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 184, -1, -1));
+        background.add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, -1, 30));
 
         registerButton.setBackground(new java.awt.Color(255, 255, 255));
         registerButton.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -129,14 +124,34 @@ public class login extends javax.swing.JFrame {
         registerButton.setLayout(registerButtonLayout);
         registerButtonLayout.setHorizontalGroup(
             registerButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(registerText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(registerText, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
         );
         registerButtonLayout.setVerticalGroup(
             registerButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(registerText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(registerText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
         );
 
-        background.add(registerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 215, -1, -1));
+        background.add(registerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, 70, 30));
+
+        userLabel1.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
+        userLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        userLabel1.setText("USUARIO");
+        background.add(userLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 130, 30));
+
+        ocupationField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estudiante", "Docente", "Administrador" }));
+        ocupationField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ocupationFieldActionPerformed(evt);
+            }
+        });
+        background.add(ocupationField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 130, -1));
+
+        userField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userFieldActionPerformed(evt);
+            }
+        });
+        background.add(userField, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 200, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -175,28 +190,46 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_registerButtonMouseClicked
 
     private void loginButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButtonMouseClicked
-        String user = userField.getText();
+        String user = userField.getText(); 
         String pass = new String(passwordField.getPassword());
-        if("".equals(user)){
-            if("".equals(pass)){
-              studentMenu newWindow = new studentMenu();
-              newWindow.setVisible(true);
-              this.dispose();
-            }else{
-               JOptionPane.showMessageDialog(this, "Contraseña incorrecta");
+        
+        if (ocupationField.getSelectedItem().equals("Estudiante")) {
+            
+            if (main.subjectsInUniversity.searchStudentByUser(user).getUser().equals(user)) {
+                studentMenu newWindow = new studentMenu();
+                newWindow.setVisible(true);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Contraseña incorrecta");
             }
-        }else if("Docente".equals(user)){
-            if("654321".equals(pass)){
-              teacherMenu newWindow = new teacherMenu();
-              newWindow.setVisible(true);
-              this.dispose();
-            }else{
-               JOptionPane.showMessageDialog(this, "Contraseña incorrecta");
+        } else if (ocupationField.getSelectedItem().equals("Docente")) {
+            if ("654321".equals(pass)) {
+                teacherMenu newWindow = new teacherMenu();
+                newWindow.setVisible(true);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Contraseña incorrecta");
             }
-        }else{
+        } else if (ocupationField.getSelectedItem().equals("Administrador")) {
+            if ("654321".equals(pass)) {
+                teacherMenu newWindow = new teacherMenu();
+                newWindow.setVisible(true);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Contraseña incorrecta");
+            }
+        } else {
             JOptionPane.showMessageDialog(this, "Usuario incorrecto");
         }
     }//GEN-LAST:event_loginButtonMouseClicked
+
+    private void ocupationFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ocupationFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ocupationFieldActionPerformed
+
+    private void userFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_userFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -238,6 +271,7 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JPanel loginButton;
     private javax.swing.JLabel loginText;
     private javax.swing.JLabel logo;
+    private javax.swing.JComboBox<String> ocupationField;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JPanel registerButton;
@@ -245,5 +279,6 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JLabel title;
     private javax.swing.JTextField userField;
     private javax.swing.JLabel userLabel;
+    private javax.swing.JLabel userLabel1;
     // End of variables declaration//GEN-END:variables
 }

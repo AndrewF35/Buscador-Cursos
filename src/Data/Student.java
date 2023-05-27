@@ -4,57 +4,76 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.Stack;
 
-public class Student{
+public class Student implements Comparable<Student> {
 
     private String name;
     private int age;
     private Major majorCurrent;
-    private ArrayList<Subject> Schedule = new ArrayList<>();
-    private Stack<Subject> DoneSubjects;
-    private Deque<Subject> remainingSubjects;
-    
+    //private ArrayList<Subject> Schedule = new ArrayList<>();
+   // private Stack<Subject> DoneSubjects;
+    //private Deque<Subject> remainingSubjects;
+    private String password;
+    private String user;
 
-
-    public void addSubjectToDoneSubjects(Subject subjectToAdd) {
-        DoneSubjects.push(subjectToAdd);
+    public String getPassword() {
+        return password;
     }
 
-    public void addSubjectToremainingSubjects(Subject subjectToAdd) {
-        remainingSubjects.add(subjectToAdd);
-    }
-    
-    public void addSubjectToSchedule(Subject subjectToAdd) {
-        Schedule.add(subjectToAdd);
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public void printSchedule() {
-        for(int i=0;i<Schedule.size();i++){
-            System.out.println(Schedule.get(i).getNameSubject());
-
-        }
+    public String getUser() {
+        return user;
     }
 
-    public void deleteSubjectFromSchedule(Subject subjectToDelete) {
-        Schedule.remove(subjectToDelete);
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public Student() {
     }
 
-    public Student(String nombre, int edad, Major majorCurrent, ArrayList<Subject> Schedules, Stack<Subject> DoneSubjects, Deque<Subject> remainingSubjects) {
+    public Student(String nombre, int edad, Major majorCurrent) {
         this.name = nombre;
         this.age = edad;
         this.majorCurrent = majorCurrent;
-        this.Schedule = Schedules;
-        this.DoneSubjects = DoneSubjects;
-        this.remainingSubjects = remainingSubjects;
     }
 
-    @Override
-    public String toString() {
-        return "Estudiante{" + "nombre=" + name + ", edad=" + age + ", majorCurrent=" + majorCurrent + ", Schedules=" + Schedule + ", DoneSubjects=" + DoneSubjects + ", remainingSubjects=" + remainingSubjects + '}';
+    public Student(String name, int age, Major majorCurrent, String password, String user) {
+        this.name = name;
+        this.age = age;
+        this.majorCurrent = majorCurrent;
+        this.password = password;
+        this.user = user;
     }
 
+   @Override
+    public int compareTo(Student anotherStudent) {
+        // comparar por major
+        int comparacionMajor = this.majorCurrent.getNameMajor().compareTo(anotherStudent.majorCurrent.getNameMajor());
+        if (comparacionMajor != 0) {
+            return comparacionMajor;
+        }
+        // Comparar por user
+        int comparacionUser = this.user.compareTo(anotherStudent.user);
+        if (comparacionUser != 0) {
+            return comparacionUser;
+        }
+        // Comparar por password
+        int comparacionPassword = this.password.compareTo(anotherStudent.password);
+        if (comparacionPassword != 0) {
+            return comparacionPassword;
+        }
+        // Comparar por name
+        int comparacionNombre = this.name.compareTo(anotherStudent.name);
+        if (comparacionNombre != 0) {
+            return comparacionNombre;
+        }
+        // Comparar por edad
+        return Integer.compare(this.age, anotherStudent.age);
+
+    }
     public String getName() {
         return name;
     }
@@ -77,30 +96,6 @@ public class Student{
 
     public void setMajorCurrent(Major majorCurrent) {
         this.majorCurrent = majorCurrent;
-    }
-
-    public ArrayList<Subject> getSchedule() {
-        return Schedule;
-    }
-
-    public void setSchedule(ArrayList<Subject> Schedule) {
-        this.Schedule = Schedule;
-    }
-
-    public Stack<Subject> getDoneSubjects() {
-        return DoneSubjects;
-    }
-
-    public void setDoneSubjects(Stack<Subject> DoneSubjects) {
-        this.DoneSubjects = DoneSubjects;
-    }
-
-    public Deque<Subject> getRemainingSubjects() {
-        return remainingSubjects;
-    }
-
-    public void setRemainingSubjects(Deque<Subject> remainingSubjects) {
-        this.remainingSubjects = remainingSubjects;
     }
 
 }
