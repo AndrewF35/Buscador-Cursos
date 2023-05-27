@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import Data.RecursiveBinarySearchTree;
 import Data.Student;
+import java.util.List;
 
 public class Major {
 
@@ -78,8 +79,10 @@ public class Major {
         return null;
     }
     
-    public ArrayList<String> getStudentsFromMajor(String nameOfStudent) {
-        return Students.inOrderList();
+    public List<String> getStudentsFromMajor() {
+        List<String> StudentsInMajor = new ArrayList<>();
+        Students.inOrderList(StudentsInMajor);
+        return StudentsInMajor;
     }
 
     public void AddStudentsToMajor(RecursiveBinarySearchTree Students,Student studentToAdd) {

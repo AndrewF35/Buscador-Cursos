@@ -221,7 +221,6 @@ public class initial extends javax.swing.JFrame {
         } catch (java.lang.NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Ingrese un parametro");
             refrescarTabla(subjects);
-
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
