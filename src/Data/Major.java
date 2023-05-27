@@ -2,13 +2,17 @@ package Data;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import Data.RecursiveBinarySearchTree;
+import Data.Student;
+import java.util.List;
 
 public class Major {
 
     private String nameMajor;//ciencias de la computacion
     private ArrayList<Subject> subjects = new ArrayList<>();//introduccion, mates,poo
+    private RecursiveBinarySearchTree Students = new RecursiveBinarySearchTree<>();
 
-    
+
     //Metodos para filtrar 
     public Major filterByCode(Major subjects,int code){
         Major majorFiltered =new Major();
@@ -74,6 +78,17 @@ public class Major {
         }
         return null;
     }
+    
+    public List<String> getStudentsFromMajor() {
+        List<String> StudentsInMajor = new ArrayList<>();
+        Students.inOrderList(StudentsInMajor);
+        return StudentsInMajor;
+    }
+
+    public void AddStudentsToMajor(RecursiveBinarySearchTree Students,Student studentToAdd) {
+        this.Students.insert(studentToAdd.getName());
+    }
+    
     public Subject readByCode(int codeSubject) {
         return subjects.get(codeSubject-1000);
     }
