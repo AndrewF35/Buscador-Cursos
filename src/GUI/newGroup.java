@@ -1,13 +1,10 @@
-package com.initial;
+package GUI;
 
 import Data.Major;
 import Data.Subject;
 import javax.swing.JOptionPane;
+import static com.initial.main.subjects;
 
-/**
- *
- * @author WINDOWS
- */
 public class newGroup extends javax.swing.JFrame {
     
     public newGroup() {
@@ -156,7 +153,7 @@ public class newGroup extends javax.swing.JFrame {
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         try{
-            Major newSubject = initial.subjects; 
+            Major newSubject = subjects; 
             newSubject.addSubjectToMajor(nameField.getText(), Integer.parseInt(codeField.getText()), Integer.parseInt(creditField.getText()),4);
         }catch(Exception e){
             JOptionPane.showMessageDialog(this,"Error añadiendo informacion");
@@ -164,7 +161,7 @@ public class newGroup extends javax.swing.JFrame {
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarActionPerformed
-        initial v1 = new initial();
+        AdminMenu v1 = new AdminMenu();
         v1.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_RegresarActionPerformed

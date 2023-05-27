@@ -1,9 +1,12 @@
-package com.initial;
+package GUI;
+
+
 
 import Data.Major;
 import Data.Subject;
 import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
+import static com.initial.main.subjects;
 
 public class editGroup extends javax.swing.JFrame {
 
@@ -93,7 +96,7 @@ public class editGroup extends javax.swing.JFrame {
                         .addGap(112, 112, 112)
                         .addComponent(title))
                     .addGroup(backgroundLayout.createSequentialGroup()
-                        .addGap(98, 98, 98)
+                        .addGap(83, 83, 83)
                         .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(creditField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(codeField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -160,7 +163,7 @@ public class editGroup extends javax.swing.JFrame {
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         try {
-            Major major = initial.subjects;
+            Major major = subjects;
             Subject subjectToModify = major.getSubjectsFromMajorByName(nameField.getText()); 
             subjectToModify.modifySubect(subjectToModify, nameField.getText(), Integer.parseInt(codeField.getText()), Integer.parseInt(creditField.getText()), 8);
             JOptionPane.showMessageDialog(this, "Se edito exitosamente el Grupo");
@@ -171,13 +174,13 @@ public class editGroup extends javax.swing.JFrame {
      }//GEN-LAST:event_saveButtonActionPerformed
 
     private void RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarActionPerformed
-        initial v1 = new initial();
+        AdminMenu v1 = new AdminMenu();
         v1.setVisible(true);
         this.dispose();        this.dispose();    }//GEN-LAST:event_RegresarActionPerformed
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
         try {
-            Major major = initial.subjects;
+            Major major = subjects;
             Subject subjectToModify = major.getSubjectsFromMajorByName(nameField.getText());
             if (major.getSubjectsFromMajor().contains(subjectToModify)) {
                 major.getSubjectsFromMajor().remove(subjectToModify);

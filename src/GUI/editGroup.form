@@ -50,7 +50,7 @@
                           <Component id="title" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="creditField" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
                               <Component id="codeField" min="-2" pref="200" max="-2" attributes="0"/>
