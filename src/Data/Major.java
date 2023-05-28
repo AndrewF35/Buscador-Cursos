@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
-public class Major {
+public class Major implements Comparable<Major> {
 
     private String nameMajor;//ciencias de la computacion
     private ArrayList<Subject> subjects = new ArrayList<>();//introduccion, mates,poo
@@ -119,43 +119,51 @@ public class Major {
         this.students.inOrderList(StudentsInMajor);
         return StudentsInMajor;
     }
+
     public Student getStudentsFromMajorByName(String name) {
-        Student student = new Student(); 
+        Student student = new Student();
         student = (Student) students.getNode(student.getName()).getKey();
-        if(student.getName().equals(name)){
-            return student; 
+        if (student.getName().equals(name)) {
+            return student;
         }
         return null;
     }
-    public Student searchStudentByUser(String user){
+
+    public Student searchStudentByUser(String user) {
         return this.searchStudentByUser(students.root, user);
     }
-    private Student searchStudentByUser(TreeNode<Student> node,String data) { 
-        if(node == null) return null;
-        if(node.getKey().getUser().compareTo(data) == 0) {
+
+    private Student searchStudentByUser(TreeNode<Student> node, String data) {
+        if (node == null) {
+            return null;
+        }
+        if (node.getKey().getUser().compareTo(data) == 0) {
             return node.getKey();
+        } else if (data.compareTo(node.getKey().getUser()) < 0) {
+            return this.searchStudentByUser(node.getLeft(), data);
+        } else {
+            return this.searchStudentByUser(node.getRight(), data);
         }
-        else if(data.compareTo(node.getKey().getUser()) < 0) {
-            return this.searchStudentByUser(node.getLeft(),data);
-        }
-        else return this.searchStudentByUser(node.getRight(), data);
     }
-    
-    private Student searchStudentByName(TreeNode<Student> node,Student data) {
+
+    private Student searchStudentByName(TreeNode<Student> node, Student data) {
         node = students.root;
-        if(node == null) return null;
-        if(node.getKey().getName().compareTo(data.getName()) == 0) {
+        if (node == null) {
+            return null;
+        }
+        if (node.getKey().getName().compareTo(data.getName()) == 0) {
             return node.getKey();
+        } else if (data.getName().compareTo(node.getKey().getName()) < 0) {
+            return this.searchStudentByName(node.getLeft(), data);
+        } else {
+            return this.searchStudentByName(node.getRight(), data);
         }
-        else if(data.getName().compareTo(node.getKey().getName()) < 0) {
-            return this.searchStudentByName(node.getLeft(),data);
-        }
-        else return this.searchStudentByName(node.getRight(), data);
     }
+
     public void printTreeByName() {
         printTree(students.root, 0);
     }
-    
+
     private void printTree(TreeNode<Student> node, int level) {
         if (node == null) {
             return;
@@ -170,11 +178,12 @@ public class Major {
 
         printTree(node.getLeft(), level + 1);
     }
+
     public void AddStudentsToMajor(Student studentToAdd) {
         this.students.insert(studentToAdd);
     }
-    
-    public void AddStudentsToMajor(RecursiveBinarySearchTree Students,String name, int age, Major majorCurrent, String password, String user) {
+
+    public void AddStudentsToMajor(RecursiveBinarySearchTree Students, String name, int age, Major majorCurrent, String password, String user) {
         Student studentToAdd = new Student();
         studentToAdd.setName(name);
         studentToAdd.setAge(age);
@@ -183,7 +192,13 @@ public class Major {
         studentToAdd.setUser(user);
         this.students.insert((Comparable) studentToAdd);
     }
+//---------------------------- metodos para to compare
 
+    @Override
+    public int compareTo(Major anotherMajor) {
+        // comparar por nameMajor;
+        return this.nameMajor.compareTo(anotherMajor.nameMajor);
+    }
 //_______________________________Metodos medicion______________________________________________________________
     private static Major timeSubjects = new Major();
 

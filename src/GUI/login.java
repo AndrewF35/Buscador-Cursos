@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 import Data.Student;
 import Data.Major;
 import com.initial.main;
+
 public class login extends javax.swing.JFrame {
 
     /**
@@ -190,36 +191,38 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_registerButtonMouseClicked
 
     private void loginButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButtonMouseClicked
-        String user = userField.getText(); 
+
+        String user = userField.getText();
         String pass = new String(passwordField.getPassword());
-        
+
         if (ocupationField.getSelectedItem().equals("Estudiante")) {
-            
-            if (main.subjectsInUniversity.searchStudentByUser(user).getUser().equals(user)) {
-                studentMenu newWindow = new studentMenu();
-                newWindow.setVisible(true);
-                this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(this, "Contraseña incorrecta");
+            try {
+                if (main.subjectsInUniversity.searchStudentByUser(user).getUser().equals(user)) {
+                    studentMenu newWindow = new studentMenu();
+                    newWindow.setVisible(true);
+                    this.dispose();
+                } else if (ocupationField.getSelectedItem().equals("Docente")) {
+                    if ("654321".equals(pass)) {
+                        teacherMenu newWindow = new teacherMenu();
+                        newWindow.setVisible(true);
+                        this.dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Contraseña incorrecta");
+                    }
+                } else if (ocupationField.getSelectedItem().equals("Administrador")) {
+                    if ("654321".equals(pass)) {
+                        teacherMenu newWindow = new teacherMenu();
+                        newWindow.setVisible(true);
+                        this.dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Contraseña incorrecta");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Usuario incorrecto");
+                }
+            } catch (java.lang.NullPointerException e) {
+                JOptionPane.showMessageDialog(this, "Usuario o Contraseña incorrecta");
             }
-        } else if (ocupationField.getSelectedItem().equals("Docente")) {
-            if ("654321".equals(pass)) {
-                teacherMenu newWindow = new teacherMenu();
-                newWindow.setVisible(true);
-                this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(this, "Contraseña incorrecta");
-            }
-        } else if (ocupationField.getSelectedItem().equals("Administrador")) {
-            if ("654321".equals(pass)) {
-                teacherMenu newWindow = new teacherMenu();
-                newWindow.setVisible(true);
-                this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(this, "Contraseña incorrecta");
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Usuario incorrecto");
         }
     }//GEN-LAST:event_loginButtonMouseClicked
 

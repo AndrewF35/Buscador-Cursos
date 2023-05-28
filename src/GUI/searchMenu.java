@@ -8,13 +8,15 @@ import Data.DataGenerator;
 import Data.Student;
 import Data.Major;
 import Data.Subject;
-import static com.initial.main.subjectsInUniversity;
-
+import com.initial.main;
+import java.util.ArrayList;
+import javax.swing.ComboBoxModel;
 
 public class searchMenu extends javax.swing.JFrame {
-    
-    DefaultTableModel modelo = new DefaultTableModel();
 
+    private DefaultTableModel modelo = new DefaultTableModel();
+    private Major majorSelected;
+    
     private void AñadirTabla(Major subjects) {
         //añade columnas de la tabla
         modelo.addColumn("Asignatura");
@@ -24,6 +26,7 @@ public class searchMenu extends javax.swing.JFrame {
         //actualiza la infromacion de la tabla
         refrescarTabla(subjects);
     }
+
     private void refrescarTabla(Major subjects, String parameter, int filterby) {
 
         while (modelo.getRowCount() > 0) {
@@ -50,6 +53,7 @@ public class searchMenu extends javax.swing.JFrame {
         }
         TablaCursos.setModel(modelo);
     }
+
     private void refrescarTabla(Major subjects) {
 
         while (modelo.getRowCount() > 0) {
@@ -65,9 +69,10 @@ public class searchMenu extends javax.swing.JFrame {
         }
         TablaCursos.setModel(modelo);
     }
+
     public searchMenu() {
         initComponents();
-        AñadirTabla(subjectsInUniversity);
+        AñadirTabla(main.subjectsInUniversity);
         this.setLocationRelativeTo(null);
     }
 
@@ -91,6 +96,7 @@ public class searchMenu extends javax.swing.JFrame {
         parameterBox = new javax.swing.JComboBox<>();
         parameterField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -112,7 +118,7 @@ public class searchMenu extends javax.swing.JFrame {
         );
         leftBarLayout.setVerticalGroup(
             leftBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(logo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+            .addComponent(logo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
         );
 
         title.setFont(new java.awt.Font("Roboto Medium", 1, 24)); // NOI18N
@@ -185,7 +191,6 @@ public class searchMenu extends javax.swing.JFrame {
             }
         });
 
-        parameterField.setForeground(new java.awt.Color(204, 204, 204));
         parameterField.setText("Ingrese el parametro a buscar");
         parameterField.setToolTipText("");
         parameterField.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -201,7 +206,21 @@ public class searchMenu extends javax.swing.JFrame {
 
         jLabel1.setText("Carrera");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jButton2.setText("Volver");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        for(int i=0;i<main.majorsInUniversity.size();i++){
+            jComboBox1.addItem(main.majorsInUniversity.get(i).getNameMajor());
+        }
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
+            }
+        });
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -233,8 +252,11 @@ public class searchMenu extends javax.swing.JFrame {
                                 .addComponent(separator, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(backgroundLayout.createSequentialGroup()
                                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGap(44, 44, 44)
+                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(backgroundLayout.createSequentialGroup()
+                            .addGap(307, 307, 307)
+                            .addComponent(jButton2))
                         .addGroup(backgroundLayout.createSequentialGroup()
                             .addGap(35, 35, 35)
                             .addComponent(scrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -258,7 +280,9 @@ public class searchMenu extends javax.swing.JFrame {
                     .addComponent(parameterBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -290,17 +314,17 @@ public class searchMenu extends javax.swing.JFrame {
         //con este boton filtramos los cursos por atributo
         try {
             if ("Codigo".equals(parameterBox.getSelectedItem())) {
-                refrescarTabla(subjectsInUniversity, parameterField.getText(), 1);
+                refrescarTabla(majorSelected, parameterField.getText(), 1);
             }
             if ("Creditos".equals(parameterBox.getSelectedItem())) {
-                refrescarTabla(subjectsInUniversity, parameterField.getText(), 2);
+                refrescarTabla(majorSelected, parameterField.getText(), 2);
             }
             if ("Nombre".equals(parameterBox.getSelectedItem())) {
-                refrescarTabla(subjectsInUniversity, parameterField.getText(), 3);
+                refrescarTabla(majorSelected, parameterField.getText(), 3);
             }
         } catch (java.lang.NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Ingrese un parametro");
-            refrescarTabla(subjectsInUniversity);
+            refrescarTabla(main.subjectsInUniversity);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -320,9 +344,30 @@ public class searchMenu extends javax.swing.JFrame {
 
     }//GEN-LAST:event_parameterFieldActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        studentMenu newWindow4 = new studentMenu();
+        newWindow4.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-  //aca voy a añadir el filtro de materias para que filtre las materias por carrera
+
+        try {
+            for (int i = 0; i < main.majorsInUniversity.size(); i++) {
+                if (main.majorsInUniversity.get(i).getNameMajor().equals(jComboBox1.getSelectedItem())) {
+                    majorSelected = main.majorsInUniversity.get(i);
+                    refrescarTabla(majorSelected);
+                }
+            }
+        } catch (java.lang.NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Materias No disponibles");
+            refrescarTabla(main.subjectsInUniversity);
+        }
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -363,6 +408,7 @@ public class searchMenu extends javax.swing.JFrame {
     private javax.swing.JTable TablaCursos;
     private javax.swing.JPanel background;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel leftBar;

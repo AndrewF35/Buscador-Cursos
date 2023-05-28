@@ -3,17 +3,25 @@ package Data;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.Stack;
-
+import Data.RecursiveBinarySearchTree;
 public class Student implements Comparable<Student> {
 
     private String name;
     private int age;
     private Major majorCurrent;
-    //private ArrayList<Subject> Schedule = new ArrayList<>();
-   // private Stack<Subject> DoneSubjects;
+    private RecursiveBinarySearchTree Schedule = new RecursiveBinarySearchTree();
+    //private Stack<Subject> DoneSubjects;
     //private Deque<Subject> remainingSubjects;
     private String password;
     private String user;
+
+    public RecursiveBinarySearchTree getSchedule() {
+        return Schedule;
+    }
+
+    public void setSchedule(RecursiveBinarySearchTree Schedule) {
+        this.Schedule = Schedule;
+    }
 
     public String getPassword() {
         return password;
@@ -47,7 +55,10 @@ public class Student implements Comparable<Student> {
         this.password = password;
         this.user = user;
     }
-
+    
+    
+    
+    
    @Override
     public int compareTo(Student anotherStudent) {
         // comparar por major
@@ -72,7 +83,6 @@ public class Student implements Comparable<Student> {
         }
         // Comparar por edad
         return Integer.compare(this.age, anotherStudent.age);
-
     }
     public String getName() {
         return name;
