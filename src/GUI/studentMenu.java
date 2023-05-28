@@ -87,12 +87,13 @@ public class studentMenu extends javax.swing.JFrame {
         scheduleText = new javax.swing.JLabel();
         scheduleText1 = new javax.swing.JLabel();
         scheduleText2 = new javax.swing.JLabel();
-        majorField1 = new javax.swing.JTextField();
+        userField = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
         scheduleText3 = new javax.swing.JLabel();
         scrollPanel1 = new javax.swing.JScrollPane();
         TablaCursos = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(930, 650));
@@ -132,12 +133,27 @@ public class studentMenu extends javax.swing.JFrame {
         separator1.setForeground(new java.awt.Color(0, 0, 0));
         background.add(separator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(285, 201, 568, 10));
 
+        nameField.setEditable(false);
         nameField.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         nameField.setPreferredSize(new java.awt.Dimension(300, 25));
+        nameField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameFieldActionPerformed(evt);
+            }
+        });
+        nameField.setText(login.currentStudent.getName());
+        majorField.setText(login.currentStudent.getMajorCurrent().getNameMajor());
+        userField.setText(login.currentStudent.getUser());
         background.add(nameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, -1, -1));
 
+        majorField.setEditable(false);
         majorField.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         majorField.setPreferredSize(new java.awt.Dimension(300, 25));
+        majorField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                majorFieldActionPerformed(evt);
+            }
+        });
         background.add(majorField, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 160, -1, -1));
 
         searchMenuButton.setBackground(new java.awt.Color(255, 255, 255));
@@ -175,7 +191,7 @@ public class studentMenu extends javax.swing.JFrame {
                 .addComponent(searchMenuText, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        background.add(searchMenuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 570, -1, -1));
+        background.add(searchMenuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 570, -1, -1));
 
         scheduleText.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
         scheduleText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -187,7 +203,7 @@ public class studentMenu extends javax.swing.JFrame {
         scheduleText1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         scheduleText1.setText("Materias a mostrar");
         scheduleText1.setPreferredSize(new java.awt.Dimension(100, 25));
-        background.add(scheduleText1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 100, 170, 21));
+        background.add(scheduleText1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 80, 170, 21));
 
         scheduleText2.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
         scheduleText2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -195,9 +211,10 @@ public class studentMenu extends javax.swing.JFrame {
         scheduleText2.setPreferredSize(new java.awt.Dimension(100, 25));
         background.add(scheduleText2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 96, 21));
 
-        majorField1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        majorField1.setPreferredSize(new java.awt.Dimension(300, 25));
-        background.add(majorField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 120, -1, -1));
+        userField.setEditable(false);
+        userField.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        userField.setPreferredSize(new java.awt.Dimension(300, 25));
+        background.add(userField, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 120, -1, -1));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Horario", "Materias No Cursadas", "Materias Cursadas", "Materias Carrera" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -205,7 +222,7 @@ public class studentMenu extends javax.swing.JFrame {
                 jComboBox1ActionPerformed(evt);
             }
         });
-        background.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 140, 200, -1));
+        background.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 122, 200, 20));
 
         scheduleText3.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
         scheduleText3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -254,8 +271,16 @@ public class studentMenu extends javax.swing.JFrame {
 
         background.add(scrollPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 220, 560, 340));
 
-        jButton1.setText("jButton1");
-        background.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 170, -1, -1));
+        jButton1.setText("Buscar");
+        background.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 160, -1, -1));
+
+        jButton2.setLabel("Cerrar Sesion");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        background.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(605, 570, 120, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -291,16 +316,27 @@ public class studentMenu extends javax.swing.JFrame {
     private void TablaCursosComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_TablaCursosComponentAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_TablaCursosComponentAdded
+    
+    private void nameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFieldActionPerformed
+        
+        
+    }//GEN-LAST:event_nameFieldActionPerformed
+
+    private void majorFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_majorFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_majorFieldActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        login newWindow4 = new login();
+        newWindow4.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -331,11 +367,11 @@ public class studentMenu extends javax.swing.JFrame {
     private javax.swing.JTable TablaCursos;
     private javax.swing.JPanel background;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPanel leftBar;
     private javax.swing.JLabel logo;
     private javax.swing.JTextField majorField;
-    private javax.swing.JTextField majorField1;
     private javax.swing.JTextField nameField;
     private javax.swing.JLabel scheduleText;
     private javax.swing.JLabel scheduleText1;
@@ -346,5 +382,6 @@ public class studentMenu extends javax.swing.JFrame {
     private javax.swing.JLabel searchMenuText;
     private javax.swing.JSeparator separator1;
     private javax.swing.JLabel title;
+    private javax.swing.JTextField userField;
     // End of variables declaration//GEN-END:variables
 }

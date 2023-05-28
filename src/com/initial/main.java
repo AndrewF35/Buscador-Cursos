@@ -58,7 +58,8 @@ public class main {
         
         subjectsInUniversity.getStudentsTree().inOrder();
         subjectsInUniversity.printTreeByName();
-                
+        subjectsInUniversity.getStudentsTree().balance();
+        subjectsInUniversity.printTreeByName();                
         System.out.println(Biologia.readAllByName());
                     
         login newLogin = new login();

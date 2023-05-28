@@ -8,10 +8,9 @@ import Data.Major;
 import com.initial.main;
 
 public class login extends javax.swing.JFrame {
-
-    /**
-     * Creates new form login
-     */
+    
+    public static Student currentStudent;
+    
     public login() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -191,13 +190,14 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_registerButtonMouseClicked
 
     private void loginButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButtonMouseClicked
-
+        
         String user = userField.getText();
         String pass = new String(passwordField.getPassword());
 
         if (ocupationField.getSelectedItem().equals("Estudiante")) {
             try {
                 if (main.subjectsInUniversity.searchStudentByUser(user).getUser().equals(user)) {
+                    currentStudent = main.subjectsInUniversity.searchStudentByUser(user);
                     studentMenu newWindow = new studentMenu();
                     newWindow.setVisible(true);
                     this.dispose();
