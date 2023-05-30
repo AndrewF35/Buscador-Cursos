@@ -22,8 +22,8 @@ public class main {
         Biologia.setNameMajor("Biologia");
         IngenieriaDeSistemas.setNameMajor("Ingenieria De Sistemas");
         
-        int numCoursesToGenerate = 10; // Cantidad de cursos a generar
-        int numStudentsToGenerate = 10;    // Cantidad de Estudiantes a generar hasta el momento alcanza un maximo en 10 000 usuarios 
+        int numCoursesToGenerate = 10000; // Cantidad de cursos a generar
+        int numStudentsToGenerate = 1000;   // Cantidad de Estudiantes a generar hasta el momento alcanza un maximo en 10 000 usuarios 
         
         for (int i = 0;
                 i < numCoursesToGenerate;
@@ -44,23 +44,12 @@ public class main {
             subjectsInUniversity.AddStudentsToMajor(DataGenerator.generateRandomStudent(i));
         }
 
-        System.out.println(subjectsInUniversity.readAllByName());
-        System.out.println(subjectsInUniversity.getSubjectsFromMajor().size());
-        
-        for(int i=0;i<subjectsInUniversity.getStudentsFromMajorInArray().size();i++){
-            System.out.print(subjectsInUniversity.getStudentsFromMajorInArray().get(i).getName());
-        }
-
-        System.out.println(subjectsInUniversity.getStudentsFromMajorInArray().size());
         
         System.out.println(subjectsInUniversity.getStudentsFromMajorInArray().get(1).getUser());
         System.out.println(subjectsInUniversity.getStudentsFromMajorInArray().get(1).getPassword());
         
-        subjectsInUniversity.getStudentsTree().inOrder();
-        subjectsInUniversity.printTreeByName();
-        subjectsInUniversity.getStudentsTree().balance();
-        subjectsInUniversity.printTreeByName();                
-        System.out.println(Biologia.readAllByName());
+        subjectsInUniversity.printTreeStudent();
+        subjectsInUniversity.printTreeSubject();
                     
         login newLogin = new login();
 

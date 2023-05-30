@@ -42,7 +42,7 @@ public class Subject implements Comparable<Subject> {
 //    private int cupoDisponible;
 //    private boolean ofertado;
     public void modifySubect(Subject subjectToModify,String nameSubject,int codeSubject,int creditsSubject,int quotesSubject){
-        subjectToModify.setNameSubject(nameSubject);
+        subjectToModify.setName(nameSubject);
         subjectToModify.setCodeSubject(codeSubject);
         subjectToModify.setCreditsSubject(creditsSubject);
         subjectToModify.setQuotesSubject(quotesSubject);
@@ -51,7 +51,7 @@ public class Subject implements Comparable<Subject> {
         return nameSubject;
     }
 
-    public void setNameSubject(String nameSubject) {
+    public void setName(String nameSubject) {
         this.nameSubject = nameSubject;
     }
 

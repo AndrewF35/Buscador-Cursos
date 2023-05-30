@@ -1,18 +1,20 @@
 package Data;
 
+import DataStructures.RecursiveBinarySearchTree;
+import DataStructures.TreeNode;
 import java.util.ArrayList;
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Stack;
 
 public class Major implements Comparable<Major> {
 
     private String nameMajor;//ciencias de la computacion
-    private ArrayList<Subject> subjects = new ArrayList<>();//introduccion, mates,poo
-    private RecursiveBinarySearchTree students = new RecursiveBinarySearchTree();
+    private RecursiveBinarySearchTree<Subject> subjects = new RecursiveBinarySearchTree<>();//introduccion, mates,poo
+    private RecursiveBinarySearchTree<Student> students = new RecursiveBinarySearchTree();
 
-    // metodos Carrera
+    
+//getters y setters 
+    public void setSubjects(RecursiveBinarySearchTree<Subject> subjects) {
+        this.subjects = subjects;
+    }
     public String getNameMajor() {
         return nameMajor;
     }
@@ -20,97 +22,18 @@ public class Major implements Comparable<Major> {
     public void setNameMajor(String nameMajor) {
         this.nameMajor = nameMajor;
     }
-
-    //Metodos para filtrar materias  
-    public Major filterByCode(Major subjects, int code) {
-        Major majorFiltered = new Major();
-        for (int i = 0; i < subjects.getSubjectsFromMajor().size(); i++) {
-            if (subjects.getSubjectsFromMajor().get(i).getCodeSubject() == code) {
-                majorFiltered.subjects.add((subjects.getSubjectsFromMajor().get(i)));
-            }
-        }
-        return majorFiltered;
+    public ArrayList<Subject> readAllByName() {
+        ArrayList<Subject> SubjectsInMajor = new ArrayList<>();
+        this.subjects.inOrderList(SubjectsInMajor);
+        return SubjectsInMajor;
     }
 
-    public Major filterByName(Major subjects, String name) {
-        Major majorFiltered = new Major();
-        for (int i = 0; i < subjects.getSubjectsFromMajor().size(); i++) {
-            if (subjects.getSubjectsFromMajor().get(i).getNameSubject().contains(name)) {
-                majorFiltered.subjects.add((subjects.getSubjectsFromMajor().get(i)));
-            }
-        }
-        return majorFiltered;
+    private Subject getSubjectByName(String name) {
+        TreeNode<Subject> root = this.getSubjectsFromMajor().getRoot();
+        return getSubjectsHelperByName(root, name);
+
     }
-
-    public Major filterByCredits(Major subjects, int credits) {
-        Major majorFiltered = new Major();
-        for (int i = 0; i < subjects.getSubjectsFromMajor().size(); i++) {
-            if (subjects.getSubjectsFromMajor().get(i).getCreditsSubject() == credits) {
-                majorFiltered.subjects.add((subjects.getSubjectsFromMajor().get(i)));
-            }
-        }
-        return majorFiltered;
-    }
-
-    public void addSubjectToMajor(Subject subject) {
-        subjects.add(subject);
-    }
-
-    public ArrayList<Subject> getSubjectsFromMajor() {
-        return subjects;
-    }
-
-    public LinkedList<String> readAllByName() {
-        LinkedList<String> subjectList = new LinkedList<>();
-        for (Subject curso : subjects) {
-            subjectList.add(curso.getNameSubject());
-        }
-
-        return subjectList;
-    }
-
-    public Subject getSubjectsFromMajorByIndex(int index) {
-        return subjects.get(index);
-    }
-
-    public Subject getSubjectsFromMajorByName(String nameSubject) {
-        for (Subject subject : subjects) {
-            if (subject.getNameSubject().equals(nameSubject)) {
-                return subject;
-            }
-        }
-        return null;
-    }
-
-    public Subject getSubjectsFromMajorByCredits(int credits) {
-        for (Subject subject : subjects) {
-            if (subject.getCreditsSubject() == (credits)) {
-                return subject;
-            }
-        }
-        return null;
-    }
-
-    public Subject readByCode(int codeSubject) {
-        return subjects.get(codeSubject - 1000);
-    }
-
-    public String deleteByCode(int codeSubject) {
-        String nameSubjectDeleted = readByCode(codeSubject).getNameSubject();
-        if (nameSubjectDeleted != null) {
-            subjects.remove(codeSubject - 1000);
-            return nameSubjectDeleted;
-        }
-        return null;
-    }
-
-    public void addSubjectToMajor(String courseName, int courseCode, int creditSubject, int quotesSubject) {
-        Subject subject = new Subject(courseName, courseCode, creditSubject, quotesSubject);
-        subjects.add(subject);
-    }
-    //-------Metodos estudiantes-------//
-
-    public RecursiveBinarySearchTree getStudentsTree() {
+        public RecursiveBinarySearchTree getStudentsTree() {
         return students;
     }
 
@@ -122,15 +45,128 @@ public class Major implements Comparable<Major> {
 
     public Student getStudentsFromMajorByName(String name) {
         Student student = new Student();
-        student = (Student) students.getNode(student.getName()).getKey();
+        student = (Student) students.getNode(student).getKey();
         if (student.getName().equals(name)) {
             return student;
         }
         return null;
     }
 
+    //Metodos para filtrar materias  
+    public Major filterByCode(Major major,int code) {
+        Major majorFiltered = new Major();
+        RecursiveBinarySearchTree<Subject> resultTree = new RecursiveBinarySearchTree<>();
+        filterHelperByCode(major.getSubjectsFromMajor().getRoot(), code, resultTree);
+        majorFiltered.setSubjects(resultTree);
+        return majorFiltered;
+    }
+
+    public Major filterByName(Major major,String name) {
+        Major majorFiltered = new Major();
+        RecursiveBinarySearchTree<Subject> resultTree = new RecursiveBinarySearchTree<>();
+        filterHelperByName(major.getSubjectsFromMajor().getRoot(), name, resultTree);
+        majorFiltered.setSubjects(resultTree);
+        return majorFiltered;
+    }
+
+    private void filterHelperByName(TreeNode<Subject> node, String attributeValue, RecursiveBinarySearchTree<Subject> resultTree) {
+        if (node == null) {
+            return;
+        }
+
+        if (node.getKey().getNameSubject().compareTo(attributeValue) >= 0) {
+            resultTree.insert(node.getKey());
+        }
+
+        filterHelperByName(node.getLeft(), attributeValue, resultTree);
+        filterHelperByName(node.getRight(), attributeValue, resultTree);
+    }
+
+    public Major filterByCredits(Major subjects,int credits) {
+        Major majorFiltered = new Major();
+        RecursiveBinarySearchTree<Subject> filteredNodes = new RecursiveBinarySearchTree<>();
+        filterHelperByValue(subjects.getSubjectsFromMajor().getRoot(), credits, filteredNodes);
+        majorFiltered.setSubjects(filteredNodes);
+        return majorFiltered;
+    }
+
+    private void filterHelperByValue(TreeNode<Subject> node, int value, RecursiveBinarySearchTree<Subject> resultTree) {
+        if (node == null) {
+            return;
+        }
+
+        if (node.getKey().getCreditsSubject() == value) {
+            resultTree.insert(node.getKey());
+        }
+
+        if (node.getKey().getCreditsSubject() > value) {
+            filterHelperByValue(node.getLeft(), value, resultTree);
+        } else {
+            filterHelperByValue(node.getRight(), value, resultTree);
+        }
+    }
+
+
+    private void filterHelperByCode(TreeNode<Subject> node, int attributeValue, RecursiveBinarySearchTree<Subject> resultTree) {
+        if (node == null) {
+            return;
+        }
+
+        if (node.getKey().getCodeSubject() == attributeValue) {
+            resultTree.insert(node.getKey());
+        }
+
+        filterHelperByCode(node.getLeft(), attributeValue, resultTree);
+        filterHelperByCode(node.getRight(), attributeValue, resultTree);
+    }
+
+    public void addSubjectToMajor(Subject subject) {
+        this.subjects.insert(subject);
+    }
+
+    public RecursiveBinarySearchTree<Subject> getSubjectsFromMajor() {
+        return subjects;
+    }
+
+
+
+    private Subject getSubjectsHelperByName(TreeNode<Subject> root, String nameSubject) {
+
+        if (this.getSubjectsFromMajor().getRoot() == null || (root.getKey().getNameSubject() == null ? nameSubject == null : root.getKey().getNameSubject().equals(nameSubject))) {
+            return root.getKey();
+        }
+        if (nameSubject.compareTo(root.getKey().getNameSubject()) < 0) {
+            return getSubjectsHelperByName(root.getLeft(), nameSubject);
+        } else {
+            return getSubjectsHelperByName(root.getRight(), nameSubject);
+        }
+    }
+
+    public Subject getSubjectsFromMajorByCredits(int credits) {
+        TreeNode<Subject> root = this.getSubjectsFromMajor().getRoot();
+        return getSubjectsHelperByCredits(root, credits);
+    }
+
+    private Subject getSubjectsHelperByCredits(TreeNode<Subject> root, int credits) {
+
+        if (this.getSubjectsFromMajor().getRoot() == null || (root.getKey().getCreditsSubject() == credits)) {
+            return root.getKey();
+        }
+        if (credits < root.getKey().getCreditsSubject()) {
+            return getSubjectsHelperByCredits(root.getLeft(), credits);
+        } else {
+            return getSubjectsHelperByCredits(root.getRight(), credits);
+        }
+    }
+
+    public void addSubjectToMajor(String courseName, int courseCode, int creditSubject, int quotesSubject) {
+        Subject subject = new Subject(courseName, courseCode, creditSubject, quotesSubject);
+        subjects.insert(subject);
+    }
+    //-------Metodos estudiantes-------//
+
     public Student searchStudentByUser(String user) {
-        return this.searchStudentByUser(students.root, user);
+        return this.searchStudentByUser(students.getRoot(), user);
     }
 
     private Student searchStudentByUser(TreeNode<Student> node, String data) {
@@ -147,7 +183,7 @@ public class Major implements Comparable<Major> {
     }
 
     private Student searchStudentByName(TreeNode<Student> node, Student data) {
-        node = students.root;
+        node = students.getRoot();
         if (node == null) {
             return null;
         }
@@ -159,9 +195,27 @@ public class Major implements Comparable<Major> {
             return this.searchStudentByName(node.getRight(), data);
         }
     }
+    //------------------metodos imprimir arboles 
+    public void printTreeSubject() {
+        printTreeS(this.subjects.getRoot(), 0);
+    }
 
-    public void printTreeByName() {
-        printTree(students.root, 0);
+    private void printTreeS(TreeNode<Subject> node, int level) {
+        if (node == null) {
+            return;
+        }
+
+        printTreeS(node.getRight(), level + 1);
+
+        for (int i = 0; i < level; i++) {
+            System.out.print("\t");
+        }
+        System.out.println(node.getKey().getNameSubject());
+
+        printTreeS(node.getLeft(), level + 1);
+    }
+    public void printTreeStudent() {
+        printTree(this.students.getRoot(), 0);
     }
 
     private void printTree(TreeNode<Student> node, int level) {
@@ -190,7 +244,7 @@ public class Major implements Comparable<Major> {
         studentToAdd.setMajorCurrent(majorCurrent);
         studentToAdd.setPassword(password);
         studentToAdd.setUser(user);
-        this.students.insert((Comparable) studentToAdd);
+        this.students.insert(studentToAdd);
     }
 //---------------------------- metodos para to compare
 
@@ -220,7 +274,7 @@ public class Major implements Comparable<Major> {
             // Read subjects by code
             startTime = System.nanoTime();
             for (int i = 0; i < size; i++) {
-                timeSubjects.readByCode(i + 1000);
+//                timeSubjects.readByCode(i + 1000);
             }
             endTime = System.nanoTime();
             elapsedTime = endTime - startTime;
@@ -229,7 +283,7 @@ public class Major implements Comparable<Major> {
             // Delete subjects by code
             startTime = System.nanoTime();
             for (int i = size; i > 0; i--) {
-                timeSubjects.deleteByCode(i + 999);
+                //              timeSubjects.deleteByCode(i + 999);
             }
             endTime = System.nanoTime();
             elapsedTime = endTime - startTime;

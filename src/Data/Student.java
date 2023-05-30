@@ -3,7 +3,8 @@ package Data;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.Stack;
-import Data.RecursiveBinarySearchTree;
+import DataStructures.RecursiveBinarySearchTree;
+
 public class Student implements Comparable<Student> {
 
     private String name;

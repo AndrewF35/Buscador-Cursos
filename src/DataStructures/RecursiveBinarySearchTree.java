@@ -1,16 +1,24 @@
-package Data;
+package DataStructures;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayDeque;
 import java.util.Stack;
-import Data.TreeNode;
+import DataStructures.TreeNode;
 import java.util.Deque;
 
 
 public class RecursiveBinarySearchTree<T extends Comparable<T>>{
 
-    protected TreeNode<T> root;
+    private TreeNode<T> root;
+
+    public TreeNode<T> getRoot() {
+        return root;
+    }
+
+    public void setRoot(TreeNode<T> root) {
+        this.root = root;
+    }
 
     public RecursiveBinarySearchTree(T data) {
         this.root = new TreeNode<>(data);
@@ -120,6 +128,24 @@ public class RecursiveBinarySearchTree<T extends Comparable<T>>{
         return this.toString(this.root);
     }
 
+    public RecursiveBinarySearchTree<T> filter(T referenceValue) {
+        RecursiveBinarySearchTree<T> resultTree = new RecursiveBinarySearchTree<>();
+        filterHelper(root, referenceValue, resultTree);
+        return resultTree;
+    }
+
+    private void filterHelper(TreeNode<T> node, T referenceValue, RecursiveBinarySearchTree<T> resultTree) {
+        if (node == null) {
+            return;
+        }
+
+        if (node.getKey().compareTo(referenceValue) >= 0) {
+            resultTree.insert(node.getKey());
+        }
+
+        filterHelper(node.getLeft(), referenceValue, resultTree);
+        filterHelper(node.getRight(), referenceValue, resultTree);
+    }
     private String toString(TreeNode<T> root) {
         Deque<TreeNode<T>> queue = new ArrayDeque<>();
         Deque<Integer> level = new ArrayDeque<>();
@@ -162,9 +188,8 @@ public class RecursiveBinarySearchTree<T extends Comparable<T>>{
             root.setKey(this.minValue(root.getRight()));
             root.setRight(delete(root.getRight(), root.getKey()));
         }
-        return root;
+        return reBalance(root);
     }
-
     private int size(TreeNode<T> root) {
         if(root == null)  return 0;
         return 1 + size(root.getLeft()) + size(root.getRight());
@@ -226,8 +251,9 @@ public class RecursiveBinarySearchTree<T extends Comparable<T>>{
         else if(data.compareTo(root.getKey()) > 0) {
             root.setRight(this.insert(root.getRight(),data));
         }
-        return root;
+        return reBalance(root);
     }
+
 
     private T search(TreeNode<T> root, T data) {
         if(root == null) return null;
@@ -247,5 +273,42 @@ public class RecursiveBinarySearchTree<T extends Comparable<T>>{
         if(Math.abs(lh - rh) > 1) return false;
         return this.isBalanced(root.getLeft()) && this.isBalanced(root.getRight());
     }
+    private TreeNode<T> rotateLeft(TreeNode<T> root) {
+        TreeNode<T> x = root.getRight();
+        TreeNode<T> z = x.getLeft();
+        x.setLeft(root);
+        root.setRight(z);
+        return x;
+    }
 
+    private TreeNode<T> rotateRight(TreeNode<T> root) {
+        TreeNode<T> x = root.getLeft();
+        TreeNode<T> z = x.getRight();
+        x.setRight(root);
+        root.setLeft(z);
+        return x;
+    }
+
+
+    private TreeNode<T> reBalance(TreeNode<T> root) {
+        if(!this.isBalanced(root)) {
+            int difference = this.height(root.getRight()) - this.height(root.getLeft());
+            if(difference > 1) {//We need to rotate left
+                if(this.height(root.getRight().getRight()) > this.height(root.getRight().getLeft())) { //Only rotate left
+                    root = rotateLeft(root);
+                } else { //Double rotation
+                    root.setRight(rotateRight(root.getRight()));
+                    root = rotateLeft(root);
+                }
+            } else if (difference < -1) {//We need to rotate right
+                if(this.height(root.getLeft().getLeft()) > this.height(root.getLeft().getRight())) { //Only rotate right
+                    root = rotateRight(root);
+                } else { //Double rotation
+                    root.setLeft(rotateLeft(root.getLeft()));
+                    root = rotateRight(root);
+                }
+            }
+        }
+        return root;
+    }
 }

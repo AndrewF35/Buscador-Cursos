@@ -164,8 +164,8 @@ public class editGroup extends javax.swing.JFrame {
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         try {
             Major major = subjectsInUniversity;
-            Subject subjectToModify = major.getSubjectsFromMajorByName(nameField.getText()); 
-            subjectToModify.modifySubect(subjectToModify, nameField.getText(), Integer.parseInt(codeField.getText()), Integer.parseInt(creditField.getText()), 8);
+            //Subject subjectToModify = major.getStudentsFromMajorByName(nameField.getText()); 
+            //subjectToModify.modifySubect(subjectToModify, nameField.getText(), Integer.parseInt(codeField.getText()), Integer.parseInt(creditField.getText()), 8);
             JOptionPane.showMessageDialog(this, "Se edito exitosamente el Grupo");
 
         } catch (HeadlessException | NumberFormatException e) {
@@ -180,17 +180,9 @@ public class editGroup extends javax.swing.JFrame {
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
         try {
-            Major major = subjectsInUniversity;
-            Subject subjectToModify = major.getSubjectsFromMajorByName(nameField.getText());
-            if (major.getSubjectsFromMajor().contains(subjectToModify)) {
-                major.getSubjectsFromMajor().remove(subjectToModify);
-                JOptionPane.showMessageDialog(this, "Se elimino exitosamente el Grupo");
-            } else {
-                throw new Exception();
-            }
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error Eliminando informacion, curso no encontrado");
+
          }     }//GEN-LAST:event_EliminarActionPerformed
 
     private void creditFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creditFieldActionPerformed

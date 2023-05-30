@@ -4,6 +4,7 @@ import Data.Major;
 import Data.Subject;
 import static com.initial.main.subjectsInUniversity;
 import java.awt.Color;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,15 +30,16 @@ public class studentMenu extends javax.swing.JFrame {
         Major filtered = subjects;
         switch (filterby) {
             case 1 ->
-                filtered = subjects.filterByCode(subjects, Integer.parseInt(parameter));
+                filtered = subjects.filterByCode(subjects,Integer.parseInt(parameter));
             case 2 ->
-                filtered = subjects.filterByCredits(subjects, Integer.parseInt(parameter));
+                filtered.filterByCredits(subjects,Integer.parseInt(parameter));
             case 3 ->
-                filtered = subjects.filterByName(subjects, (String) parameter);
+                filtered = subjects.filterByName(subjects,(String) parameter);
             default -> {
             }
         }
-        for (Subject subject : filtered.getSubjectsFromMajor()) {
+        ArrayList<Subject> filteredInArray =filtered.readAllByName();
+        for (Subject subject : filteredInArray) {
             Object a[] = new Object[4];
             a[0] = subject.getNameSubject();
             a[1] = subject.getCodeSubject();
@@ -53,7 +55,8 @@ public class studentMenu extends javax.swing.JFrame {
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
-        for (Subject subject : subjects.getSubjectsFromMajor()) {
+        ArrayList<Subject> SubjectsInArray =subjects.readAllByName();
+        for (Subject subject : SubjectsInArray) {
             Object a[] = new Object[4];
             a[0] = subject.getNameSubject();
             a[1] = subject.getCodeSubject();

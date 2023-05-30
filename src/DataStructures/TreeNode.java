@@ -1,4 +1,4 @@
-package Data;
+package DataStructures;
 
 public class TreeNode<T> {
     private T key;
