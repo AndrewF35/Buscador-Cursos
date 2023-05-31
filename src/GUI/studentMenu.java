@@ -2,6 +2,7 @@ package GUI;
 
 import Data.Major;
 import Data.Subject;
+import com.initial.main;
 import static com.initial.main.subjectsInUniversity;
 import java.awt.Color;
 import java.util.ArrayList;
@@ -27,18 +28,19 @@ public class studentMenu extends javax.swing.JFrame {
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
-        Major filtered = subjects;
+        ArrayList<Subject> filteredInArray;
         switch (filterby) {
             case 1 ->
-                filtered = subjects.filterByCode(subjects,Integer.parseInt(parameter));
+                filteredInArray = subjects.filterByCode(Integer.parseInt(parameter));
             case 2 ->
-                filtered.filterByCredits(subjects,Integer.parseInt(parameter));
+                filteredInArray = subjects.filterByCredits(Integer.parseInt(parameter));
             case 3 ->
-                filtered = subjects.filterByName(subjects,(String) parameter);
+                filteredInArray = subjects.filterByName(parameter);
             default -> {
+                filteredInArray = main.subjectsInUniversity.readAllByName();
             }
         }
-        ArrayList<Subject> filteredInArray =filtered.readAllByName();
+
         for (Subject subject : filteredInArray) {
             Object a[] = new Object[4];
             a[0] = subject.getNameSubject();

@@ -3,6 +3,7 @@ package Data;
 import DataStructures.RecursiveBinarySearchTree;
 import DataStructures.TreeNode;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Major implements Comparable<Major> {
 
@@ -10,11 +11,11 @@ public class Major implements Comparable<Major> {
     private RecursiveBinarySearchTree<Subject> subjects = new RecursiveBinarySearchTree<>();//introduccion, mates,poo
     private RecursiveBinarySearchTree<Student> students = new RecursiveBinarySearchTree();
 
-    
 //getters y setters 
     public void setSubjects(RecursiveBinarySearchTree<Subject> subjects) {
         this.subjects = subjects;
     }
+
     public String getNameMajor() {
         return nameMajor;
     }
@@ -22,6 +23,7 @@ public class Major implements Comparable<Major> {
     public void setNameMajor(String nameMajor) {
         this.nameMajor = nameMajor;
     }
+
     public ArrayList<Subject> readAllByName() {
         ArrayList<Subject> SubjectsInMajor = new ArrayList<>();
         this.subjects.inOrderList(SubjectsInMajor);
@@ -33,7 +35,8 @@ public class Major implements Comparable<Major> {
         return getSubjectsHelperByName(root, name);
 
     }
-        public RecursiveBinarySearchTree getStudentsTree() {
+
+    public RecursiveBinarySearchTree getStudentsTree() {
         return students;
     }
 
@@ -53,71 +56,54 @@ public class Major implements Comparable<Major> {
     }
 
     //Metodos para filtrar materias  
-    public Major filterByCode(Major major,int code) {
-        Major majorFiltered = new Major();
-        RecursiveBinarySearchTree<Subject> resultTree = new RecursiveBinarySearchTree<>();
-        filterHelperByCode(major.getSubjectsFromMajor().getRoot(), code, resultTree);
-        majorFiltered.setSubjects(resultTree);
-        return majorFiltered;
+    public ArrayList<Subject>  filterByCode( int code) {
+        ArrayList<Subject> SubjectFilteredInMajor = new ArrayList<>();
+        this.filterHelperByCode(this.getSubjectsFromMajor().getRoot(), SubjectFilteredInMajor, code);
+        return SubjectFilteredInMajor;
     }
-
-    public Major filterByName(Major major,String name) {
-        Major majorFiltered = new Major();
-        RecursiveBinarySearchTree<Subject> resultTree = new RecursiveBinarySearchTree<>();
-        filterHelperByName(major.getSubjectsFromMajor().getRoot(), name, resultTree);
-        majorFiltered.setSubjects(resultTree);
-        return majorFiltered;
-    }
-
-    private void filterHelperByName(TreeNode<Subject> node, String attributeValue, RecursiveBinarySearchTree<Subject> resultTree) {
-        if (node == null) {
+    private void filterHelperByCode(TreeNode<Subject> root, ArrayList<Subject> values, int code) {
+        if (root == null) {
             return;
         }
-
-        if (node.getKey().getNameSubject().compareTo(attributeValue) >= 0) {
-            resultTree.insert(node.getKey());
+        filterHelperByCode(root.getLeft(), values, code);
+        if (root.getKey().getCodeSubject() == code) {
+            values.add((Subject) root.getKey());
         }
-
-        filterHelperByName(node.getLeft(), attributeValue, resultTree);
-        filterHelperByName(node.getRight(), attributeValue, resultTree);
+        filterHelperByCode(root.getRight(), values, code);
     }
 
-    public Major filterByCredits(Major subjects,int credits) {
-        Major majorFiltered = new Major();
-        RecursiveBinarySearchTree<Subject> filteredNodes = new RecursiveBinarySearchTree<>();
-        filterHelperByValue(subjects.getSubjectsFromMajor().getRoot(), credits, filteredNodes);
-        majorFiltered.setSubjects(filteredNodes);
-        return majorFiltered;
+    public ArrayList<Subject> filterByName(String name) {
+        ArrayList<Subject> SubjectFilteredInMajor = new ArrayList<>();
+        this.filterHelperByName(this.getSubjectsFromMajor().getRoot(), SubjectFilteredInMajor, name);
+        return SubjectFilteredInMajor;
     }
 
-    private void filterHelperByValue(TreeNode<Subject> node, int value, RecursiveBinarySearchTree<Subject> resultTree) {
-        if (node == null) {
+    private void filterHelperByName(TreeNode<Subject> root, ArrayList<Subject> values, String name) {
+        if (root == null) {
             return;
         }
-
-        if (node.getKey().getCreditsSubject() == value) {
-            resultTree.insert(node.getKey());
+        filterHelperByName(root.getLeft(), values, name);
+        if (root.getKey().getNameSubject().contains(name)) {
+            values.add((Subject) root.getKey());
         }
-
-        if (node.getKey().getCreditsSubject() > value) {
-            filterHelperByValue(node.getLeft(), value, resultTree);
-        } else {
-            filterHelperByValue(node.getRight(), value, resultTree);
-        }
+        filterHelperByName(root.getRight(), values, name);
     }
 
+    public ArrayList<Subject> filterByCredits(int credits) {
+        ArrayList<Subject> SubjectFilteredInMajor = new ArrayList<>();
+        this.filterHelperByCredits(this.getSubjectsFromMajor().getRoot(), SubjectFilteredInMajor, credits);
+        return SubjectFilteredInMajor;
+    }
 
-    private void filterHelperByCode(TreeNode<Subject> node, int attributeValue, RecursiveBinarySearchTree<Subject> resultTree) {
-        if (node == null) {
+    private void filterHelperByCredits(TreeNode<Subject> root, ArrayList<Subject> values, int credits) {
+        if (root == null) {
             return;
         }
-
-        if (node.getKey().getCodeSubject() == attributeValue) {
-            resultTree.insert(node.getKey());
+        filterHelperByCredits(root.getLeft(), values, credits);
+        if (root.getKey().getCreditsSubject() == credits) {
+            values.add((Subject) root.getKey());
         }
-
-        filterHelperByCode(node.getLeft(), attributeValue, resultTree);
-        filterHelperByCode(node.getRight(), attributeValue, resultTree);
+        filterHelperByCredits(root.getRight(), values, credits);
     }
 
     public void addSubjectToMajor(Subject subject) {
@@ -127,8 +113,6 @@ public class Major implements Comparable<Major> {
     public RecursiveBinarySearchTree<Subject> getSubjectsFromMajor() {
         return subjects;
     }
-
-
 
     private Subject getSubjectsHelperByName(TreeNode<Subject> root, String nameSubject) {
 
@@ -195,6 +179,7 @@ public class Major implements Comparable<Major> {
             return this.searchStudentByName(node.getRight(), data);
         }
     }
+
     //------------------metodos imprimir arboles 
     public void printTreeSubject() {
         printTreeS(this.subjects.getRoot(), 0);
@@ -214,6 +199,7 @@ public class Major implements Comparable<Major> {
 
         printTreeS(node.getLeft(), level + 1);
     }
+
     public void printTreeStudent() {
         printTree(this.students.getRoot(), 0);
     }
