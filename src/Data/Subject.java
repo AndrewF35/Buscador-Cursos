@@ -2,14 +2,12 @@ package Data;
 
 import java.util.LinkedList;
 
-public class Subject {
+public class Subject implements Comparable<Subject> {
 
     private String nameSubject;
     private int codeSubject;
     private int creditsSubject;
     private int quotesSubject;
-    private String requirementsSubject;
-    private String descriptionSubject;
 
     public Subject() {
     }
@@ -20,11 +18,31 @@ public class Subject {
         this.creditsSubject = creditsSubject;
         this.quotesSubject = quotesSubject;
     }
+    @Override
+    public int compareTo(Subject anotherSubject) {
+        // comparar por nameSubject
+        int comparacionNameSubject = this.nameSubject.compareTo(anotherSubject.nameSubject);
+        if (comparacionNameSubject != 0) {
+            return comparacionNameSubject;
+        }
+        // Comparar por codeSubject
+        int comparacionCodeSubject = Integer.compare(this.codeSubject,anotherSubject.codeSubject);
+        if (comparacionCodeSubject != 0) {
+            return comparacionCodeSubject;
+        }
+        // Comparar por creditsSubject
+        int comparacionCreditsSubject = Integer.compare(this.creditsSubject,anotherSubject.creditsSubject);
+        if (comparacionCreditsSubject != 0) {
+            return comparacionCreditsSubject;
+        }
+        // Comparar por edad
+        return Integer.compare(this.quotesSubject,anotherSubject.quotesSubject);
+    }
 
 //    private int cupoDisponible;
 //    private boolean ofertado;
     public void modifySubect(Subject subjectToModify,String nameSubject,int codeSubject,int creditsSubject,int quotesSubject){
-        subjectToModify.setNameSubject(nameSubject);
+        subjectToModify.setName(nameSubject);
         subjectToModify.setCodeSubject(codeSubject);
         subjectToModify.setCreditsSubject(creditsSubject);
         subjectToModify.setQuotesSubject(quotesSubject);
@@ -33,7 +51,7 @@ public class Subject {
         return nameSubject;
     }
 
-    public void setNameSubject(String nameSubject) {
+    public void setName(String nameSubject) {
         this.nameSubject = nameSubject;
     }
 
@@ -59,21 +77,5 @@ public class Subject {
 
     public void setQuotesSubject(int quotesSubject) {
         this.quotesSubject = quotesSubject;
-    }
-
-    public String getRequirementsSubject() {
-        return requirementsSubject;
-    }
-
-    public void setRequirementsSubject(String requirementsSubject) {
-        this.requirementsSubject = requirementsSubject;
-    }
-
-    public String getDescriptionSubject() {
-        return descriptionSubject;
-    }
-
-    public void setDescriptionSubject(String descriptionSubject) {
-        this.descriptionSubject = descriptionSubject;
     }
 }

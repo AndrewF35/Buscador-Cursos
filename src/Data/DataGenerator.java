@@ -2,9 +2,10 @@ package Data;
 
 import java.util.List;
 import java.util.Random;
-
+import com.initial.main;
 
 public class DataGenerator {
+
     public static Subject generateRandomCourses(int index) {
         Random random = new Random();
         String courseName = COURSE_NAMES.get(random.nextInt(COURSE_NAMES.size())) + index;
@@ -14,6 +15,27 @@ public class DataGenerator {
 
         return new Subject(courseName, courseCode, credits, quotes);
     }
+
+    public static Student generateRandomStudent(int index) {
+        Random random = new Random();
+        String studentName = NAME_LIST.get(random.nextInt(NAME_LIST.size()));
+        int studentAge = random.nextInt(21) + 10;
+        String password =Integer.toString(random.nextInt(100) + 1000);
+        String user = studentName + index*random.nextInt(NAME_LIST.size());
+        Major majorCurrent = main.majorsInUniversity.get(random.nextInt(2));
+        return new Student(studentName,studentAge, majorCurrent, password, user);
+    }
+    private static final List<String> NAME_LIST = List.of(
+            "Alejandro", "Bianca", "Carlos", "Daniela", "Emilio", "Fernanda", "Gabriel", "Helena", "Iván", "Julia",
+            "Kevin", "Laura", "Miguel", "Natalia", "Óscar", "Paula", "Quetzal", "Rebeca", "Santiago", "Teresa",
+            "Ulises", "Valeria", "Walter", "Ximena", "Yahir", "Zoe", "Adrián", "Beatriz", "César", "Diana",
+            "Eduardo", "Fabiola", "Gustavo", "Hilda", "Ismael", "Jazmín", "Klaus", "Linda", "Manuel", "Nora",
+            "Octavio", "Patricia", "Raúl", "Sofía", "Tomas", "Verónica", "Yael", "Abigail", "Benjamín", "Camila",
+            "Diego", "Esmeralda", "Fernando", "Giselle", "Héctor", "Irma", "Javier", "Karen", "Luis", "Mariana",
+            "Nicolás", "Olivia", "Pablo", "Renata", "Sergio", "Tamara", "Uriel", "Valentina", "Xavier", "Wendy",
+            "Yuri", "Zara", "Andrés", "Brenda", "Carmen", "David", "Elena", "Francisco", "Gloria", "Hugo", "Isabel",
+            "Juan", "Karla", "Lorenzo", "María", "Nelson", "Paola", "Roberto", "Sara", "Tomás", "Vanesa"
+    );
 
     private static final List<String> COURSE_NAMES = List.of(
             "Álgebra Lineal",

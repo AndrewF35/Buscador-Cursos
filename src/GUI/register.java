@@ -65,8 +65,13 @@ public class register extends javax.swing.JFrame {
         background.add(ocupationLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 171, 350, -1));
 
         ocupationField.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        ocupationField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estudiante", "Docente" }));
+        ocupationField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estudiante", "Docente", "Administrador" }));
         ocupationField.setPreferredSize(new java.awt.Dimension(200, 25));
+        ocupationField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ocupationFieldActionPerformed(evt);
+            }
+        });
         background.add(ocupationField, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 192, -1, -1));
 
         registerButton.setBackground(new java.awt.Color(255, 255, 255));
@@ -175,6 +180,10 @@ public class register extends javax.swing.JFrame {
         newWindow1.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_cancelButtonMouseClicked
+
+    private void ocupationFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ocupationFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ocupationFieldActionPerformed
 
     /**
      * @param args the command line arguments

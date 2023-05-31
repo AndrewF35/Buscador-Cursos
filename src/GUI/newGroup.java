@@ -3,7 +3,7 @@ package GUI;
 import Data.Major;
 import Data.Subject;
 import javax.swing.JOptionPane;
-import static com.initial.main.subjects;
+import static com.initial.main.subjectsInUniversity;
 
 public class newGroup extends javax.swing.JFrame {
     
@@ -153,7 +153,7 @@ public class newGroup extends javax.swing.JFrame {
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         try{
-            Major newSubject = subjects; 
+            Major newSubject = subjectsInUniversity; 
             newSubject.addSubjectToMajor(nameField.getText(), Integer.parseInt(codeField.getText()), Integer.parseInt(creditField.getText()),4);
         }catch(Exception e){
             JOptionPane.showMessageDialog(this,"Error añadiendo informacion");
