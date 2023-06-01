@@ -5,12 +5,18 @@ import javax.swing.JOptionPane;
 
 import Data.Student;
 import Data.Major;
+import Data.Subject;
 import com.initial.main;
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Stack;
 
 public class login extends javax.swing.JFrame {
-    
+
     public static Student currentStudent;
-    
+    public static ArrayList<Subject> scheduleTest = new ArrayList<>();
+    public static Stack<Subject> doneSubjectsTest = new Stack<>();
+    public static Stack<Subject> remainingSubjectsTest = new Stack<>();
     public login() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -190,7 +196,7 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_registerButtonMouseClicked
 
     private void loginButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButtonMouseClicked
-        
+
         String user = userField.getText();
         String pass = new String(passwordField.getPassword());
 
@@ -224,6 +230,20 @@ public class login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Usuario o Contraseña incorrecta");
             }
         }
+        //testeo
+        for (int i = 0; i < 5; i++) {
+            Random random = new Random();
+            scheduleTest.add(currentStudent.getMajorCurrent().readAllByName().get(random.nextInt(20)));
+            doneSubjectsTest.push(currentStudent.getMajorCurrent().readAllByName().get(random.nextInt(20)));
+            remainingSubjectsTest.push(currentStudent.getMajorCurrent().readAllByName().get(random.nextInt(20)));
+        }
+
+        login.currentStudent.setSchedule(scheduleTest);
+        System.out.println("añadido Horario");
+        System.out.println(login.currentStudent.getSchedule());
+        login.currentStudent.setDoneSubjects(doneSubjectsTest);
+        login.currentStudent.setRemainingSubjects(remainingSubjectsTest);
+        //
     }//GEN-LAST:event_loginButtonMouseClicked
 
     private void ocupationFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ocupationFieldActionPerformed
@@ -238,11 +258,6 @@ public class login extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -264,6 +279,7 @@ public class login extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+
                 new login().setVisible(true);
             }
         });

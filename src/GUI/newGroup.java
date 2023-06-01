@@ -155,7 +155,7 @@ public class newGroup extends javax.swing.JFrame {
         try{
             Major newSubject = subjectsInUniversity; 
             newSubject.addSubjectToMajor(nameField.getText(), Integer.parseInt(codeField.getText()), Integer.parseInt(creditField.getText()),4);
-        }catch(Exception e){
+        }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(this,"Error añadiendo informacion");
         }    
     }//GEN-LAST:event_saveButtonActionPerformed
@@ -167,6 +167,7 @@ public class newGroup extends javax.swing.JFrame {
     }//GEN-LAST:event_RegresarActionPerformed
 
     private void codeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeFieldActionPerformed
+
         System.out.println("Esto hace esto");    }//GEN-LAST:event_codeFieldActionPerformed
 
     private void creditFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creditFieldActionPerformed
@@ -176,7 +177,6 @@ public class newGroup extends javax.swing.JFrame {
         System.out.println("Esto hace esto");    }//GEN-LAST:event_nameFieldActionPerformed
 
     private void nameFieldComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_nameFieldComponentAdded
-        System.out.println("Esto hace esto");
     }//GEN-LAST:event_nameFieldComponentAdded
 
     /**

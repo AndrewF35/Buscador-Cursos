@@ -1,18 +1,20 @@
 package GUI;
 
 import Data.Major;
+import Data.Student;
 import Data.Subject;
 import com.initial.main;
-import static com.initial.main.subjectsInUniversity;
-import java.awt.Color;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.Stack;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class studentMenu extends javax.swing.JFrame {
 
     DefaultTableModel modelo = new DefaultTableModel();
-
+    
     private void AñadirTabla(Major subjects) {
         //añade columnas de la tabla
         modelo.addColumn("Asignatura");
@@ -23,19 +25,22 @@ public class studentMenu extends javax.swing.JFrame {
         refrescarTabla(subjects);
     }
 
-    private void refrescarTabla(Major subjects, String parameter, int filterby) {
+    
+    private void refrescarTabla(Student student,int filterby) {
 
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
-        ArrayList<Subject> filteredInArray;
+        
+        List<Subject> filteredInArray;
+        
         switch (filterby) {
             case 1 ->
-                filteredInArray = subjects.filterByCode(Integer.parseInt(parameter));
+                filteredInArray = student.getSchedule();
             case 2 ->
-                filteredInArray = subjects.filterByCredits(Integer.parseInt(parameter));
+                filteredInArray = student.getDoneSubjects();
             case 3 ->
-                filteredInArray = subjects.filterByName(parameter);
+                filteredInArray = student.getRemainingSubjects();
             default -> {
                 filteredInArray = main.subjectsInUniversity.readAllByName();
             }
@@ -49,7 +54,7 @@ public class studentMenu extends javax.swing.JFrame {
             a[3] = subject.getQuotesSubject();
             modelo.addRow(a);
         }
-        //TablaCursos.setModel(modelo);
+        TablaCursos.setModel(modelo);
     }
 
     private void refrescarTabla(Major subjects) {
@@ -66,12 +71,12 @@ public class studentMenu extends javax.swing.JFrame {
             a[3] = subject.getQuotesSubject();
             modelo.addRow(a);
         }
-        //TablaCursos.setModel(modelo);
+        TablaCursos.setModel(modelo);
     }
 
     public studentMenu() {
         initComponents();
-        //AñadirTabla(subjectsInUniversity);
+        AñadirTabla(login.currentStudent.getMajorCurrent());
         this.setLocationRelativeTo(null);
     }
 
@@ -93,12 +98,13 @@ public class studentMenu extends javax.swing.JFrame {
         scheduleText1 = new javax.swing.JLabel();
         scheduleText2 = new javax.swing.JLabel();
         userField = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboFiltro = new javax.swing.JComboBox<>();
         scheduleText3 = new javax.swing.JLabel();
         scrollPanel1 = new javax.swing.JScrollPane();
         TablaCursos = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(930, 650));
@@ -132,7 +138,7 @@ public class studentMenu extends javax.swing.JFrame {
         title.setFont(new java.awt.Font("Roboto Medium", 1, 24)); // NOI18N
         title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         title.setText("HISTORIA ACADEMICA");
-        background.add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(239, 37, 710, -1));
+        background.add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(239, 37, 710, 30));
 
         separator1.setBackground(new java.awt.Color(0, 0, 0));
         separator1.setForeground(new java.awt.Color(0, 0, 0));
@@ -149,7 +155,7 @@ public class studentMenu extends javax.swing.JFrame {
         nameField.setText(login.currentStudent.getName());
         majorField.setText(login.currentStudent.getMajorCurrent().getNameMajor());
         userField.setText(login.currentStudent.getUser());
-        background.add(nameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, -1, -1));
+        background.add(nameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, -1, -1));
 
         majorField.setEditable(false);
         majorField.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -159,7 +165,7 @@ public class studentMenu extends javax.swing.JFrame {
                 majorFieldActionPerformed(evt);
             }
         });
-        background.add(majorField, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 160, -1, -1));
+        background.add(majorField, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 160, -1, -1));
 
         searchMenuButton.setBackground(new java.awt.Color(255, 255, 255));
         searchMenuButton.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -202,38 +208,38 @@ public class studentMenu extends javax.swing.JFrame {
         scheduleText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         scheduleText.setText("Carrera");
         scheduleText.setPreferredSize(new java.awt.Dimension(100, 25));
-        background.add(scheduleText, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, 96, 21));
+        background.add(scheduleText, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 96, 21));
 
         scheduleText1.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
         scheduleText1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         scheduleText1.setText("Materias a mostrar");
         scheduleText1.setPreferredSize(new java.awt.Dimension(100, 25));
-        background.add(scheduleText1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 80, 170, 21));
+        background.add(scheduleText1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 80, 170, 21));
 
         scheduleText2.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
         scheduleText2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         scheduleText2.setText("Usuario");
         scheduleText2.setPreferredSize(new java.awt.Dimension(100, 25));
-        background.add(scheduleText2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 96, 21));
+        background.add(scheduleText2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, 96, 21));
 
         userField.setEditable(false);
         userField.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         userField.setPreferredSize(new java.awt.Dimension(300, 25));
-        background.add(userField, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 120, -1, -1));
+        background.add(userField, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, -1, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Horario", "Materias No Cursadas", "Materias Cursadas", "Materias Carrera" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        jComboFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Materias Carrera", "Horario", "Materias No Cursadas", "Materias Cursadas" }));
+        jComboFiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                jComboFiltroActionPerformed(evt);
             }
         });
-        background.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 122, 200, 20));
+        background.add(jComboFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 110, 200, 20));
 
         scheduleText3.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
         scheduleText3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         scheduleText3.setText("Nombre");
         scheduleText3.setPreferredSize(new java.awt.Dimension(100, 25));
-        background.add(scheduleText3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 96, 21));
+        background.add(scheduleText3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 96, 21));
 
         TablaCursos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -277,7 +283,13 @@ public class studentMenu extends javax.swing.JFrame {
         background.add(scrollPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 220, 560, 340));
 
         jButton1.setText("Buscar");
-        background.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 160, -1, -1));
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        background.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 150, 80, 30));
 
         jButton2.setLabel("Cerrar Sesion");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -287,11 +299,23 @@ public class studentMenu extends javax.swing.JFrame {
         });
         background.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(605, 570, 120, -1));
 
+        jButton3.setText("Añadir Materia al Horario");
+        jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        background.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 150, 170, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 950, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -315,8 +339,8 @@ public class studentMenu extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_searchMenuButtonMouseClicked
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    private void jComboFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboFiltroActionPerformed
+    }//GEN-LAST:event_jComboFiltroActionPerformed
 
     private void TablaCursosComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_TablaCursosComponentAdded
         // TODO add your handling code here:
@@ -337,11 +361,39 @@ public class studentMenu extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        AñadirMateria newWindow4 = new AñadirMateria();
+        newWindow4.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       
+        try {
+            if ("Horario".equals(jComboFiltro.getSelectedItem())) {
+                refrescarTabla(login.currentStudent, 1);
+            }
+            
+            if ("Materias No Cursadas".equals(jComboFiltro.getSelectedItem())) {
+                refrescarTabla(login.currentStudent, 2);
+            }
+            
+            if ("Materias Cursadas".equals(jComboFiltro.getSelectedItem())) {
+                refrescarTabla(login.currentStudent, 3);
+            }
+            if ("Materias Carrera".equals(jComboFiltro.getSelectedItem())) {
+                refrescarTabla(login.currentStudent.getMajorCurrent());
+            }
+        } catch (java.lang.NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "No hay informacion academica para imprimir");
+            refrescarTabla(login.currentStudent.getMajorCurrent());
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -373,7 +425,8 @@ public class studentMenu extends javax.swing.JFrame {
     private javax.swing.JPanel background;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JComboBox<String> jComboFiltro;
     private javax.swing.JPanel leftBar;
     private javax.swing.JLabel logo;
     private javax.swing.JTextField majorField;

@@ -2,8 +2,11 @@ package com.initial;
 
 import Data.DataGenerator;
 import Data.Major;
+import Data.Subject;
 import GUI.login;
+import java.util.Random;
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class main {
 
@@ -22,8 +25,8 @@ public class main {
         Biologia.setNameMajor("Biologia");
         IngenieriaDeSistemas.setNameMajor("Ingenieria De Sistemas");
         
-        int numCoursesToGenerate = 100000; // Cantidad de cursos a generar
-        int numStudentsToGenerate = 1000;   // Cantidad de Estudiantes a generar hasta el momento alcanza un maximo en 10 000 usuarios 
+        int numCoursesToGenerate = 10000; // Cantidad de cursos a generar
+        int numStudentsToGenerate = 100;   // Cantidad de Estudiantes a generar hasta el momento alcanza un maximo en 10 000 usuarios 
         
         for (int i = 0;
                 i < numCoursesToGenerate;
@@ -32,7 +35,7 @@ public class main {
             subjectsInUniversity.addSubjectToMajor(DataGenerator.generateRandomCourses(i));
         }
         for (int i = 0;
-                i < 10;
+                i < 30;
                 i++) {
 
             Biologia.addSubjectToMajor(DataGenerator.generateRandomCourses(i));
@@ -43,14 +46,13 @@ public class main {
                 i++) {
             subjectsInUniversity.AddStudentsToMajor(DataGenerator.generateRandomStudent(i));
         }
-
-               
+                      
         subjectsInUniversity.printTreeStudent();
         subjectsInUniversity.printTreeSubject();
         System.out.println(subjectsInUniversity.getStudentsFromMajorInArray().get(1).getUser());
         System.out.println(subjectsInUniversity.getStudentsFromMajorInArray().get(1).getPassword());
-        login newLogin = new login();
 
+        login newLogin = new login();
         newLogin.setVisible(
                 true);
     }
