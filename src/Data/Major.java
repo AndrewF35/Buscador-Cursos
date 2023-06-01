@@ -3,7 +3,6 @@ package Data;
 import DataStructures.RecursiveBinarySearchTree;
 import DataStructures.TreeNode;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Major implements Comparable<Major> {
 
@@ -30,10 +29,55 @@ public class Major implements Comparable<Major> {
         return SubjectsInMajor;
     }
 
-    private Subject getSubjectByName(String name) {
+    public Subject getSubjectByName(String name) {
         TreeNode<Subject> root = this.getSubjectsFromMajor().getRoot();
         return getSubjectsHelperByName(root, name);
+    }
 
+    private Subject getSubjectsHelperByName(TreeNode<Subject> root, String nameSubject) {
+
+        if (this.getSubjectsFromMajor().getRoot() == null || (root.getKey().getNameSubject() == null ? nameSubject == null : root.getKey().getNameSubject().equals(nameSubject))) {
+            return root.getKey();
+        }
+        if (nameSubject.compareTo(root.getKey().getNameSubject()) < 0) {
+            return getSubjectsHelperByName(root.getLeft(), nameSubject);
+        } else {
+            return getSubjectsHelperByName(root.getRight(), nameSubject);
+        }
+    }
+
+    public Subject getSubjectByCredits(int credits) {
+        TreeNode<Subject> root = this.getSubjectsFromMajor().getRoot();
+        return getSubjectsHelperByCredits(root, credits);
+    }
+
+    private Subject getSubjectsHelperByCredits(TreeNode<Subject> root, int credits) {
+
+        if (this.getSubjectsFromMajor().getRoot() == null || (root.getKey().getCreditsSubject() == credits)) {
+            return root.getKey();
+        }
+        if (credits < root.getKey().getCreditsSubject()) {
+            return getSubjectsHelperByCredits(root.getLeft(), credits);
+        } else {
+            return getSubjectsHelperByCredits(root.getRight(), credits);
+        }
+    }
+
+    public Subject getSubjectByCode(int code) {
+        TreeNode<Subject> root = this.getSubjectsFromMajor().getRoot();
+        return getSubjectsHelperByValue(root, code);
+    }
+
+    private Subject getSubjectsHelperByValue(TreeNode<Subject> root, int value) {
+        if (this.getSubjectsFromMajor().getRoot() != null || root.getKey().getCodeSubject()== value) {
+            return root.getKey();
+        }
+
+        if (value < root.getKey().getCodeSubject()) {
+            return getSubjectsHelperByValue(root.getLeft(), value);
+        } else {
+            return getSubjectsHelperByValue(root.getRight(), value);
+        }
     }
 
     public RecursiveBinarySearchTree getStudentsTree() {
@@ -56,11 +100,12 @@ public class Major implements Comparable<Major> {
     }
 
     //Metodos para filtrar materias  
-    public ArrayList<Subject>  filterByCode( int code) {
+    public ArrayList<Subject> filterByCode(int code) {
         ArrayList<Subject> SubjectFilteredInMajor = new ArrayList<>();
         this.filterHelperByCode(this.getSubjectsFromMajor().getRoot(), SubjectFilteredInMajor, code);
         return SubjectFilteredInMajor;
     }
+
     private void filterHelperByCode(TreeNode<Subject> root, ArrayList<Subject> values, int code) {
         if (root == null) {
             return;
@@ -112,35 +157,6 @@ public class Major implements Comparable<Major> {
 
     public RecursiveBinarySearchTree<Subject> getSubjectsFromMajor() {
         return subjects;
-    }
-
-    private Subject getSubjectsHelperByName(TreeNode<Subject> root, String nameSubject) {
-
-        if (this.getSubjectsFromMajor().getRoot() == null || (root.getKey().getNameSubject() == null ? nameSubject == null : root.getKey().getNameSubject().equals(nameSubject))) {
-            return root.getKey();
-        }
-        if (nameSubject.compareTo(root.getKey().getNameSubject()) < 0) {
-            return getSubjectsHelperByName(root.getLeft(), nameSubject);
-        } else {
-            return getSubjectsHelperByName(root.getRight(), nameSubject);
-        }
-    }
-
-    public Subject getSubjectsFromMajorByCredits(int credits) {
-        TreeNode<Subject> root = this.getSubjectsFromMajor().getRoot();
-        return getSubjectsHelperByCredits(root, credits);
-    }
-
-    private Subject getSubjectsHelperByCredits(TreeNode<Subject> root, int credits) {
-
-        if (this.getSubjectsFromMajor().getRoot() == null || (root.getKey().getCreditsSubject() == credits)) {
-            return root.getKey();
-        }
-        if (credits < root.getKey().getCreditsSubject()) {
-            return getSubjectsHelperByCredits(root.getLeft(), credits);
-        } else {
-            return getSubjectsHelperByCredits(root.getRight(), credits);
-        }
     }
 
     public void addSubjectToMajor(String courseName, int courseCode, int creditSubject, int quotesSubject) {

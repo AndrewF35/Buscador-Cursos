@@ -10,19 +10,44 @@ public class Student implements Comparable<Student> {
     private String name;
     private int age;
     private Major majorCurrent;
-    private RecursiveBinarySearchTree Schedule = new RecursiveBinarySearchTree();
-    //private Stack<Subject> DoneSubjects;
-    //private Deque<Subject> remainingSubjects;
+    private ArrayList<Subject> Schedule;
+    private Stack<Subject> DoneSubjects;
+    private Stack<Subject> remainingSubjects;
     private String password;
     private String user;
 
-    public RecursiveBinarySearchTree getSchedule() {
+    public Stack<Subject> getDoneSubjects() {
+        return DoneSubjects;
+    }
+
+    public void setDoneSubjects(Stack<Subject> DoneSubjects) {
+        this.DoneSubjects = DoneSubjects;
+    }
+
+    public Stack<Subject> getRemainingSubjects() {
+        return remainingSubjects;
+    }
+
+    public void setRemainingSubjects(Stack<Subject> remainingSubjects) {
+        this.remainingSubjects = remainingSubjects;
+    }
+
+    
+//-----metodos Horario ----------
+    
+    public ArrayList<Subject> getSchedule() {
         return Schedule;
     }
 
-    public void setSchedule(RecursiveBinarySearchTree Schedule) {
+    public void setSchedule(ArrayList<Subject> Schedule) {
         this.Schedule = Schedule;
     }
+    
+    public void addSubjectToSchedule(Subject subjectToAdd){
+        this.Schedule.add(subjectToAdd);
+    }
+    
+//-------------- ----------
 
     public String getPassword() {
         return password;
@@ -55,6 +80,15 @@ public class Student implements Comparable<Student> {
         this.majorCurrent = majorCurrent;
         this.password = password;
         this.user = user;
+    }
+    
+    public Student(String name, int age, Major majorCurrent, String password, String user,ArrayList<Subject> Schedule) {
+        this.name = name;
+        this.age = age;
+        this.majorCurrent = majorCurrent;
+        this.password = password;
+        this.user = user;
+        this.Schedule=Schedule;
     }
     
     
