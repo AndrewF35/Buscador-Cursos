@@ -6,7 +6,7 @@ import Data.Major;
 import Data.Subject;
 import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
-import static com.initial.main.subjectsInUniversity;
+import static com.initial.main.DataInUniversity;
 
 public class editGroup extends javax.swing.JFrame {
 
@@ -163,7 +163,7 @@ public class editGroup extends javax.swing.JFrame {
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         try {
-            Major major = subjectsInUniversity;
+            Major major = DataInUniversity;
             //Subject subjectToModify = major.getStudentsFromMajorByName(nameField.getText()); 
             //subjectToModify.modifySubect(subjectToModify, nameField.getText(), Integer.parseInt(codeField.getText()), Integer.parseInt(creditField.getText()), 8);
             JOptionPane.showMessageDialog(this, "Se edito exitosamente el Grupo");

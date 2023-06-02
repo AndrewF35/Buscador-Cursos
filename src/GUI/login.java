@@ -6,17 +6,19 @@ import javax.swing.JOptionPane;
 import Data.Student;
 import Data.Major;
 import Data.Subject;
+import Data.Teacher;
+import Data.User;
 import com.initial.main;
+import java.awt.HeadlessException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Stack;
 
 public class login extends javax.swing.JFrame {
 
+    public static Teacher currentTeacher;
     public static Student currentStudent;
-    public static ArrayList<Subject> scheduleTest = new ArrayList<>();
-    public static Stack<Subject> doneSubjectsTest = new Stack<>();
-    public static Stack<Subject> remainingSubjectsTest = new Stack<>();
+    
     public login() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -199,51 +201,44 @@ public class login extends javax.swing.JFrame {
 
         String user = userField.getText();
         String pass = new String(passwordField.getPassword());
-
-        if (ocupationField.getSelectedItem().equals("Estudiante")) {
-            try {
-                if (main.subjectsInUniversity.searchStudentByUser(user).getUser().equals(user)) {
-                    currentStudent = main.subjectsInUniversity.searchStudentByUser(user);
+        try {
+            if (ocupationField.getSelectedItem().equals("Estudiante")) {
+                if (main.DataInUniversity.searchStudentByUser(user).getUser().equals(user) && main.DataInUniversity.searchStudentByUser(user).getPassword().equals(pass)) {
+                    currentStudent = main.DataInUniversity.searchStudentByUser(user);
                     studentMenu newWindow = new studentMenu();
                     newWindow.setVisible(true);
                     this.dispose();
-                } else if (ocupationField.getSelectedItem().equals("Docente")) {
-                    if ("654321".equals(pass)) {
-                        teacherMenu newWindow = new teacherMenu();
-                        newWindow.setVisible(true);
-                        this.dispose();
-                    } else {
-                        JOptionPane.showMessageDialog(this, "Contraseña incorrecta");
-                    }
-                } else if (ocupationField.getSelectedItem().equals("Administrador")) {
-                    if ("654321".equals(pass)) {
-                        teacherMenu newWindow = new teacherMenu();
-                        newWindow.setVisible(true);
-                        this.dispose();
-                    } else {
-                        JOptionPane.showMessageDialog(this, "Contraseña incorrecta");
-                    }
                 } else {
-                    JOptionPane.showMessageDialog(this, "Usuario incorrecto");
+                    JOptionPane.showMessageDialog(this, "Contraseña incorrecta");
                 }
-            } catch (java.lang.NullPointerException e) {
-                JOptionPane.showMessageDialog(this, "Usuario o Contraseña incorrecta");
+            } else if (ocupationField.getSelectedItem().equals("Docente")) {
+                //añadir verificacion de contraseña 
+                if (main.DataInUniversity.searchTeacherByUser(user).getUser().equals(user) && main.DataInUniversity.searchTeacherByUser(user).getPassword().equals(pass)) {
+                    currentTeacher = main.DataInUniversity.searchTeacherByUser(user);
+                    teacherMenu newWindow = new teacherMenu();
+                    newWindow.setVisible(true);
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Contraseña incorrecta");
+                }
+            } else if (ocupationField.getSelectedItem().equals("Administrador")) {
+                if ("654321".equals(pass)) {
+                    teacherMenu newWindow = new teacherMenu();
+                    newWindow.setVisible(true);
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Contraseña incorrecta");
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Usuario incorrecto");
             }
-        }
-        //testeo
-        for (int i = 0; i < 5; i++) {
-            Random random = new Random();
-            scheduleTest.add(currentStudent.getMajorCurrent().readAllByName().get(random.nextInt(20)));
-            doneSubjectsTest.push(currentStudent.getMajorCurrent().readAllByName().get(random.nextInt(20)));
-            remainingSubjectsTest.push(currentStudent.getMajorCurrent().readAllByName().get(random.nextInt(20)));
+        } catch (Exception e) {
+            System.out.println(e);
+            JOptionPane.showMessageDialog(this, "Error de inicio o usuario inexistente");
         }
 
-        login.currentStudent.setSchedule(scheduleTest);
-        System.out.println("añadido Horario");
-        System.out.println(login.currentStudent.getSchedule());
-        login.currentStudent.setDoneSubjects(doneSubjectsTest);
-        login.currentStudent.setRemainingSubjects(remainingSubjectsTest);
-        //
+
     }//GEN-LAST:event_loginButtonMouseClicked
 
     private void ocupationFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ocupationFieldActionPerformed
@@ -263,16 +258,24 @@ public class login extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(login.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(login.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(login.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(login.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 

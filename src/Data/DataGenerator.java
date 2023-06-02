@@ -1,10 +1,11 @@
 package Data;
 
-
+import static GUI.login.currentStudent;
 import java.util.List;
 import java.util.Random;
 import com.initial.main;
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class DataGenerator {
 
@@ -22,11 +23,32 @@ public class DataGenerator {
         Random random = new Random();
         String studentName = NAME_LIST.get(random.nextInt(NAME_LIST.size()));
         int studentAge = random.nextInt(21) + 10;
-        String password =Integer.toString(random.nextInt(100) + 1000);
-        String user = studentName + index*random.nextInt(NAME_LIST.size());
+        String password = Integer.toString(random.nextInt(100) + 1000);
+        String user = studentName + index * random.nextInt(NAME_LIST.size());
         Major majorCurrent = main.majorsInUniversity.get(random.nextInt(2));
-        return new Student(studentName,studentAge, majorCurrent, password, user);
+        ArrayList<Subject> schedule = new ArrayList<>();
+        Stack<Subject> doneSubjects = new Stack<>();
+        Stack<Subject> remainingSubjects = new Stack<>();
+        for(int i=0;i>5;i++){
+            schedule.add(majorCurrent.readAllByName().get(random.nextInt(index%10)));
+            doneSubjects.push(majorCurrent.readAllByName().get(random.nextInt(index%10)));
+            remainingSubjects.push(currentStudent.getMajorCurrent().readAllByName().get(random.nextInt(index%10)));
+        }
+        return new Student(studentName, studentAge, majorCurrent, password, user, schedule, doneSubjects, remainingSubjects);
     }
+    public static Teacher generateRandomTeacher(int index) {
+        Random random = new Random();
+        String TeacherName = NAME_LIST.get(random.nextInt(NAME_LIST.size()));
+        int TeacherAge = random.nextInt(21) + 10;
+        String password = Integer.toString(random.nextInt(100) + 1000);
+        String user = TeacherName + index * random.nextInt(NAME_LIST.size());
+        ArrayList<Subject> subjects = new ArrayList<>();
+        for(int i=0;i>5;i++){
+            subjects.add(main.DataInUniversity.readAllByName().get(random.nextInt(index%10)));
+        }
+        return new Teacher(TeacherName, TeacherAge, user,password, subjects);
+    }
+    
     private static final List<String> NAME_LIST = List.of(
             "Alejandro", "Bianca", "Carlos", "Daniela", "Emilio", "Fernanda", "Gabriel", "Helena", "Iván", "Julia",
             "Kevin", "Laura", "Miguel", "Natalia", "Óscar", "Paula", "Quetzal", "Rebeca", "Santiago", "Teresa",

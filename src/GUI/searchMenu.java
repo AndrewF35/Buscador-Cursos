@@ -37,7 +37,7 @@ public class searchMenu extends javax.swing.JFrame {
             case 3 ->
                 filteredInArray = subjects.filterByName(parameter);
             default -> {
-                filteredInArray = main.subjectsInUniversity.readAllByName();
+                filteredInArray = main.DataInUniversity.readAllByName();
             }
         }
         
@@ -72,8 +72,8 @@ public class searchMenu extends javax.swing.JFrame {
 
     public searchMenu() {
         initComponents();
-        majorSelected = main.subjectsInUniversity;
-        AñadirTabla(main.subjectsInUniversity);
+        majorSelected = main.DataInUniversity;
+        AñadirTabla(main.DataInUniversity);
         this.setLocationRelativeTo(null);
     }
 
@@ -333,7 +333,7 @@ public class searchMenu extends javax.swing.JFrame {
             }
         } catch (java.lang.NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Ingrese un parametro");
-            refrescarTabla(main.subjectsInUniversity);
+            refrescarTabla(main.DataInUniversity);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -377,7 +377,7 @@ public class searchMenu extends javax.swing.JFrame {
             }
         } catch (java.lang.NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Materias No disponibles");
-            refrescarTabla(main.subjectsInUniversity);
+            refrescarTabla(main.DataInUniversity);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 

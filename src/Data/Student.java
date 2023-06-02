@@ -1,20 +1,14 @@
 package Data;
 
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.Stack;
-import DataStructures.RecursiveBinarySearchTree;
 
-public class Student implements Comparable<Student> {
+public class Student extends User implements Comparable<Student> {
 
-    private String name;
-    private int age;
     private Major majorCurrent;
     private ArrayList<Subject> Schedule;
     private Stack<Subject> DoneSubjects;
     private Stack<Subject> remainingSubjects;
-    private String password;
-    private String user;
 
     public Stack<Subject> getDoneSubjects() {
         return DoneSubjects;
@@ -32,9 +26,15 @@ public class Student implements Comparable<Student> {
         this.remainingSubjects = remainingSubjects;
     }
 
-    
+    public Major getMajorCurrent() {
+        return majorCurrent;
+    }
+
+    public void setMajorCurrent(Major majorCurrent) {
+        this.majorCurrent = majorCurrent;
+    }
+
 //-----metodos Horario ----------
-    
     public ArrayList<Subject> getSchedule() {
         return Schedule;
     }
@@ -42,59 +42,50 @@ public class Student implements Comparable<Student> {
     public void setSchedule(ArrayList<Subject> Schedule) {
         this.Schedule = Schedule;
     }
-    
-    public void addSubjectToSchedule(Subject subjectToAdd){
+
+    public void addSubjectToSchedule(Subject subjectToAdd) {
         this.Schedule.add(subjectToAdd);
     }
-    
+
 //-------------- ----------
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
-    }
-
     public Student() {
     }
 
     public Student(String nombre, int edad, Major majorCurrent) {
-        this.name = nombre;
-        this.age = edad;
+        super.name = nombre;
+        super.age = edad;
         this.majorCurrent = majorCurrent;
     }
 
     public Student(String name, int age, Major majorCurrent, String password, String user) {
-        this.name = name;
-        this.age = age;
+        super.name = name;
+        super.age = age;
         this.majorCurrent = majorCurrent;
-        this.password = password;
-        this.user = user;
+        super.password = password;
+        super.user = user;
     }
-    
-    public Student(String name, int age, Major majorCurrent, String password, String user,ArrayList<Subject> Schedule) {
-        this.name = name;
-        this.age = age;
+
+    public Student(String name, int age, Major majorCurrent, String password, String user, ArrayList<Subject> Schedule) {
+        super.name = name;
+        super.age = age;
         this.majorCurrent = majorCurrent;
-        this.password = password;
-        this.user = user;
-        this.Schedule=Schedule;
+        super.password = password;
+        super.user = user;
+        this.Schedule = Schedule;
     }
-    
-    
-    
-    
-   @Override
+
+    public Student(String name, int age, Major majorCurrent, String password, String user, ArrayList<Subject> schedule, Stack<Subject> doneSubjects, Stack<Subject> remainingSubjects) {
+        super.name = name;
+        super.age = age;
+        this.majorCurrent = majorCurrent;
+        super.password = password;
+        super.user = user;
+        this.Schedule = new ArrayList<>();
+        this.DoneSubjects = new Stack<>();
+        this.remainingSubjects = new Stack<>();
+    }
+
+    @Override
     public int compareTo(Student anotherStudent) {
         // comparar por major
         int comparacionMajor = this.majorCurrent.getNameMajor().compareTo(anotherStudent.majorCurrent.getNameMajor());
@@ -118,29 +109,6 @@ public class Student implements Comparable<Student> {
         }
         // Comparar por edad
         return Integer.compare(this.age, anotherStudent.age);
-    }
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public Major getMajorCurrent() {
-        return majorCurrent;
-    }
-
-    public void setMajorCurrent(Major majorCurrent) {
-        this.majorCurrent = majorCurrent;
     }
 
 }
