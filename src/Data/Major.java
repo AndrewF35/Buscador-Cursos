@@ -9,6 +9,7 @@ public class Major implements Comparable<Major> {
     private String nameMajor;//ciencias de la computacion
     private RecursiveBinarySearchTree<Subject> subjects = new RecursiveBinarySearchTree<>();//introduccion, mates,poo
     private RecursiveBinarySearchTree<Student> students = new RecursiveBinarySearchTree();
+    private RecursiveBinarySearchTree<Teacher> teachers = new RecursiveBinarySearchTree();
 
 //getters y setters 
     public void setSubjects(RecursiveBinarySearchTree<Subject> subjects) {
@@ -163,37 +164,71 @@ public class Major implements Comparable<Major> {
         Subject subject = new Subject(courseName, courseCode, creditSubject, quotesSubject);
         subjects.insert(subject);
     }
+    
+    //-------Metodos Profesor----------//
+    
+    public ArrayList<Teacher> getTeacherFromMajorInArray() {
+        ArrayList<Teacher> teacherInMajor = new ArrayList<>();
+        this.teachers.inOrderList(teacherInMajor);
+        return teacherInMajor;
+    }
+    public Teacher searchTeacherByUser(String user) {
+        return this.searchTeacherByUser(teachers.getRoot(), user);
+    }
+
+    private Teacher searchTeacherByUser(TreeNode<Teacher> root, String data) {
+        if (this.getSubjectsFromMajor().getRoot() == null || (root.getKey().getUser()== null ? data == null : root.getKey().getUser().equals(data))) {
+            return root.getKey();
+        }
+        if (data.compareTo(root.getKey().getUser()) < 0) {
+            return searchTeacherByUser(root.getLeft(), data);
+        } else {
+            return searchTeacherByUser(root.getRight(), data);
+        }
+    }
+    public void AddTeachersToMajor(Teacher teacherToAdd) {
+        this.teachers.insert(teacherToAdd);
+    }
+
+    public void AddTeachersToMajor(RecursiveBinarySearchTree Students, String name, int age, ArrayList<Subject> Subject, String password, String user) {
+        Teacher teacherToAdd = new Teacher();
+        teacherToAdd.setName(name);
+        teacherToAdd.setAge(age);
+        teacherToAdd.setCurrentSubjects(Subject);
+        teacherToAdd.setPassword(password);
+        teacherToAdd.setUser(user);
+        this.teachers.insert(teacherToAdd);
+    }
+
     //-------Metodos estudiantes-------//
 
+
     public Student searchStudentByUser(String user) {
-        return this.searchStudentByUser(students.getRoot(), user);
+        return this.searchStudentByUser(this.students.getRoot(), user);
     }
 
-    private Student searchStudentByUser(TreeNode<Student> node, String data) {
-        if (node == null) {
-            return null;
+    private Student searchStudentByUser(TreeNode<Student> root, String data) {
+        if (this.getSubjectsFromMajor().getRoot() == null || (root.getKey().getUser()== null ? data == null : root.getKey().getUser().equals(data))) {
+            return root.getKey();
         }
-        if (node.getKey().getUser().compareTo(data) == 0) {
-            return node.getKey();
-        } else if (data.compareTo(node.getKey().getUser()) < 0) {
-            return this.searchStudentByUser(node.getLeft(), data);
+        if (data.compareTo(root.getKey().getUser()) < 0) {
+            return searchStudentByUser(root.getLeft(), data);
         } else {
-            return this.searchStudentByUser(node.getRight(), data);
+            return searchStudentByUser(root.getRight(), data);
         }
     }
+    public void AddStudentsToMajor(Student studentToAdd) {
+        this.students.insert(studentToAdd);
+    }
 
-    private Student searchStudentByName(TreeNode<Student> node, Student data) {
-        node = students.getRoot();
-        if (node == null) {
-            return null;
-        }
-        if (node.getKey().getName().compareTo(data.getName()) == 0) {
-            return node.getKey();
-        } else if (data.getName().compareTo(node.getKey().getName()) < 0) {
-            return this.searchStudentByName(node.getLeft(), data);
-        } else {
-            return this.searchStudentByName(node.getRight(), data);
-        }
+    public void AddStudentsToMajor(RecursiveBinarySearchTree Students, String name, int age, Major majorCurrent, String password, String user) {
+        Student studentToAdd = new Student();
+        studentToAdd.setName(name);
+        studentToAdd.setAge(age);
+        studentToAdd.setMajorCurrent(majorCurrent);
+        studentToAdd.setPassword(password);
+        studentToAdd.setUser(user);
+        this.students.insert(studentToAdd);
     }
 
     //------------------metodos imprimir arboles 
@@ -219,6 +254,23 @@ public class Major implements Comparable<Major> {
     public void printTreeStudent() {
         printTree(this.students.getRoot(), 0);
     }
+    public void printTreeTeacher() {
+        printTreeT(this.teachers.getRoot(), 0);
+    }
+    private void printTreeT(TreeNode<Teacher> node, int level) {
+        if (node == null) {
+            return;
+        }
+
+        printTreeT(node.getRight(), level + 1);
+
+        for (int i = 0; i < level; i++) {
+            System.out.print("\t");
+        }
+        System.out.println(node.getKey().getName());
+
+        printTreeT(node.getLeft(), level + 1);
+    }
 
     private void printTree(TreeNode<Student> node, int level) {
         if (node == null) {
@@ -235,19 +287,7 @@ public class Major implements Comparable<Major> {
         printTree(node.getLeft(), level + 1);
     }
 
-    public void AddStudentsToMajor(Student studentToAdd) {
-        this.students.insert(studentToAdd);
-    }
 
-    public void AddStudentsToMajor(RecursiveBinarySearchTree Students, String name, int age, Major majorCurrent, String password, String user) {
-        Student studentToAdd = new Student();
-        studentToAdd.setName(name);
-        studentToAdd.setAge(age);
-        studentToAdd.setMajorCurrent(majorCurrent);
-        studentToAdd.setPassword(password);
-        studentToAdd.setUser(user);
-        this.students.insert(studentToAdd);
-    }
 //---------------------------- metodos para to compare
 
     @Override

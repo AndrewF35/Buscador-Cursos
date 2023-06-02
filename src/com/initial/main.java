@@ -11,28 +11,29 @@ import java.util.Stack;
 public class main {
 
     public static ArrayList<Major> majorsInUniversity = new ArrayList<>();
-    public static Major subjectsInUniversity = new Major();
+    public static Major DataInUniversity = new Major();
     public static Major Biologia = new Major();
     public static Major IngenieriaDeSistemas = new Major();
 
     public static void main(String args[]) {
 
-        majorsInUniversity.add(subjectsInUniversity);
+        majorsInUniversity.add(DataInUniversity);
         majorsInUniversity.add(Biologia);
         majorsInUniversity.add(IngenieriaDeSistemas);
         
-        subjectsInUniversity.setNameMajor("Todas las materias");
+        DataInUniversity.setNameMajor("Todas las materias");
         Biologia.setNameMajor("Biologia");
         IngenieriaDeSistemas.setNameMajor("Ingenieria De Sistemas");
         
-        int numCoursesToGenerate = 10000; // Cantidad de cursos a generar
-        int numStudentsToGenerate = 100;   // Cantidad de Estudiantes a generar hasta el momento alcanza un maximo en 10 000 usuarios 
-        
+        int numCoursesToGenerate = 10; // Cantidad de cursos a generar
+        int numStudentsToGenerate = 10;   // Cantidad de Estudiantes a generar hasta el momento alcanza un maximo en 10 000 usuarios 
+        int numTeachersToGenerate = 10;   // Cantidad de Estudiantes a generar hasta el momento alcanza un maximo en 10 000 usuarios 
+
         for (int i = 0;
                 i < numCoursesToGenerate;
                 i++) {
 
-            subjectsInUniversity.addSubjectToMajor(DataGenerator.generateRandomCourses(i));
+            DataInUniversity.addSubjectToMajor(DataGenerator.generateRandomCourses(i));
         }
         for (int i = 0;
                 i < 30;
@@ -44,13 +45,23 @@ public class main {
         for (int i = 0;
                 i < numStudentsToGenerate;
                 i++) {
-            subjectsInUniversity.AddStudentsToMajor(DataGenerator.generateRandomStudent(i));
+            DataInUniversity.AddStudentsToMajor(DataGenerator.generateRandomStudent(i));
+        }
+        for (int i = 0;
+                i < numTeachersToGenerate;
+                i++) {
+            DataInUniversity.AddTeachersToMajor(DataGenerator.generateRandomTeacher(i));
         }
                       
-        subjectsInUniversity.printTreeStudent();
-        subjectsInUniversity.printTreeSubject();
-        System.out.println(subjectsInUniversity.getStudentsFromMajorInArray().get(1).getUser());
-        System.out.println(subjectsInUniversity.getStudentsFromMajorInArray().get(1).getPassword());
+        DataInUniversity.printTreeStudent();
+        DataInUniversity.printTreeSubject();
+        DataInUniversity.printTreeTeacher();
+
+        System.out.println(DataInUniversity.getStudentsFromMajorInArray().get(1).getUser());
+        System.out.println(DataInUniversity.getStudentsFromMajorInArray().get(1).getPassword());
+        
+        System.out.println(DataInUniversity.getTeacherFromMajorInArray().get(1).getUser());
+        System.out.println(DataInUniversity.getTeacherFromMajorInArray().get(1).getPassword());
 
         login newLogin = new login();
         newLogin.setVisible(
