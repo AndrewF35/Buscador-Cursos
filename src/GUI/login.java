@@ -1,23 +1,18 @@
 package GUI;
 
+import Data.Admin;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
 import Data.Student;
-import Data.Major;
-import Data.Subject;
 import Data.Teacher;
-import Data.User;
 import com.initial.main;
-import java.awt.HeadlessException;
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Stack;
 
 public class login extends javax.swing.JFrame {
 
     public static Teacher currentTeacher;
     public static Student currentStudent;
+    public static Admin currentAdmin;
     
     public login() {
         initComponents();
@@ -222,8 +217,9 @@ public class login extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Contraseña incorrecta");
                 }
             } else if (ocupationField.getSelectedItem().equals("Administrador")) {
-                if ("654321".equals(pass)) {
-                    teacherMenu newWindow = new teacherMenu();
+                if (main.DataInUniversity.getAdmins().get(user).getPassword().equals(pass)) {
+                    currentAdmin = main.DataInUniversity.getAdmins().get(user);
+                    AdminMenu newWindow = new AdminMenu();
                     newWindow.setVisible(true);
                     this.dispose();
                 } else {

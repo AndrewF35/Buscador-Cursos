@@ -1,13 +1,25 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Data;
 
-/**
- *
- * @author Nicolas Orjuela
- */
 public class Admin extends User {
-    
+
+    public Admin() {
+    }
+
+    public Admin(String name, int age, String user, String password) {
+        super.name = name;
+        super.age = age;
+        super.password = password;
+        super.user = user;
+    }
+
+    public Admin(String user, String password) {
+        super.password = password;
+        super.user = user;
+    }
+    public Admin(String name, String user, String password) {
+        super.name = name;
+        super.password = password;
+        super.user = user;
+    }
+
 }

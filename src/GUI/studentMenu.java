@@ -48,7 +48,7 @@ public class studentMenu extends javax.swing.JFrame {
             a[0] = subject.getNameSubject();
             a[1] = subject.getCodeSubject();
             a[2] = subject.getCreditsSubject();
-            a[3] = subject.getQuotesSubject();
+            a[3] = subject.getRoomSubject();
             modelo.addRow(a);
         }
         TablaCursos.setModel(modelo);
@@ -65,7 +65,7 @@ public class studentMenu extends javax.swing.JFrame {
             a[0] = subject.getNameSubject();
             a[1] = subject.getCodeSubject();
             a[2] = subject.getCreditsSubject();
-            a[3] = subject.getQuotesSubject();
+            a[3] = subject.getRoomSubject();
             modelo.addRow(a);
         }
         TablaCursos.setModel(modelo);

@@ -3,6 +3,7 @@ package Data;
 import DataStructures.RecursiveBinarySearchTree;
 import DataStructures.TreeNode;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Major implements Comparable<Major> {
 
@@ -10,6 +11,7 @@ public class Major implements Comparable<Major> {
     private RecursiveBinarySearchTree<Subject> subjects = new RecursiveBinarySearchTree<>();//introduccion, mates,poo
     private RecursiveBinarySearchTree<Student> students = new RecursiveBinarySearchTree();
     private RecursiveBinarySearchTree<Teacher> teachers = new RecursiveBinarySearchTree();
+    private HashMap<String,Admin> admins = new HashMap<>(); 
 
 //getters y setters 
     public void setSubjects(RecursiveBinarySearchTree<Subject> subjects) {
@@ -99,7 +101,20 @@ public class Major implements Comparable<Major> {
         }
         return null;
     }
+//    Metodos para administradores 
 
+    public HashMap<String, Admin> getAdmins() {
+        return admins;
+    }
+
+    public void setAdmins(HashMap<String, Admin> admins) {
+        this.admins = admins;
+    }
+    public void createAdmin(Admin adminToAdd) {
+        String key= adminToAdd.getUser();
+        this.admins.put(key, adminToAdd);   
+    }
+    
     //Metodos para filtrar materias  
     public ArrayList<Subject> filterByCode(int code) {
         ArrayList<Subject> SubjectFilteredInMajor = new ArrayList<>();

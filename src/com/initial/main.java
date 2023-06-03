@@ -1,12 +1,10 @@
 package com.initial;
 
+import Data.Admin;
 import Data.DataGenerator;
 import Data.Major;
-import Data.Subject;
 import GUI.login;
-import java.util.Random;
 import java.util.ArrayList;
-import java.util.Stack;
 
 public class main {
 
@@ -22,6 +20,8 @@ public class main {
         majorsInUniversity.add(IngenieriaDeSistemas);
         
         DataInUniversity.setNameMajor("Todas las materias");
+        DataInUniversity.createAdmin(new Admin("AdminTest", "user","1234"));
+        
         Biologia.setNameMajor("Biologia");
         IngenieriaDeSistemas.setNameMajor("Ingenieria De Sistemas");
         
