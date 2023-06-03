@@ -354,9 +354,15 @@ public class searchMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_parameterFieldActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        studentMenu newWindow4 = new studentMenu();
-        newWindow4.setVisible(true);
+        if(login.currentStudent != null){
+            studentMenu newWindow4 = new studentMenu();
+            newWindow4.setVisible(true);
+            this.dispose();
+        }
+        teacherMenu newWindow5 = new teacherMenu();
+        newWindow5.setVisible(true);
         this.dispose();
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed

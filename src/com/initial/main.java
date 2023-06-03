@@ -25,9 +25,9 @@ public class main {
         Biologia.setNameMajor("Biologia");
         IngenieriaDeSistemas.setNameMajor("Ingenieria De Sistemas");
         
-        int numCoursesToGenerate = 10; // Cantidad de cursos a generar
-        int numStudentsToGenerate = 10;   // Cantidad de Estudiantes a generar hasta el momento alcanza un maximo en 10 000 usuarios 
-        int numTeachersToGenerate = 10;   // Cantidad de Estudiantes a generar hasta el momento alcanza un maximo en 10 000 usuarios 
+        int numCoursesToGenerate = 100; // Cantidad de cursos a generar
+        int numStudentsToGenerate = 100;   // Cantidad de Estudiantes a generar hasta el momento alcanza un maximo en 10 000 usuarios 
+        int numTeachersToGenerate = 100;   // Cantidad de Estudiantes a generar hasta el momento alcanza un maximo en 10 000 usuarios 
 
         for (int i = 0;
                 i < numCoursesToGenerate;
