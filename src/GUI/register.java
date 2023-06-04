@@ -31,16 +31,16 @@ public class register extends javax.swing.JFrame {
         userLabel = new javax.swing.JLabel();
         userField = new javax.swing.JTextField();
         passwordLabel = new javax.swing.JLabel();
-        passwordField = new javax.swing.JPasswordField();
         ocupationLabel = new javax.swing.JLabel();
         ocupationField = new javax.swing.JComboBox<>();
         logo = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         userLabel1 = new javax.swing.JLabel();
-        nameField = new javax.swing.JTextField();
+        ageField = new javax.swing.JTextField();
         passwordLabel1 = new javax.swing.JLabel();
-        ageField = new javax.swing.JPasswordField();
+        nameField = new javax.swing.JTextField();
+        passwordField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(350, 470));
@@ -68,11 +68,6 @@ public class register extends javax.swing.JFrame {
         passwordLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         passwordLabel.setText("CONTRASEÑA");
         background.add(passwordLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 116, 350, -1));
-
-        passwordField.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        passwordField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        passwordField.setPreferredSize(new java.awt.Dimension(200, 25));
-        background.add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 140, -1, -1));
 
         ocupationLabel.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
         ocupationLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -114,6 +109,21 @@ public class register extends javax.swing.JFrame {
         userLabel1.setText("NOMBRE");
         background.add(userLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, 350, 20));
 
+        ageField.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        ageField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        ageField.setPreferredSize(new java.awt.Dimension(200, 25));
+        ageField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ageFieldActionPerformed(evt);
+            }
+        });
+        background.add(ageField, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 140, -1, -1));
+
+        passwordLabel1.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
+        passwordLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        passwordLabel1.setText("EDAD");
+        background.add(passwordLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 120, 350, -1));
+
         nameField.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         nameField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         nameField.setPreferredSize(new java.awt.Dimension(200, 25));
@@ -122,17 +132,17 @@ public class register extends javax.swing.JFrame {
                 nameFieldActionPerformed(evt);
             }
         });
-        background.add(nameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 80, -1, -1));
+        background.add(nameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, -1, -1));
 
-        passwordLabel1.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
-        passwordLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        passwordLabel1.setText("EDAD");
-        background.add(passwordLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 120, 350, -1));
-
-        ageField.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        ageField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        ageField.setPreferredSize(new java.awt.Dimension(200, 25));
-        background.add(ageField, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, -1, -1));
+        passwordField.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        passwordField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        passwordField.setPreferredSize(new java.awt.Dimension(200, 25));
+        passwordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordFieldActionPerformed(evt);
+            }
+        });
+        background.add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, -1, -1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -164,8 +174,6 @@ public class register extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1.getAccessibleContext().setAccessibleParent(background);
-
         setBounds(0, 0, 646, 417);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -176,21 +184,22 @@ public class register extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             if (ocupationField.getSelectedItem().equals("Estudiante")) {
-                Student newStudent = new Student(nameField.getText(), Integer.parseInt(ageField.getText()), passwordField.getText(), userField.getText());
+                Student newStudent = new Student(ageField.getText(), Integer.parseInt(ageField.getText()), passwordField.getText(), userField.getText());
                 DataInUniversity.AddStudentsToMajor(newStudent);
 
             } else if (ocupationField.getSelectedItem().equals("Docente")) {
-                Teacher newTeacher = new Teacher(nameField.getText(), Integer.parseInt(ageField.getText()), passwordField.getText(), userField.getText());
+                Teacher newTeacher = new Teacher(ageField.getText(), Integer.parseInt(ageField.getText()), passwordField.getText(), userField.getText());
                 DataInUniversity.AddTeachersToMajor(newTeacher);
             } else if (ocupationField.getSelectedItem().equals("Administrador")) {
-                Admin newAdmin = new Admin(nameField.getText(), Integer.parseInt(ageField.getText()), passwordField.getText(), userField.getText());
+                Admin newAdmin = new Admin(ageField.getText(), Integer.parseInt(ageField.getText()), passwordField.getText(), userField.getText());
                 DataInUniversity.createAdmin(newAdmin);
             }
             JOptionPane.showMessageDialog(this, """
                                                 Usuario a\u00f1adido exitosamente con esta informacion 
-                                                Nombre: """ + nameField.getText() + " Edad: " + ageField.getText() + " Usuario: " + userField.getText());
+                                                Nombre: """ + ageField.getText() + " Edad: " + ageField.getText() + " Usuario: " + userField.getText());
 
         } catch (Exception e) {
+            System.out.println(e);
             JOptionPane.showMessageDialog(this, "Error Añadiendo Informacion \n no olvides añadir todos los campos ");
         }
 
@@ -201,11 +210,20 @@ public class register extends javax.swing.JFrame {
         login.currentAdmin = null;
         login newWindow4 = new login();
         newWindow4.setVisible(true);
+        
         this.dispose();    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void ageFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ageFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ageFieldActionPerformed
 
     private void nameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nameFieldActionPerformed
+
+    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -243,7 +261,7 @@ public class register extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPasswordField ageField;
+    private javax.swing.JTextField ageField;
     private javax.swing.JPanel background;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -252,7 +270,7 @@ public class register extends javax.swing.JFrame {
     private javax.swing.JTextField nameField;
     private javax.swing.JComboBox<String> ocupationField;
     private javax.swing.JLabel ocupationLabel;
-    private javax.swing.JPasswordField passwordField;
+    private javax.swing.JTextField passwordField;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JLabel passwordLabel1;
     private javax.swing.JLabel title;

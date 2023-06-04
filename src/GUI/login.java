@@ -207,7 +207,6 @@ public class login extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Contraseña incorrecta");
                 }
             } else if (ocupationField.getSelectedItem().equals("Docente")) {
-                //añadir verificacion de contraseña 
                 if (main.DataInUniversity.searchTeacherByUser(user).getUser().equals(user) && main.DataInUniversity.searchTeacherByUser(user).getPassword().equals(pass)) {
                     currentTeacher = main.DataInUniversity.searchTeacherByUser(user);
                     teacherMenu newWindow = new teacherMenu();
