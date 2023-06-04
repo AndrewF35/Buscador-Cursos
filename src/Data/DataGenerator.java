@@ -1,6 +1,5 @@
 package Data;
 
-import static GUI.login.currentStudent;
 import java.util.List;
 import java.util.Random;
 import com.initial.main;
@@ -29,11 +28,12 @@ public class DataGenerator {
         ArrayList<Subject> schedule = new ArrayList<>();
         Stack<Subject> doneSubjects = new Stack<>();
         Stack<Subject> remainingSubjects = new Stack<>();
-        for(int i=0;i>5;i++){
-            schedule.add(majorCurrent.readAllByName().get(random.nextInt(index%10)));
-            doneSubjects.push(majorCurrent.readAllByName().get(random.nextInt(index%10)));
-            remainingSubjects.push(currentStudent.getMajorCurrent().readAllByName().get(random.nextInt(index%10)));
+        for(int i=0;i<(index/10+1);i++){
+            schedule.add(majorCurrent.readAllByName().get(random.nextInt(10)));
+            doneSubjects.push(majorCurrent.readAllByName().get(random.nextInt(10)));
+            remainingSubjects.push(majorCurrent.readAllByName().get(random.nextInt(10)));
         }
+
         return new Student(studentName, studentAge, majorCurrent, password, user, schedule, doneSubjects, remainingSubjects);
     }
     public static Teacher generateRandomTeacher(int index) {
@@ -43,8 +43,10 @@ public class DataGenerator {
         String password = Integer.toString(random.nextInt(100) + 1000);
         String user = TeacherName + index * random.nextInt(NAME_LIST.size());
         ArrayList<Subject> subjects = new ArrayList<>();
-        for(int i=0;i>5;i++){
-            subjects.add(main.DataInUniversity.readAllByName().get(random.nextInt(index%10)));
+        for(int i=0;i<5;i++){
+            subjects.add(main.DataInUniversity.readAllByName().get(random.nextInt(index+1)));
+            System.out.println("añadiendo a profeosr");
+            System.out.println(subjects.get(0));
         }
         return new Teacher(TeacherName, TeacherAge, user,password, subjects);
     }

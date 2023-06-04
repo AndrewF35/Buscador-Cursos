@@ -7,7 +7,7 @@ public class Subject implements Comparable<Subject> {
     private String nameSubject;
     private int codeSubject;
     private int creditsSubject;
-    private int quotesSubject;
+    private int roomSubject;
 
     public Subject() {
     }
@@ -16,7 +16,7 @@ public class Subject implements Comparable<Subject> {
         this.nameSubject = nameSubject;
         this.codeSubject = codeSubject;
         this.creditsSubject = creditsSubject;
-        this.quotesSubject = quotesSubject;
+        this.roomSubject = quotesSubject;
     }
     @Override
     public int compareTo(Subject anotherSubject) {
@@ -36,7 +36,7 @@ public class Subject implements Comparable<Subject> {
             return comparacionCreditsSubject;
         }
         // Comparar por edad
-        return Integer.compare(this.quotesSubject,anotherSubject.quotesSubject);
+        return Integer.compare(this.roomSubject,anotherSubject.roomSubject);
     }
 
 //    private int cupoDisponible;
@@ -45,7 +45,7 @@ public class Subject implements Comparable<Subject> {
         subjectToModify.setName(nameSubject);
         subjectToModify.setCodeSubject(codeSubject);
         subjectToModify.setCreditsSubject(creditsSubject);
-        subjectToModify.setQuotesSubject(quotesSubject);
+        subjectToModify.setRoomSubject(quotesSubject);
     }
     public String getNameSubject() {
         return nameSubject;
@@ -71,11 +71,11 @@ public class Subject implements Comparable<Subject> {
         this.creditsSubject = creditsSubject;
     }
 
-    public int getQuotesSubject() {
-        return quotesSubject;
+    public int getRoomSubject() {
+        return roomSubject;
     }
 
-    public void setQuotesSubject(int quotesSubject) {
-        this.quotesSubject = quotesSubject;
+    public void setRoomSubject(int roomSubject) {
+        this.roomSubject = roomSubject;
     }
 }
