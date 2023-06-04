@@ -24,6 +24,12 @@ public class Teacher extends User implements Comparable<Teacher> {
 
     public Teacher() {
     }
+    public Teacher(String name, int age, String password, String user) {
+        super.name = name;
+        super.age = age;
+        super.password = password;
+        super.user = user;
+    }
     
     public Teacher(String nombre, int edad,String user,String password, ArrayList<Subject> currentSubjects) {
         super.name = nombre;

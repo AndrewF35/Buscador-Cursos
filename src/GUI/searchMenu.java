@@ -97,7 +97,6 @@ public class searchMenu extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(930, 650));
         setResizable(false);
 
         background.setBackground(new java.awt.Color(255, 255, 255));
@@ -201,7 +200,7 @@ public class searchMenu extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("¿Que data desea dodificar? ");
+        jLabel1.setText("Seleccione la carrera");
 
         jButton2.setText("Volver");
         jButton2.addActionListener(new java.awt.event.ActionListener() {

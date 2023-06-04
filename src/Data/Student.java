@@ -10,6 +10,7 @@ public class Student extends User implements Comparable<Student> {
     private Stack<Subject> DoneSubjects;
     private Stack<Subject> remainingSubjects;
 
+    
     public Stack<Subject> getDoneSubjects() {
         return DoneSubjects;
     }
@@ -50,7 +51,14 @@ public class Student extends User implements Comparable<Student> {
 //-------------- ----------
     public Student() {
     }
-
+    
+    public Student(String name, int age, String password, String user) {
+        super.name = name;
+        super.age = age;
+        super.password = password;
+        super.user = user;
+    }
+    
     public Student(String nombre, int edad, Major majorCurrent) {
         super.name = nombre;
         super.age = edad;

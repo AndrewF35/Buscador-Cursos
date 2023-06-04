@@ -11,7 +11,27 @@ public class AdminMenu extends javax.swing.JFrame {
 
     private DefaultTableModel modelo = new DefaultTableModel();
     private Major majorSelected;
-
+    
+    /*
+    *falta añadir funcionalidad de datos de estudiante y profesor, ademas de una ventana de edicion
+    *ademas falta añadir medicion y ploting
+    *falta hacer video
+    *falta hacer que no se repitan
+    *y la gui de datos de prueba
+    *poner bonito el github 
+    */
+    
+    
+    private void AñadirTablaEstudiantes(Major subjects) {
+        
+        //añade columnas de la tabla
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Edad");
+        modelo.addColumn("Usuario");
+        modelo.addColumn("Carrrera");
+        //actualiza la infromacion de la tabla
+        refrescarTabla(subjects);
+    }
     private void AñadirTabla(Major subjects) {
         //añade columnas de la tabla
         modelo.addColumn("Asignatura");
@@ -168,7 +188,7 @@ public class AdminMenu extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Volver");
+        jButton2.setText("Cerrar sesion");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -184,7 +204,6 @@ public class AdminMenu extends javax.swing.JFrame {
 
         jButton3.setText("Mostrar");
         jButton3.setToolTipText("");
-        jButton3.setActionCommand("Mostrar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -234,22 +253,23 @@ public class AdminMenu extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(backgroundLayout.createSequentialGroup()
-                        .addGap(74, 74, 74)
+                        .addGap(32, 32, 32)
                         .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(backgroundLayout.createSequentialGroup()
-                                .addGap(104, 104, 104)
+                                .addGap(146, 146, 146)
                                 .addComponent(jButton2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton1)
                                 .addGap(234, 234, 234))
                             .addComponent(scrollPanel, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(backgroundLayout.createSequentialGroup()
+                                .addGap(42, 42, 42)
                                 .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(backgroundLayout.createSequentialGroup()
                                         .addComponent(parameterBox, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(46, 46, 46)
-                                        .addComponent(parameterField, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(28, 28, 28)
+                                        .addGap(101, 101, 101)
+                                        .addComponent(parameterField, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(39, 39, 39)
                                         .addComponent(jButton5))
                                     .addGroup(backgroundLayout.createSequentialGroup()
                                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -257,11 +277,11 @@ public class AdminMenu extends javax.swing.JFrame {
                                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(36, 36, 36)
                                         .addComponent(jButton3)))
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(backgroundLayout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(separator, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 92, Short.MAX_VALUE))))
+                                .addGap(0, 140, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(separator)
+                        .addContainerGap())))
         );
         backgroundLayout.setVerticalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -286,7 +306,7 @@ public class AdminMenu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(scrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton2)
                     .addComponent(jButton1))
                 .addGap(27, 27, 27))
@@ -333,13 +353,13 @@ public class AdminMenu extends javax.swing.JFrame {
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         try {
-            if ("Codigo".equals(parameterBox.getSelectedItem())) {
+            if ("Datos Estudiantes".equals(jComboBox1.getSelectedItem())) {
                 refrescarTabla(majorSelected, parameterField.getText(), 1);
             }
-            if ("Creditos".equals(parameterBox.getSelectedItem())) {
+            if ("Datos Profesores".equals(jComboBox1.getSelectedItem())) {
                 refrescarTabla(majorSelected, parameterField.getText(), 2);
             }
-            if ("Nombre".equals(parameterBox.getSelectedItem())) {
+            if ("Datos Cursos".equals(jComboBox1.getSelectedItem())) {
                 refrescarTabla(majorSelected, parameterField.getText(), 3);
             }
         } catch (java.lang.NumberFormatException e) {

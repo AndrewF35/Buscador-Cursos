@@ -1,6 +1,5 @@
 package Data;
 
-import static GUI.login.currentStudent;
 import java.util.List;
 import java.util.Random;
 import com.initial.main;
