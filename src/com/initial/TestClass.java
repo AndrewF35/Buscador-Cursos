@@ -5,7 +5,7 @@ import Data.Major;
 
 public class TestClass {
     public static void main(String[] args) {
-        Major.measureMethods();
+
 
 /*
         //Código de prueba para los métodos  a evaluar
