@@ -1,9 +1,12 @@
 package GUI;
 
 import Data.Major;
+import Data.Student;
 import Data.Subject;
+import Data.Teacher;
 import com.initial.main;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -11,27 +14,127 @@ public class AdminMenu extends javax.swing.JFrame {
 
     private DefaultTableModel modelo = new DefaultTableModel();
     private Major majorSelected;
-    
+
     /*
-    *falta añadir funcionalidad de datos de estudiante y profesor, ademas de una ventana de edicion
     *ademas falta añadir medicion y ploting
     *falta hacer video
-    *falta hacer que no se repitan
-    *y la gui de datos de prueba
+    *falta hacer que no se repitan para arboles :,v
     *poner bonito el github 
-    */
-    
-    
-    private void AñadirTablaEstudiantes(Major subjects) {
-        
+    *debuggear como un putas
+     */
+    private void AñadirTablaProfesores(Major subjects) {
+
         //añade columnas de la tabla
         modelo.addColumn("Nombre");
         modelo.addColumn("Edad");
         modelo.addColumn("Usuario");
-        modelo.addColumn("Carrrera");
         //actualiza la infromacion de la tabla
-        refrescarTabla(subjects);
+        refrescarTablaProfesor(subjects);
     }
+
+    private void refrescarTablaProfesor(Major subjects, String parameter, int filterby) {
+
+        while (modelo.getRowCount() > 0) {
+            modelo.removeRow(0);
+        }
+        ArrayList<Teacher> filteredInArray = subjects.getTeacherFromMajorInArray();
+        switch (filterby) {
+            case 1 ->
+                filteredInArray = subjects.filterByTeacherName(parameter);
+            case 2 ->
+                filteredInArray = subjects.filterByTeacherAge(Integer.parseInt(parameter));
+            case 3 ->
+                filteredInArray = subjects.filterByTeacherUser(parameter);
+            default -> {
+                ArrayList<Teacher> SubjectsInArray = subjects.getTeacherFromMajorInArray();
+            }
+        }
+
+        for (Teacher teacher : filteredInArray) {
+            Object a[] = new Object[4];
+            a[0] = teacher.getName();
+            a[1] = teacher.getAge();
+            a[2] = teacher.getUser();
+            modelo.addRow(a);
+        }
+        TablaCursos.setModel(modelo);
+    }
+
+    private void refrescarTablaProfesor(Major subjects) {
+
+        while (modelo.getRowCount() > 0) {
+            modelo.removeRow(0);
+        }
+        ArrayList<Teacher> SubjectsInArray = subjects.getTeacherFromMajorInArray();
+        for (Teacher teacher : SubjectsInArray) {
+            Object a[] = new Object[3];
+            a[0] = teacher.getName();
+            a[1] = teacher.getAge();
+            a[2] = teacher.getUser();
+            modelo.addRow(a);
+        }
+        TablaCursos.setModel(modelo);
+    }
+
+    private void AñadirTablaEstudiantes(Major subjects) {
+
+        //añade columnas de la tabla
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Edad");
+        modelo.addColumn("Usuario");
+        modelo.addColumn("Carrera");
+        //actualiza la infromacion de la tabla
+        refrescarTablaEstudiante(subjects);
+    }
+
+    private void refrescarTablaEstudiante(Major subjects, String parameter, int filterby) {
+
+        while (modelo.getRowCount() > 0) {
+            modelo.removeRow(0);
+        }
+        ArrayList<Student> filteredInArray=subjects.getStudentsFromMajorInArray();
+        switch (filterby) {
+            case 1 ->
+                filteredInArray = subjects.filterByStudentName(parameter);
+            case 2 ->
+                filteredInArray = subjects.filterByStudentAge(Integer.parseInt(parameter));
+            case 3 ->
+                filteredInArray = subjects.filterByStudentUser(parameter);
+            case 4->
+                filteredInArray = subjects.filterByStudentMajor(parameter);
+            default -> {
+                filteredInArray = subjects.getStudentsFromMajorInArray();
+            }
+        }
+
+        for (Student student : filteredInArray) {
+            Object a[] = new Object[4];
+            a[0] = student.getName();
+            a[1] = student.getAge();
+            a[2] = student.getUser();
+            a[3] = student.getMajorCurrent().getNameMajor();
+            modelo.addRow(a);
+        }
+        TablaCursos.setModel(modelo);
+    }
+
+    private void refrescarTablaEstudiante(Major subjects) {
+
+        while (modelo.getRowCount() > 0) {
+            modelo.removeRow(0);
+        }
+        ArrayList<Student> SubjectsInArray = subjects.getStudentsFromMajorInArray();
+        for (Student student : SubjectsInArray) {
+            Object a[] = new Object[4];
+            a[0] = student.getName();
+            a[1] = student.getAge();
+            a[2] = student.getUser();
+            a[3] = student.getMajorCurrent().getNameMajor();
+            modelo.addRow(a);
+        }
+        TablaCursos.setModel(modelo);
+    }
+
     private void AñadirTabla(Major subjects) {
         //añade columnas de la tabla
         modelo.addColumn("Asignatura");
@@ -43,16 +146,7 @@ public class AdminMenu extends javax.swing.JFrame {
     }
 
     private void refrescarTabla(Major subjects, String parameter, int filterby) {
-        /*        try {
-*           Major major = DataInUniversity;
-*          Subject subjectToModify = major.getStudentsFromMajorByName(nameField.getText()); 
-*         subjectToModify.modifySubect(subjectToModify, nameField.getText(), Integer.parseInt(codeField.getText()), Integer.parseInt(creditField.getText()), 8);
-*        JOptionPane.showMessageDialog(this, "Se edito exitosamente el Grupo");
-*
- *       } catch (HeadlessException | NumberFormatException e) {
- *          JOptionPane.showMessageDialog(this, "Error editando informacion, curso no encontrado");
- *     }
-         */
+
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
@@ -123,6 +217,7 @@ public class AdminMenu extends javax.swing.JFrame {
         parameterField = new javax.swing.JTextField();
         parameterBox = new javax.swing.JComboBox<>();
         jButton5 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -159,24 +254,16 @@ public class AdminMenu extends javax.swing.JFrame {
 
         TablaCursos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "name", "nome", "acuerdo", "de las otras"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, true, false
-            };
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
             }
-        });
+        ));
         scrollPanel.setViewportView(TablaCursos);
 
         jLabel1.setText("¿Que desea modificar?");
@@ -242,6 +329,15 @@ public class AdminMenu extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setText(" Modificar Dato");
+        jButton4.setToolTipText("");
+        jButton4.setActionCommand("");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
         background.setLayout(backgroundLayout);
         backgroundLayout.setHorizontalGroup(
@@ -253,34 +349,39 @@ public class AdminMenu extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(backgroundLayout.createSequentialGroup()
-                        .addGap(32, 32, 32)
+                        .addGap(74, 74, 74)
                         .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(backgroundLayout.createSequentialGroup()
-                                .addGap(146, 146, 146)
-                                .addComponent(jButton2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1)
-                                .addGap(234, 234, 234))
-                            .addComponent(scrollPanel, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(parameterBox, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(101, 101, 101)
+                                .addComponent(parameterField, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(39, 39, 39)
+                                .addComponent(jButton5))
                             .addGroup(backgroundLayout.createSequentialGroup()
-                                .addGap(42, 42, 42)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(36, 36, 36)
+                                .addComponent(jButton3)))
+                        .addGap(0, 140, Short.MAX_VALUE))
+                    .addGroup(backgroundLayout.createSequentialGroup()
+                        .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(separator))
+                            .addGroup(backgroundLayout.createSequentialGroup()
                                 .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(backgroundLayout.createSequentialGroup()
-                                        .addComponent(parameterBox, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(101, 101, 101)
-                                        .addComponent(parameterField, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(39, 39, 39)
-                                        .addComponent(jButton5))
+                                        .addGap(32, 32, 32)
+                                        .addComponent(scrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 734, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(backgroundLayout.createSequentialGroup()
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(36, 36, 36)
-                                        .addComponent(jButton3)))
-                                .addGap(0, 140, Short.MAX_VALUE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(separator)
+                                        .addGap(101, 101, 101)
+                                        .addComponent(jButton2)
+                                        .addGap(137, 137, 137)
+                                        .addComponent(jButton1)
+                                        .addGap(107, 107, 107)
+                                        .addComponent(jButton4)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())))
         );
         backgroundLayout.setVerticalGroup(
@@ -306,9 +407,10 @@ public class AdminMenu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(scrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
                     .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(jButton4))
                 .addGap(27, 27, 27))
         );
 
@@ -335,7 +437,39 @@ public class AdminMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_parameterFieldMouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        try {
+            if ("Datos Estudiantes".equals(jComboBox1.getSelectedItem())) {
+                parameterBox.removeAllItems();
+                List<String> listPropertiesStudents = List.of("Nombre", "Edad", "Usuario", "Carrera");
+                for (int i = 0; i < listPropertiesStudents.size(); i++) {
+                    parameterBox.addItem(listPropertiesStudents.get(i));
+                }
+                AñadirTablaEstudiantes(main.DataInUniversity);
+                refrescarTablaEstudiante(majorSelected);
+            }
+            if ("Datos Profesores".equals(jComboBox1.getSelectedItem())) {
+                parameterBox.removeAllItems();
+                List<String> listPropertiesTeachers = List.of("Nombre", "Edad", "Usuario");
+                for (int i = 0; i < listPropertiesTeachers.size(); i++) {
+                    parameterBox.addItem(listPropertiesTeachers.get(i));
+                AñadirTablaProfesores(main.DataInUniversity);
+                }
+
+                refrescarTablaProfesor(majorSelected);
+            }
+            if ("Datos Cursos".equals(jComboBox1.getSelectedItem())) {
+                parameterBox.removeAllItems();
+                List<String> listPropertiesSubjects = List.of("Codigo", "Creditos", "Nombre");
+                for (int i = 0; i < listPropertiesSubjects.size(); i++) {
+                    parameterBox.addItem(listPropertiesSubjects.get(i));
+                }
+                AñadirTabla(main.DataInUniversity);
+                refrescarTabla(majorSelected);
+            }
+        } catch (java.lang.NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Seleccione un parametro");
+        }
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -352,20 +486,7 @@ public class AdminMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        try {
-            if ("Datos Estudiantes".equals(jComboBox1.getSelectedItem())) {
-                refrescarTabla(majorSelected, parameterField.getText(), 1);
-            }
-            if ("Datos Profesores".equals(jComboBox1.getSelectedItem())) {
-                refrescarTabla(majorSelected, parameterField.getText(), 2);
-            }
-            if ("Datos Cursos".equals(jComboBox1.getSelectedItem())) {
-                refrescarTabla(majorSelected, parameterField.getText(), 3);
-            }
-        } catch (java.lang.NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Ingrese un parametro");
-            refrescarTabla(main.DataInUniversity);
-        }
+
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void parameterBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_parameterBoxMouseClicked
@@ -388,11 +509,42 @@ public class AdminMenu extends javax.swing.JFrame {
             if ("Nombre".equals(parameterBox.getSelectedItem())) {
                 refrescarTabla(majorSelected, parameterField.getText(), 3);
             }
+            if ("Datos Estudiantes".equals(jComboBox1.getSelectedItem())) {
+                if ("Nombre".equals(parameterBox.getSelectedItem())) {
+                    refrescarTablaEstudiante(majorSelected, parameterField.getText(), 1);
+                }
+                if ("Edad".equals(parameterBox.getSelectedItem())) {
+                    refrescarTablaEstudiante(majorSelected, parameterField.getText(), 2);
+                }
+                if ("Usuario".equals(parameterBox.getSelectedItem())) {
+                    refrescarTablaEstudiante(majorSelected, parameterField.getText(), 3);
+                }
+                if ("Carrera".equals(parameterBox.getSelectedItem())) {
+                    refrescarTablaEstudiante(majorSelected, parameterField.getText(), 4);
+                }
+            }
+            //-----------Profesor
+            if ("Nombre".equals(parameterBox.getSelectedItem())) {
+                refrescarTablaProfesor(majorSelected, parameterField.getText(), 1);
+            }
+            if ("Edad".equals(parameterBox.getSelectedItem())) {
+                refrescarTablaProfesor(majorSelected, parameterField.getText(), 2);
+            }
+            if ("Usuario".equals(parameterBox.getSelectedItem())) {
+                refrescarTablaProfesor(majorSelected, parameterField.getText(), 3);
+            }
+
+            //-----------Estudiante
         } catch (java.lang.NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Ingrese un parametro");
             refrescarTabla(main.DataInUniversity);
         }
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+                //wtf que esto y que hago con eso ajasjajs 
+
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -429,6 +581,7 @@ public class AdminMenu extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;

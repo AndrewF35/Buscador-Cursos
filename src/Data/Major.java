@@ -11,7 +11,7 @@ public class Major implements Comparable<Major> {
     private RecursiveBinarySearchTree<Subject> subjects = new RecursiveBinarySearchTree<>();//introduccion, mates,poo
     private RecursiveBinarySearchTree<Student> students = new RecursiveBinarySearchTree();
     private RecursiveBinarySearchTree<Teacher> teachers = new RecursiveBinarySearchTree();
-    private HashMap<String,Admin> admins = new HashMap<>(); 
+    private HashMap<String, Admin> admins = new HashMap<>();
 
 //getters y setters 
     public void setSubjects(RecursiveBinarySearchTree<Subject> subjects) {
@@ -72,7 +72,7 @@ public class Major implements Comparable<Major> {
     }
 
     private Subject getSubjectsHelperByValue(TreeNode<Subject> root, int value) {
-        if (this.getSubjectsFromMajor().getRoot() != null || root.getKey().getCodeSubject()== value) {
+        if (this.getSubjectsFromMajor().getRoot() != null || root.getKey().getCodeSubject() == value) {
             return root.getKey();
         }
 
@@ -110,11 +110,12 @@ public class Major implements Comparable<Major> {
     public void setAdmins(HashMap<String, Admin> admins) {
         this.admins = admins;
     }
+
     public void createAdmin(Admin adminToAdd) {
-        String key= adminToAdd.getUser();
-        this.admins.put(key, adminToAdd);   
+        String key = adminToAdd.getUser();
+        this.admins.put(key, adminToAdd);
     }
-    
+
     //Metodos para filtrar materias  
     public ArrayList<Subject> filterByCode(int code) {
         ArrayList<Subject> SubjectFilteredInMajor = new ArrayList<>();
@@ -179,20 +180,79 @@ public class Major implements Comparable<Major> {
         Subject subject = new Subject(courseName, courseCode, creditSubject, quotesSubject);
         subjects.insert(subject);
     }
-    
+
     //-------Metodos Profesor----------//
-    
+    public RecursiveBinarySearchTree<Teacher> getTeachers() {
+        return teachers;
+    }
+
+    public void setTeachers(RecursiveBinarySearchTree<Teacher> teachers) {
+        this.teachers = teachers;
+    }
+
+    public ArrayList<Teacher> filterByTeacherName(String name) {
+        ArrayList<Teacher> TeacherFilteredInMajor = new ArrayList<>();
+        this.filterHelperTeacherName(this.getTeachers().getRoot(), TeacherFilteredInMajor, name);
+        return TeacherFilteredInMajor;
+    }
+
+    private void filterHelperTeacherName(TreeNode<Teacher> root, ArrayList<Teacher> values, String name) {
+        if (root == null) {
+            return;
+        }
+        filterHelperTeacherName(root.getLeft(), values, name);
+        if (root.getKey().getName().contains(name)) {
+            values.add((Teacher) root.getKey());
+        }
+        filterHelperTeacherName(root.getRight(), values, name);
+    }
+
+    public ArrayList<Teacher> filterByTeacherUser(String name) {
+        ArrayList<Teacher> TeacherFilteredInMajor = new ArrayList<>();
+        this.filterHelperTeacherUser(this.getTeachers().getRoot(), TeacherFilteredInMajor, name);
+        return TeacherFilteredInMajor;
+    }
+
+    private void filterHelperTeacherUser(TreeNode<Teacher> root, ArrayList<Teacher> values, String name) {
+        if (root == null) {
+            return;
+        }
+        filterHelperTeacherUser(root.getLeft(), values, name);
+        if (root.getKey().getUser().contains(name)) {
+            values.add((Teacher) root.getKey());
+        }
+        filterHelperTeacherUser(root.getRight(), values, name);
+    }
+
+    public ArrayList<Teacher> filterByTeacherAge(int code) {
+        ArrayList<Teacher> teacherFilteredInMajor = new ArrayList<>();
+        this.filterHelperTeacherAge(this.getTeachers().getRoot(), teacherFilteredInMajor, code);
+        return teacherFilteredInMajor;
+    }
+
+    private void filterHelperTeacherAge(TreeNode<Teacher> root, ArrayList<Teacher> values, int code) {
+        if (root == null) {
+            return;
+        }
+        filterHelperTeacherAge(root.getLeft(), values, code);
+        if (root.getKey().getAge() == code) {
+            values.add((Teacher) root.getKey());
+        }
+        filterHelperTeacherAge(root.getRight(), values, code);
+    }
+
     public ArrayList<Teacher> getTeacherFromMajorInArray() {
         ArrayList<Teacher> teacherInMajor = new ArrayList<>();
         this.teachers.inOrderList(teacherInMajor);
         return teacherInMajor;
     }
+
     public Teacher searchTeacherByUser(String user) {
         return this.searchTeacherByUser(teachers.getRoot(), user);
     }
 
     private Teacher searchTeacherByUser(TreeNode<Teacher> root, String data) {
-        if (this.getSubjectsFromMajor().getRoot() == null || (root.getKey().getUser()== null ? data == null : root.getKey().getUser().equals(data))) {
+        if (this.getSubjectsFromMajor().getRoot() == null || (root.getKey().getUser() == null ? data == null : root.getKey().getUser().equals(data))) {
             return root.getKey();
         }
         if (data.compareTo(root.getKey().getUser()) < 0) {
@@ -201,6 +261,7 @@ public class Major implements Comparable<Major> {
             return searchTeacherByUser(root.getRight(), data);
         }
     }
+
     public void AddTeachersToMajor(Teacher teacherToAdd) {
         this.teachers.insert(teacherToAdd);
     }
@@ -216,14 +277,81 @@ public class Major implements Comparable<Major> {
     }
 
     //-------Metodos estudiantes-------//
+    
+    public ArrayList<Student> filterByStudentMajor(String name) {
+        ArrayList<Student> FilteredInMajor = new ArrayList<>();
+        this.filterHelperStudentMajor(this.getStudentsTree().getRoot(), FilteredInMajor, name);
+        return FilteredInMajor;
+    }
 
+    private void filterHelperStudentMajor(TreeNode<Student> root, ArrayList<Student> values, String name) {
+        if (root == null) {
+            return;
+        }
+        filterHelperStudentMajor(root.getLeft(), values, name);
+        if (root.getKey().getMajorCurrent().getNameMajor().contains(name)) {
+            values.add((Student) root.getKey());
+        }
+        filterHelperStudentMajor(root.getRight(), values, name);
+    }
+    
+    public ArrayList<Student> filterByStudentName(String name) {
+        ArrayList<Student> FilteredInMajor = new ArrayList<>();
+        this.filterHelperStudentName(this.getStudentsTree().getRoot(), FilteredInMajor, name);
+        return FilteredInMajor;
+    }
 
+    private void filterHelperStudentName(TreeNode<Student> root, ArrayList<Student> values, String name) {
+        if (root == null) {
+            return;
+        }
+        filterHelperStudentName(root.getLeft(), values, name);
+        if (root.getKey().getName().contains(name)) {
+            values.add((Student) root.getKey());
+        }
+        filterHelperStudentName(root.getRight(), values, name);
+    }
+
+    public ArrayList<Student> filterByStudentUser(String name) {
+        ArrayList<Student> FilteredInMajor = new ArrayList<>();
+        this.filterHelperStudentUser(this.getStudentsTree().getRoot(), FilteredInMajor, name);
+        return FilteredInMajor;
+    }
+
+    private void filterHelperStudentUser(TreeNode<Student> root, ArrayList<Student> values, String name) {
+        if (root == null) {
+            return;
+        }
+        filterHelperStudentUser(root.getLeft(), values, name);
+        if (root.getKey().getUser().contains(name)) {
+            values.add((Student) root.getKey());
+        }
+        filterHelperStudentUser(root.getRight(), values, name);
+    }
+
+    public ArrayList<Student> filterByStudentAge(int code) {
+        ArrayList<Student> FilteredInMajor = new ArrayList<>();
+        this.filterHelperStudentAge(this.getStudentsTree().getRoot(), FilteredInMajor, code);
+        return FilteredInMajor;
+    }
+
+    private void filterHelperStudentAge(TreeNode<Student> root, ArrayList<Student> values, int code) {
+        if (root == null) {
+            return;
+        }
+        filterHelperStudentAge(root.getLeft(), values, code);
+        if (root.getKey().getAge() == code) {
+            values.add((Student) root.getKey());
+        }
+        filterHelperStudentAge(root.getRight(), values, code);
+    }
+    
     public Student searchStudentByUser(String user) {
         return this.searchStudentByUser(this.students.getRoot(), user);
     }
 
     private Student searchStudentByUser(TreeNode<Student> root, String data) {
-        if (this.getSubjectsFromMajor().getRoot() == null || (root.getKey().getUser()== null ? data == null : root.getKey().getUser().equals(data))) {
+        if (this.getSubjectsFromMajor().getRoot() == null || (root.getKey().getUser() == null ? data == null : root.getKey().getUser().equals(data))) {
             return root.getKey();
         }
         if (data.compareTo(root.getKey().getUser()) < 0) {
@@ -232,6 +360,7 @@ public class Major implements Comparable<Major> {
             return searchStudentByUser(root.getRight(), data);
         }
     }
+
     public void AddStudentsToMajor(Student studentToAdd) {
         this.students.insert(studentToAdd);
     }
@@ -269,9 +398,11 @@ public class Major implements Comparable<Major> {
     public void printTreeStudent() {
         printTree(this.students.getRoot(), 0);
     }
+
     public void printTreeTeacher() {
         printTreeT(this.teachers.getRoot(), 0);
     }
+
     private void printTreeT(TreeNode<Teacher> node, int level) {
         if (node == null) {
             return;
@@ -302,9 +433,7 @@ public class Major implements Comparable<Major> {
         printTree(node.getLeft(), level + 1);
     }
 
-
 //---------------------------- metodos para to compare
-
     @Override
     public int compareTo(Major anotherMajor) {
         // comparar por nameMajor;

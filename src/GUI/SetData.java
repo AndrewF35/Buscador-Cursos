@@ -64,6 +64,7 @@ public class SetData extends javax.swing.JFrame {
         curseMajorField = new javax.swing.JTextField();
         estudiantesField = new javax.swing.JTextField();
         profesoresField = new javax.swing.JTextField();
+        ocupationLabel1 = new javax.swing.JLabel();
 
         jScrollPane1.setViewportView(jTextPane1);
 
@@ -90,8 +91,8 @@ public class SetData extends javax.swing.JFrame {
 
         ocupationLabel.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
         ocupationLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ocupationLabel.setText("En esta ventana podras definir los datos de prueba para la ejecucion del programa :D");
-        background.add(ocupationLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 540, -1));
+        ocupationLabel.setText("Se recomienda llenar el formulario de arriba a abajo para evitar errores en la generacion aleatoria");
+        background.add(ocupationLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 540, -1));
 
         for(int i=0;i<main.majorsInUniversity.size();i++){
             majorSelector.addItem(main.majorsInUniversity.get(i).getNameMajor());
@@ -308,6 +309,11 @@ public class SetData extends javax.swing.JFrame {
         });
         background.add(profesoresField, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, 140, -1));
 
+        ocupationLabel1.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
+        ocupationLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ocupationLabel1.setText("En esta ventana podras definir los datos de prueba para la ejecucion del programa :D");
+        background.add(ocupationLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 540, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -341,9 +347,19 @@ public class SetData extends javax.swing.JFrame {
     private void añadirCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añadirCarreraActionPerformed
         Major major = new Major();
         major.setNameMajor(nameCarrerField.getText());
-        majorsInUniversity.add(major);
-        //algoritmo de no repeticion
-        for(int i=0;i<main.majorsInUniversity.size();i++){
+        if (!main.majorsInUniversity.contains(major)) {
+            majorsInUniversity.add(major);
+            JOptionPane.showMessageDialog(this, """
+                                                Añadido exitosamente con esta informacion la carrera 
+                                                """ + nameCarrerField.getText() + " en carreras");
+        } else if (main.majorsInUniversity.contains(major)) {
+            JOptionPane.showMessageDialog(this, """
+                                                Carrera 
+                                                """ + nameCarrerField.getText() + " ya existente en carreras");
+        }
+
+        majorSelector.removeAllItems();
+        for (int i = 0; i < main.majorsInUniversity.size(); i++) {
             majorSelector.addItem(main.majorsInUniversity.get(i).getNameMajor());
         }
     }//GEN-LAST:event_añadirCarreraActionPerformed
@@ -354,13 +370,16 @@ public class SetData extends javax.swing.JFrame {
             for (int i = 0; i < main.majorsInUniversity.size(); i++) {
                 if (main.majorsInUniversity.get(i).getNameMajor().equals(majorSelector.getSelectedItem())) {
                     for (int j = 0;
-                            j < 30;
+                            j < Integer.parseInt(curseMajorField.getText());
                             j++) {
-
                         main.majorsInUniversity.get(i).addSubjectToMajor(DataGenerator.generateRandomCourses(j));
                     }
+                    JOptionPane.showMessageDialog(this, """
+                                    Añadido exitosamente con esta informacion 
+                                    """ + curseMajorField.getText() + " cursos a la carrera: " + majorSelector.getSelectedItem());
                 }
             }
+
         } catch (java.lang.NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Error Añadiendo Data");
         }
@@ -373,6 +392,9 @@ public class SetData extends javax.swing.JFrame {
                     i++) {
                 DataInUniversity.AddStudentsToMajor(DataGenerator.generateRandomStudent(i));
             }
+            JOptionPane.showMessageDialog(this, """
+                                    Añadido exitosamente con esta informacion 
+                                    """ + estudiantesField.getText() + " Estudiantes");
             TextousuarioE.setText(DataInUniversity.getStudentsFromMajorInArray().get(1).getUser());
             TextopassE.setText(DataInUniversity.getStudentsFromMajorInArray().get(1).getPassword());
         } else {
@@ -390,6 +412,9 @@ public class SetData extends javax.swing.JFrame {
 
                 DataInUniversity.addSubjectToMajor(DataGenerator.generateRandomCourses(i));
             }
+            JOptionPane.showMessageDialog(this, """
+                                                Añadido exitosamente con esta informacion 
+                                                """ + cursosAñadirU.getText() + " Cursos");
         } else {
             JOptionPane.showMessageDialog(this, "No es posible añadir mas de 100000 cursos por el bien de tu sistema :c");
         }
@@ -422,6 +447,9 @@ public class SetData extends javax.swing.JFrame {
                     i++) {
                 DataInUniversity.AddTeachersToMajor(DataGenerator.generateRandomTeacher(i));
             }
+            JOptionPane.showMessageDialog(this, """
+                                    Añadido exitosamente con esta informacion 
+                                    """ + profesoresField.getText() + " Profesores");
             TextopassP.setText(DataInUniversity.getTeacherFromMajorInArray().get(1).getPassword());
             TextousuarioP.setText(DataInUniversity.getTeacherFromMajorInArray().get(1).getUser());
         } else {
@@ -511,6 +539,7 @@ public class SetData extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> majorSelector;
     private javax.swing.JTextField nameCarrerField;
     private javax.swing.JLabel ocupationLabel;
+    private javax.swing.JLabel ocupationLabel1;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JLabel passwordLabel1;
     private javax.swing.JLabel passwordLabel2;

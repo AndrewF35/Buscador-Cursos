@@ -28,7 +28,7 @@ public class DataGenerator {
         ArrayList<Subject> schedule = new ArrayList<>();
         Stack<Subject> doneSubjects = new Stack<>();
         Stack<Subject> remainingSubjects = new Stack<>();
-        for(int i=0;i<5;i++){
+        for(int i=0;i<(index/10+1);i++){
             schedule.add(majorCurrent.readAllByName().get(random.nextInt(10)));
             doneSubjects.push(majorCurrent.readAllByName().get(random.nextInt(10)));
             remainingSubjects.push(majorCurrent.readAllByName().get(random.nextInt(10)));
